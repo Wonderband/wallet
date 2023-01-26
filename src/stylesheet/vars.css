@@ -1,0 +1,36 @@
+:root {
+  /* breakpoints */
+  --mobile: 320px;
+  --max-mobile: 767px;
+  --tablet: 768px;
+  --max-tablet: 1279px;
+  --desktop: 1280px;
+
+  /* background colors */
+  --primary-background-color: #ffffff;
+  --secondary-background-color: #e7eaf2;
+  --accent-background-color: #4a56e2;
+  --modal-background: rgba(0, 0, 0, 0.25);
+
+  /* text colors */
+  --primary-text-color: #000000;
+  --secondary-text-color: #ffffff;
+  --placeholder-text: #bdbdbd;
+  --accent-color: #4a56e2;
+  --amount-incomes-accent-color: #24cca7;
+  --amount-expenses-accent-color: #ff6596;
+  --disabled-grey-text-color: #e0e0e0;
+  --err-text-color: #ff001b;
+
+  /* button colors */
+  --btn-color: #ffffff;
+  --accent-btn-color: #24cca7;
+
+  /* color line Tab */
+  --line-table-color: #dcdcdf;
+  --border-color: #e0e0e0;
+
+  /* fonts */
+  --main__font-family: Circe, sans-serif;
+  --logo__font-family: Poppins, sans-serif;
+}

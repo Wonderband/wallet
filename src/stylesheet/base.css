@@ -1,0 +1,75 @@
+body {
+  font-family: 'Poppins', 'Circe', 'CirceBold', sans-serif;
+  text-decoration: none;
+  background-color: var(--primary-background-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
+}
+
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+}
+
+button {
+  text-decoration: none;
+  cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  border: none;
+  background: none;
+}
+
+p {
+  margin: 0px;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0px 20px;
+
+  /* @media screen and (min-width: 320px) {
+    width: 320px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 0px 70px;
+    width: 768px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 1280px;
+  } */
+}
+
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  display: none;
+}
+
+.is-hidden {
+  display: none;
+}
