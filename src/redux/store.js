@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authSlicePersistedReducer } from './auth/authSlice';
+import { sessionSlicePersistedReducer } from './session/sessionSlice';
 
 import {
   persistStore,
@@ -13,7 +13,7 @@ import {
 
 export const store = configureStore({
   reducer: {
-    auth: authSlicePersistedReducer,
+    session: sessionSlicePersistedReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

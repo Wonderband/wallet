@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut, refreshUser, register } from './authOperations';
+import { logIn, logOut, refreshUser, register } from './sessionOperations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -8,20 +8,24 @@ import storage from 'redux-persist/lib/storage';
 const initialState = {
   user: null,
   token: null,
+  error: null,
+  isAuth: false,
 };
 
-const authSlice = createSlice({
+const sessionSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: builder => {
     builder.addCase(register.fulfilled, (state, { payload }) => {
       state.user = payload.user;
       state.token = payload.token;
+      state.isAuth = false;
+      state.error = null;
     });
   },
 });
 
-const authSliceReducer = authSlice.reducer;
+const sessionSliceReducer = sessionSlice.reducer;
 
 ///////////////// Persist data ///////////////
 
@@ -31,7 +35,7 @@ const persistConfig = {
   storage,
   whitelist: ['token'],
 };
-export const authSlicePersistedReducer = persistReducer(
+export const sessionSlicePersistedReducer = persistReducer(
   persistConfig,
-  authSliceReducer
+  sessionSliceReducer
 );
