@@ -34,7 +34,7 @@ export const authAPI = {
   },
 
   async refreshUser() {
-    const response = await axios('/api/users/current');
+    const response = await auth('/api/users/current');
     return response.data;
   },
 };
