@@ -1,3 +1,4 @@
+import Icon from 'assets/images/RegisterForm/Icon';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
@@ -46,39 +47,71 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form className={styles.form}>
-        <Field
-          className={styles.input}
-          type="email"
-          name="email"
-          placeholder="E-mail"
-        />
+      <Form className={styles.registerForm}>
+        <label className={styles.label}>
+          <Field
+            className={styles.textInput}
+            type="email"
+            name="email"
+            placeholder="E-mail"
+          />
+          <Icon
+            name="icon-email"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
+        </label>
         {/* <ErrorMessage name="email" /> */}
-        <Field
-          className={styles.passwordInput}
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
+        <label className={styles.label}>
+          <Field
+            className={styles.passwordInput}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <Icon
+            name="icon-password"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
+        </label>
         {/* <ErrorMessage name="password" /> */}
-        <Field
-          className={styles.passwordInput}
-          type="password"
-          name="passwordConfirmation"
-          placeholder="Confirm password"
-        />
+        <label className={styles.label}>
+          <Field
+            className={styles.passwordInput}
+            type="password"
+            name="passwordConfirmation"
+            placeholder="Confirm password"
+          />
+          <Icon
+            name="icon-password"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
+        </label>
         {/* <ErrorMessage name="passwordConfirmation" /> */}
-        <Field
-          className={styles.input}
-          type="text"
-          name="username"
-          placeholder="First name"
-        />
+        <label className={styles.label}>
+          <Field
+            className={styles.textInput}
+            type="text"
+            name="username"
+            placeholder="First name"
+          />
+          <Icon
+            name="icon-username"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
+        </label>
         {/* <ErrorMessage name="username" /> */}
-        <button type="submit" className={styles.button}>
+        <button type="submit" className={styles.submitButton}>
           register
         </button>
-        <NavLink to="/login" className={styles.link}>
+        <NavLink to="/login" className={styles.loginLink}>
           log in
         </NavLink>
       </Form>
