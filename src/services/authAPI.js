@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BASE_URL = 'https://wallet.goit.ua';
 
-const auth = axios.create({
+export const auth = axios.create({
   baseURL: BASE_URL,
 });
 
@@ -17,8 +17,9 @@ const clearAuthToken = () => {
 export const authAPI = {
   async registerUser(formData) {
     const response = await auth.post('/api/auth/sign-up', formData);
+    console.log(response);
     setAuthToken(response.data.token);
-    return await response.data;
+    return  response.data;
   },
 
   async loginUser(formData) {
