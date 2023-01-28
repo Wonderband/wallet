@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getCurrencies } from '../../services/currencyAPI';
-import s from './Currency.module.css'
+import { Loader } from '../Loader/Loader';
+import s from './Currency.module.css';
 
 const CURRENCIES = 'currencies';
 const MS_PER_HOUR = 3600000;
@@ -31,7 +32,7 @@ export const Currency = () => {
   return (
     <div className={s.container}>
       {!currencies ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <table className={s.table}>
           <thead>
@@ -52,7 +53,6 @@ export const Currency = () => {
           </tbody>
         </table>
       )}
-      <div className={s.wave}></div>
     </div>
   );
 };
