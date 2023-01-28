@@ -1,0 +1,27 @@
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modalSection {
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black; 
+    padding: 10px;   
+    background-color: aliceblue;
+}
+
+.modalForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.close {
+   
+}

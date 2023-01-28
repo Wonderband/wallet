@@ -1,0 +1,1 @@
+export const selectIsLogged = state => state.session.isAuth;
