@@ -1,8 +1,10 @@
+import Icon from 'assets/images/RegisterForm/Icon';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logIn } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
+import styles from './LoginForm.module.css';
 
 ///////////////// Yup validation schema ///////////////
 
@@ -38,19 +40,43 @@ export const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form>
-        <label>
-          Email
-          <Field type="email" name="email" />
-          <ErrorMessage name="email" />
+      <Form className={styles.loginForm}>
+        <label className={styles.label}>
+          <Field
+            className={styles.textInput}
+            type="email"
+            name="email"
+            placeholder="E-mail"
+          />
+          <Icon
+            name="icon-email"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
         </label>
-        <label>
-          Password
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" />
+        {/* <ErrorMessage name="email" /> */}
+        <label className={styles.label}>
+          <Field
+            className={styles.passwordInput}
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+          <Icon
+            name="icon-password"
+            className={styles.icon}
+            width="24"
+            height="24"
+          />
         </label>
-        <button type="submit">login</button>
-        <NavLink to="/register">register</NavLink>
+        {/* <ErrorMessage name="password" /> */}
+        <button className={styles.submitButton} type="submit">
+          log in
+        </button>
+        <NavLink className={styles.loginLink} to="/register">
+          register
+        </NavLink>
       </Form>
     </Formik>
   );
