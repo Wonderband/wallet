@@ -1,0 +1,80 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.input {
+  height: 32px;
+  padding-left: 55px;
+
+  font-family: var(--main__font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+
+  border: transparent;
+  outline: none;
+  border-bottom: 1px solid var(--disabled-grey-text-color);
+}
+
+.input::placeholder {
+  color: var(--placeholder-text);
+  font-family: var(--main__font-family);
+  letter-spacing: normal;
+}
+
+.passwordInput {
+  composes: input;
+  font-family: Verdana;
+  letter-spacing: 0.125em;
+}
+
+.button {
+  height: 50px;
+
+  font-family: var(--main__font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  background-color: var(--btn-color);
+  border: 1px solid var(--accent-btn-color);
+  border-radius: 20px;
+  color: var(--accent-btn-color);
+  transition: all var(--cubic) var(--animation-time);
+  outline: transparent;
+}
+
+.button:hover,
+.button:focus {
+  color: var(--btn-color);
+  background-color: var(--accent-btn-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.link {
+  composes: button;
+  margin-top: -20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--accent-color);
+  background-color: var(--btn-color);
+  border: 1px solid var(--accent-color);
+}
+
+.link:focus,
+.link:hover {
+  background-color: var(--accent-color);
+  color: var(--btn-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}

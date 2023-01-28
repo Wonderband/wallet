@@ -8,7 +8,7 @@ import storage from 'redux-persist/lib/storage';
 const initialState = {
   user: null,
   token: null,
-  error: null,
+  // error: null,
   isAuth: false,
   isLoading: false,
 };
@@ -17,9 +17,8 @@ const pending = state => {
   state.isLoading = true;
 };
 
-const rejected = (state, { payload }) => {
+const rejected = state => {
   state.isLoading = false;
-  state.error = payload;
 };
 
 const sessionSlice = createSlice({
@@ -31,6 +30,8 @@ const sessionSlice = createSlice({
       .addCase(register.rejected, rejected)
       .addCase(logIn.pending, pending)
       .addCase(logIn.rejected, rejected)
+      .addCase(refreshUser.pending, pending)
+      .addCase(refreshUser.rejected, rejected)
       .addCase(register.fulfilled, (state, { payload }) => {
         state.user = payload?.user;
         state.token = payload?.token;
@@ -40,6 +41,11 @@ const sessionSlice = createSlice({
       .addCase(logIn.fulfilled, (state, { payload }) => {
         state.user = payload?.user;
         state.token = payload?.token;
+        state.isAuth = true;
+        state.isLoading = false;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload?.user;
         state.isAuth = true;
         state.isLoading = false;
       });

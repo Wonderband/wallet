@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { register } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
+import styles from './RegistrationForm.module.css';
 
 ///////////////// Yup validation schema ///////////////
 
@@ -45,29 +46,41 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form>
-        <label>
-          Email
-          <Field type="email" name="email" />
-          <ErrorMessage name="email" />
-        </label>
-        <label>
-          Password
-          <Field type="password" name="password" />
-          <ErrorMessage name="password" />
-        </label>
-        <label>
-          Confirm password
-          <Field type="password" name="passwordConfirmation" />
-          <ErrorMessage name="passwordConfirmation" />
-        </label>
-        <label>
-          First Name
-          <Field type="text" name="username" />
-          <ErrorMessage name="username" />
-        </label>
-        <button type="submit">Submit</button>
-        <NavLink to="/login">login</NavLink>
+      <Form className={styles.form}>
+        <Field
+          className={styles.input}
+          type="email"
+          name="email"
+          placeholder="E-mail"
+        />
+        {/* <ErrorMessage name="email" /> */}
+        <Field
+          className={styles.passwordInput}
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+        {/* <ErrorMessage name="password" /> */}
+        <Field
+          className={styles.passwordInput}
+          type="password"
+          name="passwordConfirmation"
+          placeholder="Confirm password"
+        />
+        {/* <ErrorMessage name="passwordConfirmation" /> */}
+        <Field
+          className={styles.input}
+          type="text"
+          name="username"
+          placeholder="First name"
+        />
+        {/* <ErrorMessage name="username" /> */}
+        <button type="submit" className={styles.button}>
+          register
+        </button>
+        <NavLink to="/login" className={styles.link}>
+          log in
+        </NavLink>
       </Form>
     </Formik>
   );

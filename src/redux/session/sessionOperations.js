@@ -21,6 +21,7 @@ export const logIn = createAsyncThunk(
     try {
       return await authAPI.loginUser(formData);
     } catch (error) {
+      toast.error(error.response.data.message);
       thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -30,7 +31,8 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     return await authAPI.logOut();
   } catch (error) {
-    thunkAPI.rejectWithValue(error);
+    toast.error(error.response.data.message);
+    thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -41,6 +43,7 @@ export const refreshUser = createAsyncThunk(
     const persistedToken = state.auth.token;
 
     if (persistedToken === null) {
+      toast.error('Unable to fetch user');
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
@@ -48,6 +51,7 @@ export const refreshUser = createAsyncThunk(
       setAuthToken(persistedToken);
       return await authAPI.refreshUser();
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
