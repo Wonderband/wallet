@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Provider store={store}>
         <PersistGate persistor={persistor}>
           <App />
-          <ModalAddTransaction/>
+          {/* <ModalAddTransaction/> */}
         </PersistGate>
       </Provider>
     </BrowserRouter>

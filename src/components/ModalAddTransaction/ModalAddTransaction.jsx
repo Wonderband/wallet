@@ -6,6 +6,7 @@ import css from './ModalAddTransaction.module.css';
 
 export const ModalAddTransaction = () => {
   const dispatch = useDispatch();
+
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(getCategories());
@@ -14,7 +15,7 @@ export const ModalAddTransaction = () => {
   return createPortal(
     // <div className={css.modalBackdrop}>
     <section className={css.modalSection} id="myModal">
-      <span className={css.close}>&times;</span>
+      {/* <span className={css.close}>&times;</span> */}
       <h2>Add transaction</h2>
       <form className={css.modalForm} action="">
         <label>

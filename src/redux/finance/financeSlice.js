@@ -18,7 +18,7 @@ const financeSlice = createSlice({
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
      state.categories = payload.data.map(item => item.name);  
       
-      console.log(state.categories);
+      // console.log(state.categories);
     });
   },
 });
