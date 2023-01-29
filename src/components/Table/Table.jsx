@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import './tableFilters.css';
 import { selectStyles } from './SelectStyles';
+import { getSummary } from 'redux/finance/transactionsSummary.js/transactionsSummaryOperations';
 
 export const Table = () => {
   const dispatch = useDispatch();
@@ -21,22 +22,21 @@ export const Table = () => {
     setDate(prev => ({ ...prev, [name]: value }));
   };
 
-  async function updateTransactionForPeriod() {
-    try {
-      await console.log();
-      // fetch all data from request
-
-      // await dispatch(
-      //   getTransactionDate({ month: date.month, year: date.year })
-      // ).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
+    async function updateTransactionForPeriod() {
+      try {
+        // fetch all data from request
+
+        await dispatch(
+          getSummary({ month: date.month.value, year: date.year.value })
+        ).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     updateTransactionForPeriod();
-  }, [date, updateTransactionForPeriod]);
+  }, [date, dispatch]);
 
   return (
     <div className={css.selectContainer}>
