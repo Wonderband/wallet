@@ -10,8 +10,15 @@ import { Loader } from './Loader/Loader';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthRoute, GuestRoute } from './redirectRoutes';
+import { refreshUser } from 'redux/session/sessionOperations';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
     <>
       <Loader />

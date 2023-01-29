@@ -101,3 +101,7 @@
   fill: currentColor;
   transition: fill var(--cubic) var(--animation-time);
 }
+
+.errorMessage {
+  font-size: 30px;
+}

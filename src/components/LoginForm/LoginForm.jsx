@@ -55,7 +55,7 @@ export const LoginForm = () => {
             height="24"
           />
         </label>
-        {/* <ErrorMessage name="email" /> */}
+        <ErrorMessage name="email" />
         <label className={styles.label}>
           <Field
             className={styles.passwordInput}
@@ -70,7 +70,7 @@ export const LoginForm = () => {
             height="24"
           />
         </label>
-        {/* <ErrorMessage name="password" /> */}
+        <ErrorMessage name="password" />
         <button className={styles.submitButton} type="submit">
           log in
         </button>
