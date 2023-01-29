@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from 'redux/finance/financeOperations';
 import { closeModal } from 'redux/global/globalSlice';
-// import { selectIsModalOpen } from 'redux/selectors';
+import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.css';
 
 export const ModalAddTransaction = () => {
@@ -11,7 +11,6 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(getCategories());
   };
 
   const clickOnBackdropHandler = e => {
@@ -32,8 +31,24 @@ export const ModalAddTransaction = () => {
       backdrop.removeEventListener('click', clickOnBackdropHandler);
       document.removeEventListener('keydown', onEscapeHandler);
     },
+    // clickOnBackdropHandler,
+    // onEscapeHandler,
   ]);
 
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+  const categoriesList = useSelector(selectCategories);
+
+  const showCategoriesList = () => {
+    return categoriesList.map(category => {
+      return (
+        <option key={category} value={category}>
+          {category}
+        </option>
+      );
+    });
+  };
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
       <section className={css.modalSection} id="myModal">
@@ -50,14 +65,9 @@ export const ModalAddTransaction = () => {
           </label>
 
           <label>
-            <select id="size" name="size">
-              <option value="" disabled defaultChecked>
-                Select a category
-              </option>
-              <option value="xs">Extra Small</option>
-              <option value="s">Small</option>
-              <option value="m">Medium</option>
-              <option value="l">Large</option>
+            <select id="categories" name="categories">
+              <option disabled>Select a category</option>
+              {showCategoriesList()}
             </select>
           </label>
 
