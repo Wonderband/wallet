@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +8,7 @@ import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.css';
 
 export const ModalAddTransaction = () => {
+  const [typeSelector, setTypeSelector] = useState('expense');
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
@@ -49,27 +51,39 @@ export const ModalAddTransaction = () => {
       );
     });
   };
+
+  const changeFormHandle = e => {
+    console.log(e.target['name']);
+    if (e.target['name'] === 'type') setTypeSelector(e.target['value']);
+    console.log(typeSelector);
+  };
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
       <section className={css.modalSection} id="myModal">
         {/* <span className={css.close}>&times;</span> */}
         <h2>Add transaction</h2>
-        <form className={css.modalForm} action="">
+        <form
+          className={css.modalForm}
+          id="modalForm"
+          onChange={changeFormHandle}
+        >
           <label>
-            <input type="radio" name="type" value="income" defaultChecked />
+            <input type="radio" name="type" value="income" />
             Income
           </label>
           <label>
-            <input type="radio" name="type" value="Expense" />
+            <input type="radio" name="type" value="expense" defaultChecked />
             Expense
           </label>
 
-          <label>
-            <select id="categories" name="categories">
-              <option disabled>Select a category</option>
-              {showCategoriesList()}
-            </select>
-          </label>
+          {typeSelector === 'expense' && (
+            <label>
+              <select id="categories" name="categories">
+                <option disabled>Select a category</option>
+                {showCategoriesList()}
+              </select>
+            </label>
+          )}
 
           <label>
             <input
