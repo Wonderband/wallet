@@ -23,9 +23,20 @@ const globalSlice = createSlice({
     //     ...
     // });
   },
+    openModal: {
+      reducer(state) {         
+        state.isModalAddTransactionOpen = true;
+      }
+    },
+    closeModal: {
+      reducer(state) {         
+        state.isModalAddTransactionOpen = false;
+      }
+    },
 });
 
 export const {logOut} = globalSlice.actions;
 
 export const globalSliceReducer = globalSlice.reducer;
+export const { openModal, closeModal} = globalSlice.actions
 

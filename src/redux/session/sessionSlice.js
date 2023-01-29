@@ -2,26 +2,56 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register } from './sessionOperations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { toast } from 'react-toastify';
 
 ///////////////// Slice data ///////////////
 
 const initialState = {
   user: null,
   token: null,
-  error: null,
+  // error: null,
   isAuth: false,
+  isLoading: false,
+};
+
+const pending = state => {
+  state.isLoading = true;
+};
+
+const rejected = state => {
+  state.isLoading = false;
 };
 
 const sessionSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: builder => {
-    builder.addCase(register.fulfilled, (state, { payload }) => {
-      state.user = payload.user;
-      state.token = payload.token;
-      state.isAuth = false;
-      state.error = null;
-    });
+    builder
+      .addCase(register.pending, pending)
+      .addCase(register.rejected, rejected)
+      .addCase(logIn.pending, pending)
+      .addCase(logIn.rejected, rejected)
+      .addCase(refreshUser.pending, pending)
+      .addCase(refreshUser.rejected, rejected)
+      .addCase(register.fulfilled, (state, { payload }) => {
+        toast.success(`Wellcome to the Wallet, ${payload?.user.username}`);
+        state.user = payload?.user;
+        state.token = payload?.token;
+        state.isAuth = true;
+        state.isLoading = false;
+      })
+      .addCase(logIn.fulfilled, (state, { payload }) => {
+        toast.success(`Wellcome back, ${payload?.user.username}`);
+        state.user = payload?.user;
+        state.token = payload?.token;
+        state.isAuth = true;
+        state.isLoading = false;
+      })
+      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+        state.user = payload;
+        state.isAuth = true;
+        state.isLoading = false;
+      });
   },
 });
 
