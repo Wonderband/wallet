@@ -19,7 +19,7 @@ const sessionSlice = createSlice({
     builder.addCase(register.fulfilled, (state, { payload }) => {
       state.user = payload.user;
       state.token = payload.token;
-      state.isAuth = false;
+      state.isAuth = true;
       state.error = null;
     });
   },

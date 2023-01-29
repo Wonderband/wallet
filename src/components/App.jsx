@@ -7,6 +7,7 @@ import { DiagramTab } from './DiagramTab/DiagramTab';
 import { HomeTab } from './HomeTab/HomeTab';
 import { Layout } from './Layout/Layout';
 import { Loader } from './Loader/Loader';
+import { AuthRoute, GuestRoute } from './redirectRoutes';
 
 export const App = () => {
   return (
@@ -14,14 +15,30 @@ export const App = () => {
       <Loader />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegistrationPage />} />
-          <Route path="dashboard" element={<DashboardPage />}>
-            <Route path="home" element={<HomeTab />} />
-            <Route path="diagram" element={<DiagramTab />} />
-          </Route>
-          <Route path="*" element={<Page404 />} />
+          <Route
+            index
+            element={
+              <GuestRoute
+                redirectTo="/register"
+                component={<DashboardPage />}
+              />
+            }
+          />
+          <Route path="home" element={<HomeTab />} />
+          <Route path="diagram" element={<DiagramTab />} />
         </Route>
+
+        <Route
+          path="login"
+          element={<AuthRoute redirectTo="/" component={<LoginPage />} />}
+        />
+        <Route
+          path="register"
+          element={
+            <AuthRoute redirectTo="/" component={<RegistrationPage />} />
+          }
+        />
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </>
   );
