@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCategories } from 'redux/finance/financeOperations';
 import { closeModal } from 'redux/global/globalSlice';
-import { selectIsModalOpen } from 'redux/selectors';
+// import { selectIsModalOpen } from 'redux/selectors';
 import css from './ModalAddTransaction.module.css';
 
 export const ModalAddTransaction = () => {
@@ -19,7 +19,6 @@ export const ModalAddTransaction = () => {
   };
 
   const onEscapeHandler = e => {
-    console.log(e.code);
     if (e.code === 'Escape') dispatch(closeModal());
   };
 

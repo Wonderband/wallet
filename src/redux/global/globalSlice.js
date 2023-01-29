@@ -15,14 +15,7 @@ const globalSlice = createSlice({
   reducers: {
     logOut: (state) => {
       state.isModalLogoutOpen = true;
-    }
-  },
-  extraReducers: builder => {
-    // builder.addCase(getData.fulfilled, (state, { payload }) => {
-    //      state.isLoading: true,
-    //     ...
-    // });
-  },
+    },
     openModal: {
       reducer(state) {         
         state.isModalAddTransactionOpen = true;
@@ -33,10 +26,16 @@ const globalSlice = createSlice({
         state.isModalAddTransactionOpen = false;
       }
     },
+  },
+  // extraReducers: builder => {
+  //   // builder.addCase(getData.fulfilled, (state, { payload }) => {
+  //   //      state.isLoading: true,
+  //   //     ...
+  //   // });
+  // },
+    
 });
 
-export const {logOut} = globalSlice.actions;
-
 export const globalSliceReducer = globalSlice.reducer;
-export const { openModal, closeModal} = globalSlice.actions
+export const { logOut, openModal, closeModal} = globalSlice.actions
 
