@@ -12,6 +12,11 @@ const initialState = {
 const globalSlice = createSlice({
   name: 'global',
   initialState,
+  reducers: {
+    logOut: (state) => {
+      state.isModalLogoutOpen = true;
+    }
+  },
   extraReducers: builder => {
     // builder.addCase(getData.fulfilled, (state, { payload }) => {
     //      state.isLoading: true,
@@ -19,6 +24,8 @@ const globalSlice = createSlice({
     // });
   },
 });
+
+export const {logOut} = globalSlice.actions;
 
 export const globalSliceReducer = globalSlice.reducer;
 
