@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import './tableFilters.css';
 import { selectStyles } from './SelectStyles';
-import { getSummary } from 'redux/finance/transactionsSummary.js/transactionsSummaryOperations';
+import { getSummary } from 'redux/finance/transactionsSummary/transactionsSummaryOperations';
 
 export const Table = () => {
   const dispatch = useDispatch();

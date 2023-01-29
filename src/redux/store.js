@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import { financeSliceReducer } from './finance/financeSlice';
 import { globalSliceReducer } from './global/globalSlice';
-import { transactionsSummaryReducer } from './finance/transactionsSummary.js/transactionsSummarySlice';
+import { transactionsSummaryReducer } from './finance/transactionsSummary/transactionsSummarySlice';
 
 export const store = configureStore({
   reducer: {
