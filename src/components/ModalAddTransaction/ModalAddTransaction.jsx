@@ -9,10 +9,17 @@ import css from './ModalAddTransaction.module.css';
 
 export const ModalAddTransaction = () => {
   const [typeSelector, setTypeSelector] = useState('expense');
+  const [expenseCategory, setExpenceCategory] = useState(null);
+  const [amount, setAmount] = useState('0');
+  const [date, setDate] = useState(null);
+  const [comment, setComment] = useState('');
+
   const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
+    const value = { amount, date, comment };
+    console.log(value);
   };
 
   const clickOnBackdropHandler = e => {
@@ -53,9 +60,12 @@ export const ModalAddTransaction = () => {
   };
 
   const changeFormHandle = e => {
-    console.log(e.target['name']);
     if (e.target['name'] === 'type') setTypeSelector(e.target['value']);
-    console.log(typeSelector);
+    if (e.target['name'] === 'categories')
+      setExpenceCategory(e.target['value']);
+    if (e.target['name'] === 'amount') setAmount(e.target['value']);
+    if (e.target['name'] === 'date') setDate(e.target['value']);
+    if (e.target['name'] === 'comment') setComment(e.target['value']);
   };
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
@@ -78,8 +88,8 @@ export const ModalAddTransaction = () => {
 
           {typeSelector === 'expense' && (
             <label>
-              <select id="categories" name="categories">
-                <option disabled>Select a category</option>
+              <select name="categories" required>
+                <option checked>Select a category</option>
                 {showCategoriesList()}
               </select>
             </label>
@@ -92,10 +102,11 @@ export const ModalAddTransaction = () => {
               min="0.01"
               step="0.01"
               // value="0"
+              required
             />
           </label>
           <label>
-            <input type="date" name="date" max="2023-01-31" />
+            <input type="date" name="date" max="2023-01-31" required />
           </label>
           <label>
             <textarea name="comment" placeholder="Comment"></textarea>
@@ -103,7 +114,14 @@ export const ModalAddTransaction = () => {
           <button type="submit" onClick={handleSubmit}>
             Add
           </button>
-          <button type="button">Cancel</button>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(closeModal());
+            }}
+          >
+            Cancel
+          </button>
         </form>
       </section>
       ,
