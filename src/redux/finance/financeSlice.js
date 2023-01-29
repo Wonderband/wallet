@@ -15,7 +15,7 @@ const financeSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
      state.categories = payload?.map(item => item.name);  
-      // console.log(state.categories);
+      console.log(state.categories);
     });
   },
 });
