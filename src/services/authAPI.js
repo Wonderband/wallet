@@ -17,9 +17,8 @@ const clearAuthToken = () => {
 export const authAPI = {
   async registerUser(formData) {
     const response = await auth.post('/api/auth/sign-up', formData);
-    console.log(response);
     setAuthToken(response.data.token);
-    return  response.data;
+    return response.data;
   },
 
   async loginUser(formData) {

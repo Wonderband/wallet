@@ -1,14 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getCategories } from './financeOperations';
 
-
 ///////////////// Slice data ///////////////
 
 const initialState = {
   //   totalBalance: "",
   // data: null,
   categories: [],
-    
 };
 
 const financeSlice = createSlice({
@@ -16,12 +14,10 @@ const financeSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
-     state.categories = payload.data.map(item => item.name);  
-      
+     state.categories = payload?.map(item => item.name);  
       // console.log(state.categories);
     });
   },
 });
 
 export const financeSliceReducer = financeSlice.reducer;
-
