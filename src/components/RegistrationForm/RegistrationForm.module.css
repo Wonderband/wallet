@@ -1,8 +1,27 @@
 .registerForm {
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 100%;
+  max-width: 320px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 40px;
-  width: 100%;
+
+  border: 1px solid red;
+  background-color: var(--primary-background-color);
+}
+
+.logo {
+  width: 120px;
+  height: 30px;
+  display: inline-block;
+}
+
+.logoWrapper {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .textInput {
@@ -103,13 +122,36 @@
 }
 
 .errorMessage {
+  font-family: var(--main__font-family);
+  font-size: 14px;
   display: none;
   position: absolute;
-  bottom: -25px;
-  left: 55px;
+  bottom: 0;
+  left: 20px;
   color: var(--err-text-color);
+  transform: translateY(110%);
 }
 
 .textInput:not(:placeholder-shown) ~ .errorMessage {
   display: inline-block;
+}
+
+@media screen and (min-width: 768px) {
+  .registerForm {
+    max-width: 533px;
+    border-radius: 20px;
+    padding: 40px 60px 60px;
+  }
+  .logo {
+    width: 180px;
+    height: 40px;
+  }
+  .submitButton {
+    width: 300px;
+    align-self: center;
+  }
+
+  .errorMessage {
+    font-size: 16px;
+  }
 }

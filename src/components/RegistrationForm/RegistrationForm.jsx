@@ -48,6 +48,10 @@ export const RegistrationForm = () => {
       validationSchema={validationSchema}
     >
       <Form className={styles.registerForm}>
+        <span className={styles.logoWrapper}>
+          <Icon name="icon-wallet" className={styles.logo} />
+        </span>
+
         <label className={styles.label}>
           <Field
             className={styles.textInput}

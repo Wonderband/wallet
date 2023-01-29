@@ -1,20 +1,25 @@
+@import '../../stylesheet/vars.css';
+
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   margin: auto;
-  gap: 60px;
   max-width: 320px;
   padding-left: 20px;
   padding-right: 20px;
 
-  @media (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     max-width: 768px;
     padding-left: 32px;
     padding-right: 32px;
   }
 
-  @media (min-width: 1280px) {
+  @media screen and (min-width: 1280px) {
     max-width: 1280px;
   }
+}
+
+.appTitle {
+  margin-bottom: 152px;
+  font-size: 30px;
+  line-height: calc(45 / 30);
+  color: var(--primary-text-color);
 }
