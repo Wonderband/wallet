@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authAPI } from 'services/authAPI';
 import { setAuthToken } from 'services/authAPI';
+import { toast } from 'react-toastify';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -8,7 +9,8 @@ export const register = createAsyncThunk(
     try {
       return await authAPI.registerUser(formData);
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      toast.error(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -19,7 +21,8 @@ export const logIn = createAsyncThunk(
     try {
       return await authAPI.loginUser(formData);
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      toast.error(error.response.data.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -28,7 +31,8 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     return await authAPI.logOut();
   } catch (error) {
-    thunkAPI.rejectWithValue(error);
+    toast.error(error.response.data.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
 
@@ -36,7 +40,7 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
+    const persistedToken = state.session.token;
 
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
@@ -46,6 +50,7 @@ export const refreshUser = createAsyncThunk(
       setAuthToken(persistedToken);
       return await authAPI.refreshUser();
     } catch (error) {
+      toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
