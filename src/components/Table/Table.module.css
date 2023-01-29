@@ -1,0 +1,26 @@
+.selectContainer {
+  max-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .selectContainer {
+    flex-direction: row;
+    gap: 16px;
+  }
+  .select {
+    max-width: 160px;
+  }
+}
+@media screen and (min-width: var(--desktop)) {
+  .selectContainer {
+    gap: 32px;
+  }
+  .select {
+    width: 182px;
+  }
+}

@@ -11,7 +11,7 @@ export const Layout = () => {
     <div className={css.container}>
       {isAuth && <Header />}
       <div>
-      <Currency />
+        <Currency />
         I'm LAYOUT!
         <Outlet />
       </div>
