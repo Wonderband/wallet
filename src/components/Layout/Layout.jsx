@@ -1,11 +1,15 @@
+import { Header } from 'components/Header/Header';
+import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { Currency } from '../Currency/Currency';
 import css from './Layout.module.css';
 
 export const Layout = () => {
+  const isAuth = useSelector((state) => state.session.isAuth);
+
   return (
     <div className={css.container}>
-      <header className={css.header}>I'm header</header>
+      {isAuth && <Header />}
       <div>
       <Currency />
         I'm LAYOUT!
