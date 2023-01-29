@@ -1,4 +1,5 @@
-.inputs {
+.selectContainer {
+  max-width: 280px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -6,88 +7,20 @@
   align-items: center;
 }
 
-select {
-  /*  A reset of styles, including removing the default dropdown arrow */
-  appearance: none;
-  background-color: transparent;
-  border: 1px solid var(--primary-text-color);
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  cursor: pointer;
-  padding: 0 20px;
-
-  /* Stack above custom arrow */
-  z-index: 1;
-
-  /* Remove focus outline, will add on alternate element */
-  outline: none;
-}
-
-/* /Remove dropdown arrow in IE10 & IE11 */
-select::-ms-expand {
-  display: none;
-}
-
-.select {
-  height: 50px;
-  border-radius: 30px;
-}
-
-.selectWrapper {
-  font-size: 16px;
-  line-height: calc(24 / 16);
-  font-family: 'Circe';
-  font-weight: 400;
-  outline: none;
-  z-index: 1;
-
-  display: grid;
-  grid-template-areas: 'select';
-  align-items: center;
-  position: relative;
-}
-
-select,
-.selectWrapper::after {
-  grid-area: select;
-}
-
-.selectWrapper::after {
-  content: '';
-  justify-self: end;
-  margin-right: 20px;
-  background-image: url('../../assets/arrowDown.svg');
-  background-size: 18px 9px;
-  height: 9px;
-  width: 18px;
-}
-
-@media screen and (min-width: 320px) {
-  .selectWrapper {
-    width: 280px;
-  }
-}
-
 @media screen and (min-width: 768px) {
-  .selectWrapper {
-    width: 160px;
-  }
-
-  .inputs {
+  .selectContainer {
     flex-direction: row;
     gap: 16px;
   }
-}
-
-@media screen and (min-width: var(--desktop)) {
-  .selectWrapper {
-    width: 1280px;
+  .select {
+    max-width: 160px;
   }
-  .inputs {
+}
+@media screen and (min-width: var(--desktop)) {
+  .selectContainer {
     gap: 32px;
+  }
+  .select {
+    width: 182px;
   }
 }

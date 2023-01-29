@@ -25,4 +25,9 @@ for (let i = 0; i < monthsArray.length; i++) {
   currentMonth++;
 }
 
-export default MONTHS;
+const monthOptions = MONTHS.map((item, index) => ({
+  value: index + 1,
+  label: MONTHS[index],
+}));
+
+export default monthOptions;

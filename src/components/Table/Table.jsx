@@ -1,41 +1,65 @@
-import MONTHS from '../../constants/months';
-import { YEARS } from '../../constants/lastFiveYears';
+import monthOptions from '../../constants/months';
+import yearsOptions from '../../constants/lastFiveYears';
 // import { useEffect } from 'react';
 
 import css from './Table.module.css';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
+import './tableFilters.css';
+import { selectStyles } from './SelectStyles';
 
 export const Table = () => {
-  const handleChange = e => {
-    console.log(e.target.value);
+  const dispatch = useDispatch();
+
+  const [date, setDate] = useState({
+    month: monthOptions[0],
+    year: yearsOptions[0],
+  });
+
+  const updateDate = (name, value) => {
+    setDate(prev => ({ ...prev, [name]: value }));
   };
 
-  // Треба відправити запит для відображення актуальної інформації в табличці, коли користувач тільки заходить на сторінку.
-  // В якому компоненті це робити? На рівень вище?
+  async function updateTransactionForPeriod() {
+    try {
+      await console.log();
+      // fetch all data from request
 
-  // const statisticTableForCurrentMonth =
-  //     console.log(YEARS[0]);
-  //     console.log(MONTHS[0]);
+      // await dispatch(
+      //   getTransactionDate({ month: date.month, year: date.year })
+      // ).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    updateTransactionForPeriod();
+  }, [date, updateTransactionForPeriod]);
 
   return (
-    <div className={css.inputs}>
-      <label className={css.selectWrapper}>
-        <select className={css.select} onChange={handleChange}>
-          {MONTHS.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label className={css.selectWrapper}>
-        <select className={css.select} onChange={handleChange}>
-          {YEARS.map(option => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
+    <div className={css.selectContainer}>
+      <Select
+        className={css.select}
+        styles={selectStyles}
+        options={monthOptions}
+        onChange={option => {
+          updateDate('month', option.value);
+        }}
+        isSearchable={false}
+        defaultValue={monthOptions[0]}
+      />
+      <Select
+        className={css.select}
+        styles={selectStyles}
+        options={yearsOptions}
+        onChange={option => {
+          updateDate('year', option.value);
+        }}
+        isSearchable={false}
+        defaultValue={yearsOptions[0]}
+      />
     </div>
   );
 };
