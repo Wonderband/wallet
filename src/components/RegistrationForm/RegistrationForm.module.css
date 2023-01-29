@@ -1,0 +1,115 @@
+.registerForm {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.textInput {
+  width: 100%;
+  height: 32px;
+  padding-left: 55px;
+
+  font-family: var(--main__font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+
+  border: transparent;
+  outline: none;
+  border-bottom: 1px solid var(--disabled-grey-text-color);
+  transition: border-bottom var(--cubic) var(--animation-time);
+}
+
+.textInput::placeholder {
+  color: var(--placeholder-text);
+  font-family: var(--main__font-family);
+  letter-spacing: normal;
+}
+
+.textInput:focus {
+  border-bottom: 1px solid var(--accent-btn-color);
+}
+
+.textInput:focus + .icon {
+  fill: var(--accent-btn-color);
+}
+.passwordInput {
+  composes: textInput;
+  font-family: Verdana;
+  letter-spacing: 0.125em;
+}
+
+.submitButton {
+  height: 50px;
+
+  font-family: var(--main__font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  background-color: var(--btn-color);
+  border: 1px solid var(--accent-btn-color);
+  border-radius: 20px;
+  color: var(--accent-btn-color);
+  transition: all var(--cubic) var(--animation-time);
+  outline: transparent;
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  color: var(--btn-color);
+  background-color: var(--accent-btn-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.loginLink {
+  composes: submitButton;
+  margin-top: -20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--accent-color);
+  background-color: var(--btn-color);
+  border: 1px solid var(--accent-color);
+}
+
+.loginLink:focus,
+.loginLink:hover {
+  background-color: var(--accent-color);
+  color: var(--btn-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+
+.label {
+  position: relative;
+  color: var(--placeholder-text);
+}
+
+.icon {
+  position: absolute;
+  bottom: 6px;
+  left: 12px;
+  display: block;
+  fill: currentColor;
+  transition: fill var(--cubic) var(--animation-time);
+}
+
+.errorMessage {
+  display: none;
+  position: absolute;
+  bottom: -25px;
+  left: 55px;
+  color: var(--err-text-color);
+}
+
+.textInput:not(:placeholder-shown) ~ .errorMessage {
+  display: inline-block;
+}

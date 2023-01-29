@@ -1,10 +1,11 @@
+import Icon from 'assets/images/RegisterForm/Icon';
 import { LoginForm } from 'components/LoginForm/LoginForm';
-// import css from './LoginPage.module.css';
+import styles from './LoginPage.module.scss';
 export const LoginPage = () => {
   return (
-    <>
-      <div>I'm LOGIN page!</div>
+    <main className={styles.container}>
+      <Icon name="icon-wallet" width={120} height={30} />
       <LoginForm />
-    </>
+    </main>
   );
 };

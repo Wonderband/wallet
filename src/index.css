@@ -6,6 +6,8 @@ body {
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
   background-color: var(--primary-background-color);
+  margin: 0;
+  padding: 0;
 }
 
 code {
