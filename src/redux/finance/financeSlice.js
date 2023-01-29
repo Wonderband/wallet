@@ -14,8 +14,7 @@ const financeSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
-      state.categories = payload.data.map(item => item.name);
-
+     state.categories = payload?.map(item => item.name);  
       // console.log(state.categories);
     });
   },
