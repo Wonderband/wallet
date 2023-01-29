@@ -10,13 +10,13 @@ import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTran
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
-    <BrowserRouter basename="/wallet">
-      <Provider store={store}>
-        <PersistGate persistor={persistor}>
-          <App />
-          {/* <ModalAddTransaction/> */}
-        </PersistGate>
-      </Provider>
-    </BrowserRouter>
+  <BrowserRouter basename="/wallet">
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <App />
+        <ModalAddTransaction />
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>
   // </React.StrictMode>
 );

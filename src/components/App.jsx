@@ -7,9 +7,18 @@ import { DiagramTab } from './DiagramTab/DiagramTab';
 import { HomeTab } from './HomeTab/HomeTab';
 import { Layout } from './Layout/Layout';
 import { Loader } from './Loader/Loader';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AuthRoute, GuestRoute } from './redirectRoutes';
+import { refreshUser } from 'redux/session/sessionOperations';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 
 export const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
   return (
     <>
       <Loader />
@@ -40,6 +49,7 @@ export const App = () => {
         />
         <Route path="*" element={<Page404 />} />
       </Routes>
+      <ToastContainer />
     </>
   );
 };
