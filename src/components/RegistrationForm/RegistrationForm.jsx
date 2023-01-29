@@ -61,8 +61,12 @@ export const RegistrationForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            component="span"
+            name="email"
+            className={styles.errorMessage}
+          />
         </label>
-        <ErrorMessage name="email" className={styles.errorMessage} />
         <label className={styles.label}>
           <Field
             className={styles.passwordInput}
@@ -76,8 +80,12 @@ export const RegistrationForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            component="span"
+            name="password"
+            className={styles.errorMessage}
+          />
         </label>
-        <ErrorMessage name="password" />
         <label className={styles.label}>
           <Field
             className={styles.passwordInput}
@@ -91,8 +99,12 @@ export const RegistrationForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            component="span"
+            name="passwordConfirmation"
+            className={styles.errorMessage}
+          />
         </label>
-        <ErrorMessage name="passwordConfirmation" />
         <label className={styles.label}>
           <Field
             className={styles.textInput}
@@ -106,8 +118,12 @@ export const RegistrationForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            component="span"
+            name="username"
+            className={styles.errorMessage}
+          />
         </label>
-        <ErrorMessage name="username" />
         <button type="submit" className={styles.submitButton}>
           register
         </button>

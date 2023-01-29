@@ -54,8 +54,12 @@ export const LoginForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            name="email"
+            component="span"
+            className={styles.errorMessage}
+          />
         </label>
-        <ErrorMessage name="email" />
         <label className={styles.label}>
           <Field
             className={styles.passwordInput}
@@ -69,8 +73,12 @@ export const LoginForm = () => {
             width="24"
             height="24"
           />
+          <ErrorMessage
+            component="span"
+            className={styles.errorMessage}
+            name="password"
+          />
         </label>
-        <ErrorMessage name="password" />
         <button className={styles.submitButton} type="submit">
           log in
         </button>

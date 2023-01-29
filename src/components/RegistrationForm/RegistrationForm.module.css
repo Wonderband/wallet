@@ -103,5 +103,13 @@
 }
 
 .errorMessage {
-  font-size: 30px;
+  display: none;
+  position: absolute;
+  bottom: -25px;
+  left: 55px;
+  color: var(--err-text-color);
+}
+
+.textInput:not(:placeholder-shown) ~ .errorMessage {
+  display: inline-block;
 }
