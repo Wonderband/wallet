@@ -12,13 +12,20 @@ const initialState = {
 const globalSlice = createSlice({
   name: 'global',
   initialState,
-  extraReducers: builder => {
-    // builder.addCase(getData.fulfilled, (state, { payload }) => {
-    //      state.isLoading: true,
-    //     ...
-    // });
-  },
+  reducers: {
+    openModal: {
+      reducer(state) {         
+        state.isModalAddTransactionOpen = true;
+      }
+    },
+    closeModal: {
+      reducer(state) {         
+        state.isModalAddTransactionOpen = false;
+      }
+    },
+  }
 });
 
 export const globalSliceReducer = globalSlice.reducer;
+export const { openModal, closeModal} = globalSlice.actions
 
