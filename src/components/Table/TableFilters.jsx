@@ -14,8 +14,8 @@ export const TableFilters = () => {
   const dispatch = useDispatch();
 
   const [date, setDate] = useState({
-    month: monthOptions[0],
-    year: yearsOptions[0],
+    month: monthOptions[0].value,
+    year: yearsOptions[0].value,
   });
 
   const updateDate = (name, value) => {
@@ -26,9 +26,8 @@ export const TableFilters = () => {
     async function updateTransactionForPeriod() {
       try {
         // fetch all data from request
-
         await dispatch(
-          getSummary({ month: date.month.value, year: date.year.value })
+          getSummary({ month: date.month, year: date.year })
         ).unwrap();
       } catch (error) {
         console.log(error);
