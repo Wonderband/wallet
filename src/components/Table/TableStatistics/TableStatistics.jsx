@@ -5,12 +5,16 @@ import s from './TableStatistics.module.scss';
 export const TableStatistics = () => {
   const stats = useSelector(getCategoriesStats);
 
+  function formatAmount(num) {
+    return Number(num.toFixed(2)).toLocaleString().replace(',', '.');
+  }
+
   return (
     <table className={s.table}>
       <thead>
         <tr className={s.tableHead}>
-          <th>Category</th>
-          <th>Sum</th>
+          <th scope="col">Category</th>
+          <th scope="col">Sum</th>
         </tr>
       </thead>
       <tbody>
@@ -18,11 +22,11 @@ export const TableStatistics = () => {
           return (
             el.type !== 'INCOME' && (
               <tr key={index}>
-                <th>
+                <th scope="row">
                   <span className={s.colorForCategory}></span>
                   {el.name}
                 </th>
-                <th>{el.total}</th>
+                <th scope="row">{formatAmount(Math.abs(el.total))}</th>
               </tr>
             )
           );
@@ -30,12 +34,16 @@ export const TableStatistics = () => {
       </tbody>
       <tfoot>
         <tr>
-          <th>Expenses:</th>
-          <th>{stats?.expenseSummary}</th>
+          <th scope="row">Expenses:</th>
+          <th className={s.expenses} scope="row">
+            {formatAmount(stats.expenseSummary)}
+          </th>
         </tr>
         <tr>
-          <th>Income:</th>
-          <th>{stats?.incomeSummary}</th>
+          <th scope="row">Income:</th>
+          <th className={s.income} scope="row">
+            {formatAmount(stats.incomeSummary)}
+          </th>
         </tr>
       </tfoot>
     </table>
