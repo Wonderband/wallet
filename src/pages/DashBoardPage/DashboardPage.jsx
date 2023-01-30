@@ -14,7 +14,6 @@ export const DashboardPage = () => {
 
   return (
     <>
-      <div>I'm DASHBOARD page!</div>
       <Navigation />
       <Balance />
       <Currency />

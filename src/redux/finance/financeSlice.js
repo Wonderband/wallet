@@ -6,7 +6,6 @@ import { createTransaction, getCategories, getTransactions } from './financeOper
 
 const initialState = {
   //   totalBalance: "",
-  // data: null,
   categories: [],
   transactions: [],
 };
@@ -18,19 +17,14 @@ const financeSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(getCategories.fulfilled, (state, { payload }) => {
-      state.categories = payload?.map(item => { return { name: item.name, id: item.id } });
-      // console.log(state.categories);
+      state.categories = payload?.map(item => { return { name: item.name, id: item.id } });     
           }) 
       .addCase(createTransaction.fulfilled, (state, { payload }) => {
         console.log(payload);
-        state.transactions.push(payload);
-
-        // console.log(state.transactions);
+        state.transactions.push(payload);        
       })
-    .addCase(getTransactions.fulfilled, (state, { payload }) => {
-        console.log(payload);
-        state.transactions = payload;
-        // console.log(state.transactions);
+    .addCase(getTransactions.fulfilled, (state, { payload }) => {        
+        state.transactions = payload;        
           })
   },
 });

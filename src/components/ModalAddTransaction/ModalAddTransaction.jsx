@@ -22,9 +22,8 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // const newDate = new Date(date);
     const transactionData = {
-      transactionDate: date, //newDate.toISOString(),
+      transactionDate: date,
       type: typeSelector,
       categoryId:
         typeSelector === 'EXPENSE'
