@@ -21,7 +21,7 @@ export const App = () => {
   }, [dispatch]);
   return (
     <>
-      <Loader />
+      {/*<Loader />*/}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route
