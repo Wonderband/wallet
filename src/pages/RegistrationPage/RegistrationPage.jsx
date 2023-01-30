@@ -1,6 +1,6 @@
 import RegisterImage from 'assets/images/RegistrationPage/RegisterImage';
 import { RegistrationForm } from 'components/RegistrationForm/RegistrationForm';
-import styles from './RegistrationPage.module.scss';
+import styles from '../LoginPage/LoginPage.module.scss';
 
 export const RegistrationPage = () => {
   return (

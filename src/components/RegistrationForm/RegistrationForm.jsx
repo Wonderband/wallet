@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { register } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
-import styles from './RegistrationForm.module.scss';
+import styles from '../LoginForm/LoginForm.module.scss';
 
 ///////////////// Yup validation schema ///////////////
 
@@ -47,7 +47,7 @@ export const RegistrationForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form className={styles.registerForm}>
+      <Form className={styles.form}>
         <span className={styles.logoWrapper}>
           <Icon name="icon-wallet" className={styles.logo} />
         </span>

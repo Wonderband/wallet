@@ -40,7 +40,7 @@ export const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
     >
-      <Form className={styles.loginForm}>
+      <Form className={styles.form}>
         <span className={styles.logoWrapper}>
           <Icon name="icon-wallet" className={styles.logo} />
         </span>
