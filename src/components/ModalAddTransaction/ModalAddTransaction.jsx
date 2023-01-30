@@ -14,7 +14,7 @@ import css from './ModalAddTransaction.module.css';
 export const ModalAddTransaction = () => {
   const [typeSelector, setTypeSelector] = useState('EXPENSE');
   const [expenseCategory, setExpenseCategory] = useState('');
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(null);
   const [date, setDate] = useState(null);
   const [comment, setComment] = useState('');
 
@@ -22,26 +22,18 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const newDate = new Date(date);
     const transactionData = {
-      transactionDate: newDate.toISOString(),
+      transactionDate: date,
       type: typeSelector,
       categoryId:
         typeSelector === 'EXPENSE'
           ? expenseCategory
           : '063f1132-ba5d-42b4-951d-44011ca46262',
-
       comment: comment,
       amount:
         typeSelector === 'EXPENSE'
           ? parseFloat(amount) * -1
           : parseFloat(amount),
-
-      // transactionDate: 'string',
-      // type: 'INCOME',
-      // categoryId: 'string',
-      // comment: 'string',
-      // amount: 0,
     };
     console.log(transactionData);
     dispatch(createTransaction(transactionData));
@@ -76,11 +68,12 @@ export const ModalAddTransaction = () => {
 
   const showCategoriesList = () => {
     return categoriesList.map(item => {
-      return (
-        <option key={item.id} value={item.id}>
-          {item.name}
-        </option>
-      );
+      if (item.name !== 'Income')
+        return (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        );
     });
   };
 
