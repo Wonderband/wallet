@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import logout from '../../assets/svg/logOut.svg';
 import logo from '../../assets/svg/logo.svg';
 import css from './Header.module.scss';
