@@ -19,7 +19,7 @@ export const DiagramTab = () => {
     <>
       <div>I'm DIAGRAM TAB</div>
       <Chart />
-      <Table colors={colors} />
+      <Table />
     </>
   );
 };

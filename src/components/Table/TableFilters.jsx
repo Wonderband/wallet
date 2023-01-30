@@ -6,7 +6,6 @@ import css from './Table.module.css';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import './tableFilters.css';
 import { selectStyles } from './SelectStyles';
 import { getSummary } from 'redux/finance/transactionsSummary/transactionsSummaryOperations';
 

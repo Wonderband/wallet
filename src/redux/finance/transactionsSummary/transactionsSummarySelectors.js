@@ -1,3 +1,5 @@
+export const getCategoriesStats = state => state.transactionsSummary;
+
 export const selectTransactionsSummary = state =>
   state.transactionsSummary.summary;
 export const selectIsLoading = state => state.transactionsSummary.isLoading;
