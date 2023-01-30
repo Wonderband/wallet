@@ -22,6 +22,7 @@ export const App = () => {
 
   return (
     <>
+      {/*<Loader />*/}
       <Routes>
         <Route
           path="/"
