@@ -6,9 +6,9 @@ export const TableStatistics = () => {
   const stats = useSelector(getCategoriesStats);
 
   return (
-    <table>
+    <table className={s.table}>
       <thead>
-        <tr>
+        <tr className={s.tableHead}>
           <th>Category</th>
           <th>Sum</th>
         </tr>

@@ -2,7 +2,7 @@ import monthOptions from '../../constants/months';
 import yearsOptions from '../../constants/lastFiveYears';
 // import { useEffect } from 'react';
 
-import css from './Table.module.css';
+import css from './Table.module.scss';
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
