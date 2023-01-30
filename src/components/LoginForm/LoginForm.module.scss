@@ -1,8 +1,41 @@
-.registerForm {
+@import '../../stylesheet/vars.css';
+
+.form {
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 100%;
+  max-width: 320px;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 40px;
-  width: 100%;
+  z-index: 10;
+
+  background-color: var(--primary-background-color);
+
+  @media screen and (min-width: 768px) {
+    max-width: 533px;
+    border-radius: 20px;
+    padding: 40px 60px 60px;
+    margin: 0;
+  }
+}
+
+.logo {
+  width: 120px;
+  height: 30px;
+  display: inline-block;
+
+  @media screen and (min-width: 768px) {
+    width: 180px;
+    height: 40px;
+  }
+}
+
+.logoWrapper {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .textInput {
@@ -36,7 +69,7 @@
   fill: var(--accent-btn-color);
 }
 .passwordInput {
-  composes: textInput;
+  @extend .textInput;
   font-family: Verdana;
   letter-spacing: 0.125em;
 }
@@ -57,6 +90,11 @@
   color: var(--accent-btn-color);
   transition: all var(--cubic) var(--animation-time);
   outline: transparent;
+
+  @media screen and (min-width: 768px) {
+    width: 300px;
+    align-self: center;
+  }
 }
 
 .submitButton:hover,
@@ -68,7 +106,7 @@
 }
 
 .loginLink {
-  composes: submitButton;
+  @extend .submitButton;
   margin-top: -20px;
 
   display: flex;
@@ -97,7 +135,9 @@
   position: absolute;
   bottom: 6px;
   left: 12px;
+
   display: block;
+
   fill: currentColor;
   transition: fill var(--cubic) var(--animation-time);
 }
@@ -105,9 +145,17 @@
 .errorMessage {
   display: none;
   position: absolute;
-  bottom: -25px;
-  left: 55px;
+  bottom: 0;
+  left: 20px;
+  transform: translateY(110%);
+
+  font-family: var(--main__font-family);
+  font-size: 14px;
+
   color: var(--err-text-color);
+  @media screen and (min-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .textInput:not(:placeholder-shown) ~ .errorMessage {
