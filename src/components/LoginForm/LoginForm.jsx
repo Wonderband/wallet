@@ -1,6 +1,6 @@
 import Icon from 'assets/images/RegisterForm/Icon';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logIn } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
@@ -28,6 +28,7 @@ const initialValues = {
 };
 
 export const LoginForm = () => {
+  const isLoading = useSelector(state => state.session.isLoading);
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     const { email, password } = values;
@@ -84,7 +85,11 @@ export const LoginForm = () => {
             name="password"
           />
         </label>
-        <button className={styles.submitButton} type="submit">
+        <button
+          className={styles.submitButton}
+          type="submit"
+          disabled={isLoading}
+        >
           log in
         </button>
         <NavLink className={styles.loginLink} to="/register">

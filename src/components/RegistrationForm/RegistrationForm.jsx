@@ -1,6 +1,6 @@
 import Icon from 'assets/images/RegisterForm/Icon';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { register } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
@@ -35,6 +35,8 @@ const initialValues = {
 };
 
 export const RegistrationForm = () => {
+  const isLoading = useSelector(state => state.session.isLoading);
+
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
     const { username, email, password } = values;
@@ -132,7 +134,11 @@ export const RegistrationForm = () => {
             className={styles.errorMessage}
           />
         </label>
-        <button type="submit" className={styles.submitButton}>
+        <button
+          type="submit"
+          className={styles.submitButton}
+          disabled={isLoading}
+        >
           register
         </button>
         <NavLink to="/login" className={styles.loginLink}>
