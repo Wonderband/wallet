@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { register } from 'redux/session/sessionOperations';
 import * as yup from 'yup';
-import styles from './RegistrationForm.module.css';
+import styles from './RegistrationForm.module.scss';
 
 ///////////////// Yup validation schema ///////////////
 
@@ -58,6 +58,7 @@ export const RegistrationForm = () => {
             type="email"
             name="email"
             placeholder="E-mail"
+            required
           />
           <Icon
             name="icon-email"
@@ -77,6 +78,7 @@ export const RegistrationForm = () => {
             type="password"
             name="password"
             placeholder="Password"
+            required
           />
           <Icon
             name="icon-password"
@@ -96,6 +98,7 @@ export const RegistrationForm = () => {
             type="password"
             name="passwordConfirmation"
             placeholder="Confirm password"
+            required
           />
           <Icon
             name="icon-password"
@@ -115,6 +118,7 @@ export const RegistrationForm = () => {
             type="text"
             name="username"
             placeholder="First name"
+            required
           />
           <Icon
             name="icon-username"
