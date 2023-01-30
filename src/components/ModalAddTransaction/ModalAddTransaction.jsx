@@ -1,4 +1,3 @@
-import { nanoid } from '@reduxjs/toolkit';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
@@ -35,7 +34,7 @@ export const ModalAddTransaction = () => {
           ? parseFloat(amount) * -1
           : parseFloat(amount),
     };
-    console.log(transactionData);
+    // console.log(transactionData);
     dispatch(createTransaction(transactionData));
   };
 
@@ -67,14 +66,15 @@ export const ModalAddTransaction = () => {
   const categoriesList = useSelector(selectCategories);
 
   const showCategoriesList = () => {
-    return categoriesList.map(item => {
-      if (item.name !== 'Income')
+    return categoriesList
+      .filter(item => item.name !== 'Income')
+      .map(item => {
         return (
           <option key={item.id} value={item.id}>
             {item.name}
           </option>
         );
-    });
+      });
   };
 
   const changeFormHandle = e => {
@@ -92,11 +92,7 @@ export const ModalAddTransaction = () => {
       <section className={css.modalSection} id="myModal">
         {/* <span className={css.close}>&times;</span> */}
         <h2>Add transaction</h2>
-        <form
-          className={css.modalForm}
-          id="modalForm"
-          onChange={changeFormHandle}
-        >
+        <form className={css.modalForm} onChange={changeFormHandle}>
           <label>
             <input type="radio" name="type" value="INCOME" />
             Income

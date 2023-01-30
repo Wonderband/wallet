@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { closeModal } from 'redux/global/globalSlice';
-import { auth } from 'services/authAPI';
-
- 
+import { auth } from 'services/authAPI'; 
 
 async function getAllCategories(_, thunkAPI) {
   try {
@@ -26,6 +24,7 @@ async function createNewTransaction(transData, thunkAPI) {
 async function getAllTransactions(_, thunkAPI) {
   try {   
     const res = await auth.get('/api/transactions');  
+    // console.log(res.data);
     return res.data;
   } catch (error) {
     thunkAPI.rejectWithValue(error.message);
