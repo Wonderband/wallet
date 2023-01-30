@@ -7,10 +7,9 @@ import { Header } from '../../components/Header/Header';
 import { selectAuthToken } from '../../redux/selectors';
 // import css from './DashboardPage.module.css';
 export const DashboardPage = () => {
-  const isAuth = useSelector(selectAuthToken);
   return (
     <>
-      {isAuth && <Header />}
+      <Header />
       <div>I'm DASHBOARD page!</div>
       <Navigation />
       <Balance />
