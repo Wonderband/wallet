@@ -1,0 +1,15 @@
+.tableHead {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 15px 15px 20px;
+  background-color: var(--primary-background-color);
+  border-radius: 30px;
+}
+
+.colorForCategory {
+  background-color: red;
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+}
