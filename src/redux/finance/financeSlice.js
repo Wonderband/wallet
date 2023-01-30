@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createTransaction, getCategories } from './financeOperations';
+import { useDispatch } from 'react-redux';
+import { createTransaction, getCategories, getTransactions } from './financeOperations';
 
 ///////////////// Slice data ///////////////
 
@@ -9,6 +10,8 @@ const initialState = {
   categories: [],
   transactions: [],
 };
+
+
 
 const financeSlice = createSlice({
   name: 'finance',
@@ -21,6 +24,12 @@ const financeSlice = createSlice({
       .addCase(createTransaction.fulfilled, (state, { payload }) => {
         console.log(payload);
         state.transactions.push(payload);
+
+        // console.log(state.transactions);
+      })
+    .addCase(getTransactions.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        state.transactions = payload;
         // console.log(state.transactions);
           })
   },
