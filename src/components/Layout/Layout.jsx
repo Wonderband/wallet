@@ -5,13 +5,12 @@ import { Currency } from '../Currency/Currency';
 import css from './Layout.module.css';
 
 export const Layout = () => {
-  const isAuth = useSelector((state) => state.session.isAuth);
+  const isAuth = useSelector(state => state.session.isAuth);
 
   return (
     <div className={css.container}>
       {isAuth && <Header />}
       <div>
-        <Currency />
         I'm LAYOUT!
         <Outlet />
       </div>
