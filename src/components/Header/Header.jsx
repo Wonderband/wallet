@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/global/globalSlice';
 
 export const Header = () => {
-  const userName = useSelector((state) => state.session.user.username);
+  const userName = useSelector((state) => state.session.user?.username);
   const dispatch = useDispatch();
 
   return (
