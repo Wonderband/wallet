@@ -1,11 +1,13 @@
 import Media from 'react-media';
 import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactions } from 'redux/finance/financeOperations';
 import { selectIsModalOpen } from 'redux/selectors';
 import { selectTransactions } from 'redux/selectors';
+import Pagination from './Pagination/Pagination';
+
 import MobileHomeTab from './MobileHomeTab';
 import css from './HomeTab.module.css';
 import TransactionTableRow from './TransactionTableRow';
@@ -18,6 +20,21 @@ export const HomeTab = () => {
   useEffect(() => {
     dispatch(getTransactions());
   }, [dispatch]);
+
+  const [pageNum, setPageNum] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+
+  const tranSactionToRender = () => {
+    return transactions.slice(pageNum * perPage - perPage, pageNum * perPage);
+  };
+
+  const newPageNum = pageNum => {
+    setPageNum(pageNum);
+    console.log(pageNum);
+  };
+
+  const pageQtt = Math.ceil(transactions.length / Number(perPage));
+
   return (
     <>
       <section>
@@ -30,7 +47,7 @@ export const HomeTab = () => {
             <>
               {matches.small ? (
                 <ul className={css.mobileHomeTab}>
-                  {transactions.map(transaction => (
+                  {tranSactionToRender().map(transaction => (
                     <MobileHomeTab
                       key={transaction.id}
                       transaction={transaction}
@@ -56,8 +73,8 @@ export const HomeTab = () => {
                   <div className={css.tableRawsWrapper}>
                     <table className={css.table}>
                       <tbody>
-                        {Array.isArray(transactions) &&
-                          transactions.map(transaction => (
+                        {Array.isArray(tranSactionToRender()) &&
+                          tranSactionToRender().map(transaction => (
                             <TransactionTableRow
                               key={transaction?.id}
                               transaction={transaction}
@@ -71,6 +88,11 @@ export const HomeTab = () => {
             </>
           )}
         </Media>
+        <Pagination
+          pageQtt={pageQtt}
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+        />
       </section>
       {isModalOpen && <ModalAddTransaction />}
       <ButtonAddTransactions />
