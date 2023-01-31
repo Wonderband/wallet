@@ -20,7 +20,7 @@
     flex-direction: row;
     gap: 16px;
   }
-  @media screen and (min-width: var(--desktop)) {
+  @media screen and (min-width: 1280px) {
     gap: 32px;
   }
 }
@@ -29,7 +29,7 @@
   @media screen and (min-width: 768px) {
     max-width: 160px;
   }
-  @media screen and (min-width: var(--desktop)) {
+  @media screen and (min-width: 1280px) {
     width: 182px;
   }
 }

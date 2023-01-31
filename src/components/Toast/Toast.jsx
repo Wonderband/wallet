@@ -48,3 +48,13 @@ export function toastLoginSuccess(message) {
     icon: <FaUserCheck color="currentColor" size="30" />,
   });
 }
+
+export function toastAddTransactionError(message) {
+  toast(message, {
+    icon: <FaUserCheck color="currentColor" size="30" />,
+  });
+}
+
+export function toastAddTransactionSuccess(message) {
+  toast(message);
+}
