@@ -1,0 +1,35 @@
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 280px;
+  background-color: var(--secondary-background-color);
+  backdrop-filter: blur(25px);
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 16px;
+  }
+  @media screen and (min-width: var(--desktop)) {
+    gap: 32px;
+  }
+}
+
+.select {
+  @media screen and (min-width: 768px) {
+    max-width: 160px;
+  }
+  @media screen and (min-width: var(--desktop)) {
+    width: 182px;
+  }
+}
