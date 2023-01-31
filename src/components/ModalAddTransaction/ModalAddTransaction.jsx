@@ -81,16 +81,16 @@ export const ModalAddTransaction = () => {
       });
   };
 
-  // const getParseNewDate = () => {
-  //   const today = new Date();
-  //   let output = `${today.getDate()}.${
-  //     today.getMonth() + 1 > 9
-  //       ? today.getMonth() + 1
-  //       : '0' + (today.getMonth() + 1).toString()
-  //   }.${today.getFullYear()}`;
-  //   console.log(output);
-  //   return output;
-  // };
+  const getParseNewDate = () => {
+    const today = new Date();
+    let output = `${today.getDate()}.${
+      today.getMonth() + 1 > 9
+        ? today.getMonth() + 1
+        : '0' + (today.getMonth() + 1).toString()
+    }.${today.getFullYear()}`;
+    console.log(output);
+    return output;
+  };
 
   // const changeFormHandle = e => {
   //   // console.log(e.target['name']);
@@ -154,28 +154,37 @@ export const ModalAddTransaction = () => {
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
                   <label className={css.selector}>
-                    <Field name="categoryId" as="select" required>
+                    <Field
+                      className={css.selectOption}
+                      name="categoryId"
+                      as="select"
+                      required
+                    >
                       <option value="">Select a category</option>
                       {showCategoriesList()}
                     </Field>
                   </label>
                 )}
-                <label className={css.amountInput}>
+                <label>
                   <Field
                     type="number"
                     name="amount"
                     // min="0.01"
                     step="0.01"
+                    placeholder="0.00"
                     // value="0"
                     // required
+                    className={css.selectOption}
                   />
                 </label>
                 <ErrorMessage component="span" name="amount" />
-                <label className={css.dateInput}>
+                <label>
                   <Field
+                    className={css.selectOption}
                     type="date"
                     name="transactionDate"
-                    max="2023-01-31"
+                    placeholder={getParseNewDate()}
+
                     // required
                   />
                 </label>
