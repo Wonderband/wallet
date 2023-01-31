@@ -5,12 +5,12 @@ import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DiagramTab } from './DiagramTab/DiagramTab';
 import { HomeTab } from './HomeTab/HomeTab';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { refreshUser } from 'redux/session/sessionOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectAuthToken } from '../redux/selectors';
+import Toast from './Toast/Toast';
 
 export const App = () => {
   const isAuth = useSelector(selectAuthToken);
@@ -44,7 +44,7 @@ export const App = () => {
         />
         <Route path="*" element={<Page404 />} />
       </Routes>
-      <ToastContainer />
+      <Toast />
     </>
   );
 };

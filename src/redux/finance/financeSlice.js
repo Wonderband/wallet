@@ -1,5 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createTransaction, getCategories } from './financeOperations';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import {
+  createTransaction,
+  getCategories,
+  getTransactions,
+} from './financeOperations';
 
 ///////////////// Slice data ///////////////
 
@@ -8,6 +12,22 @@ const initialState = {
   // data: null,
   categories: [],
   transactions: [],
+  isLoading: false,
+  isError: false,
+};
+
+const options = [getCategories, createTransaction, getTransactions];
+const getOption = status => options.map(option => option[status]);
+
+const handlePending = state => {
+  state.isLoading = true;
+  state.isError = false;
+};
+
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.isError = true;
+  console.log(payload);
 };
 
 const financeSlice = createSlice({
@@ -19,13 +39,22 @@ const financeSlice = createSlice({
         state.categories = payload?.map(item => {
           return { name: item.name, id: item.id };
         });
-        // console.log(state.categories);
       })
       .addCase(createTransaction.fulfilled, (state, { payload }) => {
         console.log(payload);
+        console.log('success!');
         state.transactions.push(payload);
-        // console.log(state.transactions);
-      });
+      })
+      .addCase(getTransactions.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+        // console.log(payload);
+      })
+      .addCase(createTransaction.rejected, (_, { payload }) => {
+        console.log(payload);
+        console.log('reject!');
+      })
+      .addMatcher(isAnyOf(...getOption('pending')), handlePending)
+      .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
   },
 });
 
