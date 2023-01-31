@@ -125,6 +125,17 @@ font-family: 'Circe';
     margin-bottom: 40px;
 }
 
+textarea {
+    width: 280px;
+    height: 84px;
+    border: none;
+    font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;       
+        color: #BDBDBD;
+        border-bottom: 1px solid #E0E0E0;
+}
+
 .addButton {
     display: block;
     margin: 0 auto;
