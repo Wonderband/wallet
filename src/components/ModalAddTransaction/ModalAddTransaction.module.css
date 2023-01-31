@@ -29,28 +29,69 @@
 .radioDiv {
    margin: 0 43px 40px;
     display: flex;
-    justify-content: space-between;
+    gap: 16px;
+    /* justify-content: space-between; */
     height: 44px;
     align-items: center;
 }
 
-.radioLabel {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 23.58px;
-    color: #E0E0E0;
+.radioLabel1 {
+    display:block;
+        background-image: url('../../assets/btnAdd.svg');
+        width: 60px;
+        height: 44px;
+        background-position: 50% 28%;
+        background-size: fit;
+        border-radius: 100%;
+    
+}
+.radioLabel2 {
+    display: block;    
+    background-image: url('../../assets/btnSubs.svg');
+    width: 60px;
+    height: 44px;
+    background-position: 50% 35%;
+    border-radius: 100%;
+
 }
 
 .toggler {   
-    min-width: 80 px;
-    height: 40 px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* margin: 0 auto; */
+    width: 80px;
+    height: 40px; 
     border-radius: 30px;
-    border: 1px solid blue;
-    background-image: url('../../assets/btnAdd.svg');
-        width: 44px;
-        height: 44px;
-        background-position: 50% 28%;
+    border: 1px solid #E0E0E0;  
+    
 }
+
+.hidden {   
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            border: 0;
+            padding: 0;
+            white-space: nowrap;
+            -webkit-clip-path: inset(100%);
+            clip-path: inset(100%);
+            clip: rect(0 0 0 0);
+            overflow: hidden;
+        }
+
+.transparent {
+    background-image: none;
+}
+
+.spanLabel {
+    font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+    color: #E0E0E0;
+}
+
 
 .selector {
     display: flex;

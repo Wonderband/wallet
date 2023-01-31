@@ -88,7 +88,7 @@ export const ModalAddTransaction = () => {
         ? today.getMonth() + 1
         : '0' + (today.getMonth() + 1).toString()
     }.${today.getFullYear()}`;
-    console.log(output);
+    // console.log(output);
     return output;
   };
 
@@ -102,10 +102,25 @@ export const ModalAddTransaction = () => {
   //   if (e.target['name'] === 'comment') setComment(e.target['value']);
   //   // console.log(e.target['value']);
   // };
+  let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
+  const commonStringValidator = yup
+    .number()
+    .positive()
+    .test(
+      'is-decimal',
+      'The amount should be a decimal with maximum two digits after comma',
+      val => {
+        if (val != undefined) {
+          return patternTwoDigisAfterComma.test(val);
+        }
+        return true;
+      }
+    )
+    .required('Is required');
   const validation = yup.object().shape({
     type: yup.string(),
     categoryId: yup.string(), //.required('Please, select the category'),
-    amount: yup.number().positive().required('Please input the amount'),
+    amount: commonStringValidator, //yup.number().positive().required('Please input the amount'),
     transactionDate: yup.string().required('Please, enter the date'),
   });
 
@@ -142,15 +157,44 @@ export const ModalAddTransaction = () => {
           {({ values }) => (
             <Form className={css.modalForm}>
               <div className={css.radioDiv}>
-                <label className={css.radioLabel}>
-                  <Field type="radio" name="type" value="INCOME" />
+                <span
+                  className={css.spanLabel}
+                  style={values.type === 'INCOME' ? { color: '#24CCA7' } : {}}
+                >
                   Income
-                </label>
-                <div className={css.toggler}></div>
-                <label className={css.radioLabel}>
-                  <Field type="radio" name="type" value="EXPENSE" />
+                </span>
+                <div className={css.toggler}>
+                  <label
+                    className={`${css.radioLabel1} ${
+                      values.type === 'EXPENSE' && css.transparent
+                    }`}
+                  >
+                    <Field
+                      type="radio"
+                      name="type"
+                      value="INCOME"
+                      className={css.hidden}
+                    />
+                  </label>
+                  <label
+                    className={`${css.radioLabel2} ${
+                      values.type === 'INCOME' && css.transparent
+                    }`}
+                  >
+                    <Field
+                      type="radio"
+                      name="type"
+                      value="EXPENSE"
+                      className={css.hidden}
+                    />
+                  </label>
+                </div>
+                <span
+                  className={css.spanLabel}
+                  style={values.type === 'EXPENSE' ? { color: '#FF6596' } : {}}
+                >
                   Expense
-                </label>
+                </span>
               </div>
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
