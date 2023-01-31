@@ -34,12 +34,12 @@ const financeSlice = createSlice({
       state.categories = payload?.map(item => { return { name: item.name, id: item.id } });     
           }) 
       .addCase(createTransaction.fulfilled, (state, { payload }) => {
-        // console.log(payload);
+        console.log(payload);
         state.transactions.push(payload);        
       })
     .addCase(getTransactions.fulfilled, (state, { payload }) => {        
       state.transactions = payload;   
-      console.log(payload);
+      // console.log(payload);
     })
     .addMatcher(isAnyOf(...getOption('pending')), handlePending)      
     .addMatcher(isAnyOf(...getOption('rejected')), handleRejected)   
