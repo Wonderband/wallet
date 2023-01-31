@@ -17,7 +17,7 @@ async function getTransactionsSummary({ month, year }, thunkAPI) {
     );
     return data;
   } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 }
 

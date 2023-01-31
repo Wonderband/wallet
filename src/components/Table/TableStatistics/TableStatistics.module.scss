@@ -25,7 +25,7 @@
   background-color: red;
 }
 
-thead tr {
+.table thead tr {
   width: 280px;
   display: flex;
   justify-content: space-between;
@@ -42,7 +42,7 @@ thead tr {
   }
 }
 
-tbody tr {
+.table tbody tr {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,12 +56,12 @@ tbody tr {
   line-height: calc(24 / 16);
 }
 
-tbody th {
+.table tbody th {
   display: inline-flex;
   align-items: center;
 }
 
-tfoot tr {
+.table tfoot tr {
   display: flex;
   justify-content: space-between;
   align-items: center;
