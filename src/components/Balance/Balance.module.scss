@@ -1,0 +1,34 @@
+.container {
+  width: 280px;
+  background-color: var(--primary-background-color);
+  border-radius: 30px;
+  padding: 8px 32px;
+
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    padding: 8px 40px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 395px;
+    margin-bottom: 32px;
+  }
+}
+
+.text {
+  margin-bottom: 7px;
+  font-family: 'Circe', sans-serif;
+  color: #a6a6a6;
+  font-size: 12px;
+  line-height: calc(18 / 12);
+  text-transform: uppercase;
+}
+
+.balance {
+  font-size: 30px;
+  line-height: calc(45 / 30);
+  color: var(----primary-text-color);
+}
+
+.balance > span {
+  font-weight: 700;
+}

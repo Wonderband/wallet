@@ -10,12 +10,12 @@
   font-weight: 700;
 }
 @font-face {
-  font-family: 'Segoe UI';
+  font-family: 'Poppins';
   src: url('../assets/fonts/Poppins-Regular.woff') format('woff');
   font-weight: 400;
 }
 @font-face {
-  font-family: 'Segoe UI';
-  src: url('../assets/fonts/Circe-Bold.woff') format('woff');
+  font-family: 'Poppins';
+  src: url('../assets/fonts/Poppins-Bold.woff') format('woff');
   font-weight: 700;
 }
