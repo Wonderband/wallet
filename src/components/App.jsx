@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { selectAuthToken } from '../redux/selectors';
 import Toast from './Toast/Toast';
+import { Loader } from './Loader/Loader';
 
 export const App = () => {
   const isAuth = useSelector(selectAuthToken);
@@ -22,7 +23,7 @@ export const App = () => {
 
   return (
     <>
-      {/*<Loader />*/}
+      {/* <Loader /> */}
       <Routes>
         <Route
           path="/"

@@ -10,19 +10,19 @@ async function getAllCategories(_, thunkAPI) {
     const res = await auth.get('/api/transaction-categories');
     return res.data;
   } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 }
 
 async function createNewTransaction(transData, thunkAPI) {
   try {
     console.log(transData);
-    const res = await auth.post('/api/transactions', transData);
+    const res = await auth.post('/api/transaction', transData);
     thunkAPI.dispatch(closeModal());
     return res.data;
   } catch (error) {
     console.log('error!');
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 }
 
@@ -35,7 +35,7 @@ async function getAllTransactions(_, thunkAPI) {
     // console.log(res.data);
     return res.data;
   } catch (error) {
-    thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
   }
 }
 
