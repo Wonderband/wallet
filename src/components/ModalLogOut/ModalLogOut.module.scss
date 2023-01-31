@@ -1,0 +1,99 @@
+@import '../../stylesheet/vars.css';
+
+.modalBackdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: all var(--cubic) var(--animation-time);
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.modalSection {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--primary-background-color);
+    border-radius: 20px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: center;
+
+    @media screen and (min-width: 768px) {
+        padding: 30px 120px;
+    }
+}
+
+.modalTitle {
+    font-family: var(--logo__font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1.5;
+
+    @media screen and (min-width: 768px) {
+        font-size: 30px;
+    }
+}
+
+.modalYesBtn {
+    width: 250px;
+    height: 50px;
+    background: var(--primary-background-color);
+    border: 1px solid var(--accent-btn-color);
+    border-radius: 20px;
+
+    font-family: var(--main__font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-btn-color);
+    transition: all var(--cubic) var(--animation-time);
+    &:hover, &:focus {
+        color: var(--btn-color);
+        background-color: var(--accent-btn-color);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+          rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 300px;
+    }
+}
+
+.modalCancelBtn {
+    width: 250px;
+    height: 50px;
+    background: var(--primary-background-color);
+    border: 1px solid var(--amount-expenses-accent-color);
+    border-radius: 20px;
+
+    font-family: var(--main__font-family);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--amount-expenses-accent-color);
+    transition: all var(--cubic) var(--animation-time);
+    &:hover, &:focus {
+        color: var(--btn-color);
+        background-color: var(--amount-expenses-accent-color);
+        box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+          rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    }
+
+    @media screen and (min-width: 768px) {
+        width: 300px;
+    }
+}

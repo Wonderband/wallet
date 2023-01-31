@@ -37,7 +37,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    return await authAPI.logOut();
+    return await authAPI.logoutUser();
   } catch (error) {
     toast.error(error.response.data.message);
     return thunkAPI.rejectWithValue(error.message);
