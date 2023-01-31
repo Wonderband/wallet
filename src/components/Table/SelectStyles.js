@@ -74,6 +74,9 @@ export const selectStyles = {
     background: 'transparent',
     borderRadius: 20,
     cursor: 'pointer',
+    maxHeight: '157px',
+    scrollbarWidth: 'none',
+    // overflowY: 'scroll',
   }),
 
   option: (provided, { isFocused, isSelected }) => ({
