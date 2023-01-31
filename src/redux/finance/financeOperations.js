@@ -17,7 +17,7 @@ async function getAllCategories(_, thunkAPI) {
 async function createNewTransaction(transData, thunkAPI) {
   try {
     console.log(transData);
-    const res = await auth.post('/api/transaction', transData);
+    const res = await auth.post('/api/transactions', transData);
     thunkAPI.dispatch(closeModal());
     return res.data;
   } catch (error) {
