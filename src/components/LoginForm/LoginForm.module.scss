@@ -1,5 +1,6 @@
 @import '../../stylesheet/vars.css';
 
+/* Form styles */
 .form {
   margin: 0 auto;
   padding: 30px 0;
@@ -22,6 +23,8 @@
   }
 }
 
+/* Logo styles */
+
 .logo {
   width: 120px;
   height: 30px;
@@ -37,6 +40,8 @@
   margin-bottom: 20px;
   text-align: center;
 }
+
+/* Inputs styles */
 
 .textInput {
   width: 100%;
@@ -68,11 +73,36 @@
 .textInput:focus + .icon {
   fill: var(--accent-btn-color);
 }
+
 .passwordInput {
   @extend .textInput;
   font-family: Verdana;
   letter-spacing: 0.125em;
 }
+
+.noBorder:not(:placeholder-shown) {
+  border: none;
+}
+
+.noBorder:not(:focus) {
+  border-bottom: 1px solid var(--disabled-grey-text-color);
+}
+
+.label {
+  position: relative;
+  color: var(--placeholder-text);
+}
+
+.icon {
+  position: absolute;
+  bottom: 6px;
+  left: 12px;
+
+  fill: currentColor;
+  transition: fill var(--cubic) var(--animation-time);
+}
+
+/* Submit button */
 
 .submitButton {
   height: 50px;
@@ -105,6 +135,8 @@
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
+/* Link */
+
 .loginLink {
   @extend .submitButton;
   margin-top: -20px;
@@ -126,24 +158,9 @@
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
-.label {
-  position: relative;
-  color: var(--placeholder-text);
-}
-
-.icon {
-  position: absolute;
-  bottom: 6px;
-  left: 12px;
-
-  display: block;
-
-  fill: currentColor;
-  transition: fill var(--cubic) var(--animation-time);
-}
+/* Validation error message */
 
 .errorMessage {
-  display: none;
   position: absolute;
   bottom: 0;
   left: 20px;
@@ -152,12 +169,32 @@
   font-family: var(--main__font-family);
   font-size: 14px;
 
+  opacity: 0;
   color: var(--err-text-color);
+  transition: opacity var(--cubic) var(--animation-time);
   @media screen and (min-width: 768px) {
     font-size: 16px;
+    transform: translateY(120%);
   }
 }
 
 .textInput:not(:placeholder-shown) ~ .errorMessage {
-  display: inline-block;
+  opacity: 1;
+}
+
+/* Password strength bar */
+
+.passwordStrength {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+
+  display: none;
+
+  transform: translateY(40%);
+}
+
+.textInput:not(:placeholder-shown):focus ~ .passwordStrength {
+  display: block;
 }
