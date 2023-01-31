@@ -71,3 +71,5 @@ button {
   border: none;
   background: none;
 }
+
+@import './components//Toast/Toast.module.scss';
