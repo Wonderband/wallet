@@ -59,7 +59,7 @@ export const HomeTab = () => {
                         {Array.isArray(transactions) &&
                           transactions.map(transaction => (
                             <TransactionTableRow
-                              key={transaction.id}
+                              key={transaction?.id}
                               transaction={transaction}
                             />
                           ))}

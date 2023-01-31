@@ -7,9 +7,9 @@ export const selectStyles = {
     ...provided,
     border: '1px solid #000000',
     borderRadius: 30,
-    height: 50,
+    // height: 50,
     width: '100%',
-    minHeight: 50,
+    // minHeight: 50,
     backgroundColor: 'transparent',
     boxShadow: 'none',
     cursor: 'pointer',
@@ -47,9 +47,16 @@ export const selectStyles = {
   dropdownIndicator: provided => ({
     ...provided,
     color: '#000000',
+    // width: 18,
+    // height: 9,
     '&:hover': {
+      // transform: 'rotate(0.5turn)',
       color: '#000000',
     },
+    // '&:blur': {
+    //   // transform: 'rotate(0.5turn)',
+    //   color: 'orange',
+    // },
   }),
 
   menu: provided => ({
@@ -59,6 +66,7 @@ export const selectStyles = {
     backdropFilter: 'blur(5px)',
     borderRadius: 20,
     overflow: 'hidden',
+    // maxHeight: '157px',
   }),
 
   menuList: provided => ({
@@ -66,6 +74,9 @@ export const selectStyles = {
     background: 'transparent',
     borderRadius: 20,
     cursor: 'pointer',
+    maxHeight: '157px',
+    scrollbarWidth: 'none',
+    // overflowY: 'scroll',
   }),
 
   option: (provided, { isFocused, isSelected }) => ({

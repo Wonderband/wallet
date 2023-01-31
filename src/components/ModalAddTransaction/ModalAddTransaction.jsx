@@ -11,6 +11,8 @@ import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.css';
 import * as yup from 'yup';
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 
 export const ModalAddTransaction = () => {
   // const [typeSelector, setTypeSelector] = useState('EXPENSE');
@@ -79,6 +81,17 @@ export const ModalAddTransaction = () => {
       });
   };
 
+  // const getParseNewDate = () => {
+  //   const today = new Date();
+  //   let output = `${today.getDate()}.${
+  //     today.getMonth() + 1 > 9
+  //       ? today.getMonth() + 1
+  //       : '0' + (today.getMonth() + 1).toString()
+  //   }.${today.getFullYear()}`;
+  //   console.log(output);
+  //   return output;
+  // };
+
   // const changeFormHandle = e => {
   //   // console.log(e.target['name']);
   //   if (e.target['name'] === 'type') setTypeSelector(e.target['value']);
@@ -98,8 +111,10 @@ export const ModalAddTransaction = () => {
 
   const handleSubmit = (values, actions) => {
     let { type, categoryId, amount, transactionDate, comment } = values;
+    console.log(transactionDate);
     if (type === 'EXPENSE') amount *= -1;
     else categoryId = '063f1132-ba5d-42b4-951d-44011ca46262';
+    // transactionDate = new Date(transactionDate).toISOString();
     console.log({ type, categoryId, amount, transactionDate, comment });
     dispatch(
       createTransaction({ type, categoryId, amount, transactionDate, comment })
@@ -112,12 +127,12 @@ export const ModalAddTransaction = () => {
     <div className={css.modalBackdrop} id="modalBackdrop">
       <section className={css.modalSection} id="myModal">
         {/* <span className={css.close}>&times;</span> */}
-        <h2>Add transaction</h2>
+        <h2 className={css.title}>Add transaction</h2>
         <Formik
           initialValues={{
             type: 'EXPENSE',
             categoryId: '',
-            amount: 0,
+            amount: '',
             transactionDate: '',
             comment: '',
           }}
@@ -126,48 +141,59 @@ export const ModalAddTransaction = () => {
         >
           {({ values }) => (
             <Form className={css.modalForm}>
-              <label>
-                <Field type="radio" name="type" value="INCOME" />
-                Income
-              </label>
-              <label>
-                <Field type="radio" name="type" value="EXPENSE" />
-                Expense
-              </label>
-              {values.type === 'EXPENSE' && (
-                <label>
-                  <Field name="categoryId" as="select" required>
-                    <option value="">Select a category</option>
-                    {showCategoriesList()}
-                  </Field>
+              <div className={css.radioDiv}>
+                <label className={css.radioLabel}>
+                  <Field type="radio" name="type" value="INCOME" />
+                  Income
                 </label>
-              )}
-              <label>
-                <Field
-                  type="number"
-                  name="amount"
-                  // min="0.01"
-                  step="0.01"
-                  // value="0"
-                  // required
-                />
-              </label>
-              <ErrorMessage component="span" name="amount" />
-              <label>
-                <Field
-                  type="date"
-                  name="transactionDate"
-                  max="2023-01-31"
-                  // required
-                />
-              </label>
-              <ErrorMessage component="span" name="transactionDate" />
+                <div className={css.toggler}></div>
+                <label className={css.radioLabel}>
+                  <Field type="radio" name="type" value="EXPENSE" />
+                  Expense
+                </label>
+              </div>
+              <div className={css.inputs}>
+                {values.type === 'EXPENSE' && (
+                  <label className={css.selector}>
+                    <Field name="categoryId" as="select" required>
+                      <option value="">Select a category</option>
+                      {showCategoriesList()}
+                    </Field>
+                  </label>
+                )}
+                <label className={css.amountInput}>
+                  <Field
+                    type="number"
+                    name="amount"
+                    // min="0.01"
+                    step="0.01"
+                    // value="0"
+                    // required
+                  />
+                </label>
+                <ErrorMessage component="span" name="amount" />
+                <label className={css.dateInput}>
+                  <Field
+                    type="date"
+                    name="transactionDate"
+                    max="2023-01-31"
+                    // required
+                  />
+                </label>
+                <ErrorMessage component="span" name="transactionDate" />
 
-              <label>
-                <Field as="textarea" name="comment" placeholder="Comment" />
-              </label>
-              <button type="submit">Add</button>
+                {/* <Datetime value={new Date()} timeFormat={false} /> */}
+
+                {/* <ErrorMessage component="span" name="transactionDate" /> */}
+                <label>
+                  <Field as="textarea" name="comment" placeholder="Comment" />
+                </label>
+              </div>
+              <button className={css.addButton} type="submit">
+                ADD
+              </button>
               <button
+                className={css.cancelButton}
                 type="button"
                 onClick={() => {
                   dispatch(closeModal());

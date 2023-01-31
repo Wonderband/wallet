@@ -1,16 +1,22 @@
 import { useSelector } from 'react-redux';
 import { getCategoriesStats } from 'redux/finance/transactionsSummary/transactionsSummarySelectors';
 import s from './TableStatistics.module.scss';
+import { colors } from '../../../constants/colors';
 
 export const TableStatistics = () => {
   const stats = useSelector(getCategoriesStats);
+
+  function getColor(type) {
+    const el = colors.find(item => item.name === type);
+    return el.value;
+  }
 
   return (
     <table className={s.table}>
       <thead>
         <tr className={s.tableHead}>
-          <th>Category</th>
-          <th>Sum</th>
+          <th scope="col">Category</th>
+          <th scope="col">Sum</th>
         </tr>
       </thead>
       <tbody>
@@ -18,11 +24,14 @@ export const TableStatistics = () => {
           return (
             el.type !== 'INCOME' && (
               <tr key={index}>
-                <th>
-                  <span className={s.colorForCategory}></span>
+                <th scope="row">
+                  <span
+                    className={s.colorForCategory}
+                    style={{ backgroundColor: getColor(el.name) }}
+                  ></span>
                   {el.name}
                 </th>
-                <th>{el.total}</th>
+                <th scope="row">{Math.abs(el.total)}</th>
               </tr>
             )
           );
@@ -30,12 +39,16 @@ export const TableStatistics = () => {
       </tbody>
       <tfoot>
         <tr>
-          <th>Expenses:</th>
-          <th>{stats?.expenseSummary}</th>
+          <th scope="row">Expenses:</th>
+          <th className={s.expenses} scope="row">
+            {stats.expenseSummary}
+          </th>
         </tr>
         <tr>
-          <th>Income:</th>
-          <th>{stats?.incomeSummary}</th>
+          <th scope="row">Income:</th>
+          <th className={s.income} scope="row">
+            {stats.incomeSummary}
+          </th>
         </tr>
       </tfoot>
     </table>

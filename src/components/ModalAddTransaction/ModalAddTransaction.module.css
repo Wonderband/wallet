@@ -12,15 +12,98 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black; 
-    padding: 10px;   
-    background-color: aliceblue;
+    width: 320px;
+   border: 1px solid black; 
+      
+    background-color: aliceblue; 
+} 
+
+.title {
+   font-size: 24px; 
+   font-weight: 400;
+   line-height: 36px;
+   text-align: center;
+   margin: 20px 20px 40px;
+}
+
+.radioDiv {
+   margin: 0 43px 40px;
+    display: flex;
+    justify-content: space-between;
+    height: 44px;
+    align-items: center;
+}
+
+.radioLabel {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 23.58px;
+    color: #E0E0E0;
+}
+
+.toggler {   
+    min-width: 80 px;
+    height: 40 px;
+    border-radius: 30px;
+    border: 1px solid blue;
+    background-image: url('../../assets/btnAdd.svg');
+        width: 44px;
+        height: 44px;
+        background-position: 50% 28%;
+}
+
+.selector {
+    display: flex;
+   justify-content: center;
+    margin: 0 20px;
+    border: 0;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* gap: 40px; */
+    padding: 0 20px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26.53px;
+    margin-bottom: 40px;
+}
+
+.addButton {
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    background-color: #24CCA7;
+    border-radius: 20px;
+    color: white;
+    font-size: 18px;
+    font-weight: 400; 
+    padding: 13px 65px;
+    margin-bottom: 20px;
+
+
+}
+
+.cancelButton {
+    display: block;
+    margin: 0 auto;
+    width: 300px;    
+    border-radius: 20px;
+    color:#4A56E2;
+    font-size: 18px;
+    font-weight: 400;
+    padding: 13px 65px;
+    border: 1px solid #4A56E2;
+
+
 }
 
 .modalForm {
     display: flex;
     flex-direction: column;
-    font-size: large;
+    
 }
 
 .close {
