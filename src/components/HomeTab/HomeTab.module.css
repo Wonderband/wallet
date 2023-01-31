@@ -1,0 +1,223 @@
+.section {
+  display: flex;
+  position: relative;
+  padding: 15px;
+  overflow: hidden;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 1280px) {
+  .section {
+    height: calc(100vh - 110px);
+  }
+}
+
+.title {
+  font-family: 'circeBold';
+  font-weight: 700;
+}
+
+@media ((max-width: 1279px) and (min-width: 768px)) {
+  .section {
+    height: calc(100vh - 294px);
+  }
+}
+
+.modalButton {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .modalButton {
+    bottom: -10px;
+    right: 0;
+  }
+}
+
+.modalButton:hover,
+.modalButton:focus {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+/* Desktop and tablet table styles */
+
+.tableWrapper {
+  margin-top: 45px;
+  margin-bottom: 20px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.tableHeaderWrapper {
+  border-radius: 30px;
+
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+
+.tableRawsWrapper {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+@media ((max-width: 1279px) and (min-width: 768px)) {
+  .tableRawsWrapper {
+    max-height: 50vh;
+  }
+}
+
+.tableRawsWrapper::-webkit-scrollbar {
+  width: 10px;
+}
+.tableRawsWrapper::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.tableRawsWrapper::-webkit-scrollbar-thumb {
+  background-color: #c5baff;
+  outline: 1px solid slategrey;
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.table {
+  width: 710px;
+  font-family: 'circeRegular';
+  font-weight: 400;
+  border-collapse: collapse;
+}
+.table__tr {
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+}
+.tableHead {
+  border: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  height: 60px;
+}
+
+.thDate {
+  width: 75px;
+}
+.thType {
+  width: 40px;
+}
+.thCategory {
+  width: 95px;
+}
+.thComment {
+  width: 140px;
+}
+.thSum {
+  width: 130px;
+}
+.thBalance {
+  width: 150px;
+}
+
+.tdDate,
+.tdType,
+.tdCategory,
+.tdComment,
+.tdSum,
+.tdBalalnce,
+.income,
+.s {
+  padding: 5px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  padding: 15px;
+  text-align: center;
+  vertical-align: center;
+}
+
+.tdDate {
+  width: 75px;
+}
+.tdType {
+  width: 40px;
+}
+.tdCategory {
+  width: 105px;
+}
+.tdComment {
+  width: 160px;
+}
+.tdBalance {
+  width: 140px;
+}
+.income {
+  color: rgba(36, 204, 167, 1);
+  width: 140px;
+}
+.expense {
+  color: rgba(255, 101, 150, 1);
+  width: 140px;
+}
+
+.mobileHomeTab {
+  list-style-type: none;
+  padding: 0;
+  font-family: 'circeRegular';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* Mobile table styles */
+
+.mobileTabTransactionEXPENSE,
+.mobileTabTransactionINCOME {
+  padding: 0;
+  background-color: #fff;
+  list-style-type: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.mobileTabTransactionEXPENSE {
+  border-left: 5px solid rgba(255, 101, 150, 1);
+}
+
+.mobileTabTransactionINCOME {
+  border-left: 5px solid rgba(36, 204, 167, 1);
+}
+
+.mobileIncome {
+  color: rgba(36, 204, 167, 1);
+}
+
+.mobiles {
+  color: rgba(255, 101, 150, 1);
+}
+
+.mobileTabRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #dcdcdf;
+  padding-left: 15px;
+  padding-right: 20px;
+  min-height: 45px;
+}
+
+.mobileTabName {
+  font-weight: bold;
+  margin-right: 20px;
+}
