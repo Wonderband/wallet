@@ -4,15 +4,17 @@
 
 #root {
   height: 100%;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(25px);
 }
 
 body {
+  height: 100vh;
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
-  background-color: var(--primary-background-color);
+  background-color: #E7EAF2;
   margin: 0;
   padding: 0;
-  height: calc(100vh - 80px);
 }
 
 code {
