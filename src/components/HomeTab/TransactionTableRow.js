@@ -20,7 +20,7 @@ const TransactionTableRow = ({ transaction }) => {
         {<CategoryName categoryId={categoryId} />}
       </td>
       <td className={css.tdComment}>{comment}</td>
-      <td className={amount > 0 ? css.income : css.expence}>
+      <td className={amount > 0 ? css.income : css.expense}>
         {amount < 0 ? amount * -1 : amount}
       </td>
       <td className={css.tdBalance}>{balanceAfter}</td>

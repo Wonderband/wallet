@@ -39,7 +39,7 @@ const MobileHomeTab = ({ transaction }) => {
         </li>
         <li className={css.mobileTabRow}>
           <span className={css.mobileTabName}>Sum</span>{' '}
-          <span className={amount > 0 ? css.mobileIncome : css.mobileExpence}>
+          <span className={amount > 0 ? css.mobileIncome : css.mobileExpense}>
             {amount < 0 ? amount * -1 : amount}
           </span>
         </li>
