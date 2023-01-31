@@ -6,12 +6,14 @@
   max-width: 280px;
   display: flex;
   justify-content: space-between;
-  // padding: 16px 15px 15px 20px;
   background-color: var(--primary-background-color);
   border-radius: 30px;
-  // @media screen and (min-width: 768px) {
-  //   max-width: 336px;
-  // }
+  @media screen and (min-width: 768px) {
+    max-width: 336px;
+  }
+  @media screen and (min-width: 1280px) {
+    max-width: 395px;
+  }
 }
 
 .colorForCategory {
@@ -27,25 +29,27 @@ thead tr {
   width: 280px;
   display: flex;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--primary-background-color);
   border-radius: 30px;
-  // font-family:  ${p => p.theme.fonts.secondary};
+  font-family: Circe;
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: calc(27 / 18);
   padding: 16px 20px 15px 20px;
+  @media screen and (min-width: 768px) {
+    width: 336px;
+  }
 }
 
 tbody tr {
-  border-bottom: 1px solid #dcdcdf;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // height: 52px;
+  border-bottom: 1px solid var(--line-table-color);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
   padding: 14px 20px 14px 16px;
-  // font-family:  ${p => p.theme.fonts.secondary};
+  font-family: Circe;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -63,7 +67,7 @@ tfoot tr {
   align-items: center;
   height: 52px;
   padding: 0px 20px 0px 16px;
-  // font-family:  ${p => p.theme.fonts.secondary};
+  font-family: Circe;
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -71,11 +75,9 @@ tfoot tr {
 }
 
 .expenses {
-  color: #ff6596;
-  // --amount-expenses-accent-color;
+  color: var(--amount-expenses-accent-color);
 }
 
 .income {
-  color: #24cca7;
-  // --amount-income-accent-color;
+  color: var(--amount-incomes-accent-color);
 }
