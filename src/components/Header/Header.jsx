@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import logout from '../../assets/svg/logOut.svg';
 import logo from '../../assets/svg/logo.svg';
 import css from './Header.module.scss';
@@ -19,10 +18,10 @@ export const Header = () => {
         </div>
         <div className={css.header__logout}>
           <span className={css.header__username}>{userName}</span>
-          <Link to='/logout' className={css.header__link} onClick={() => dispatch(logOut())}>
+          <button className={css.header__link} onClick={() => dispatch(logOut())}>
             <img src={logout} width='18' height='18' alt='logout' />
             <span className={css.header__logout_text}>Exit</span>
-          </Link>
+          </button>
         </div>
       </div>
     </header>
