@@ -59,10 +59,11 @@ const sessionSlice = createSlice({
         state.isAuth = true;
         state.isLoading = false;
       })
-      .addCase(logOut.fulfilled, (state, { payload }) => {
+      .addCase(logOut.fulfilled, state => {
         state.user = null;
         state.isAuth = false;
         state.isLoading = false;
+        state.token = null;
       });
   },
 });
