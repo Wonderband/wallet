@@ -146,6 +146,7 @@ export const ModalAddTransaction = () => {
                   <Field type="radio" name="type" value="INCOME" />
                   Income
                 </label>
+                <div className={css.toggler}></div>
                 <label className={css.radioLabel}>
                   <Field type="radio" name="type" value="EXPENSE" />
                   Expense

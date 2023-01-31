@@ -41,6 +41,17 @@
     color: #E0E0E0;
 }
 
+.toggler {   
+    min-width: 80 px;
+    height: 40 px;
+    border-radius: 30px;
+    border: 1px solid blue;
+    background-image: url('../../assets/btnAdd.svg');
+        width: 44px;
+        height: 44px;
+        background-position: 50% 28%;
+}
+
 .selector {
     display: flex;
    justify-content: center;
