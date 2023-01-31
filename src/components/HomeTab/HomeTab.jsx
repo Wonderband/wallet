@@ -3,14 +3,14 @@ import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTran
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactions } from 'redux/finance/financeOperations';
-import { selectAuthToken, selectIsModalOpen } from 'redux/selectors';
+import { selectIsModalOpen } from 'redux/selectors';
 
 export const HomeTab = () => {
   const isModalOpen = useSelector(selectIsModalOpen);
-  const isAuth = useSelector(selectAuthToken);
+  // const isAuth = useSelector(selectAuthToken);
   const dispatch = useDispatch();
   useEffect(() => {
-    isAuth && dispatch(getTransactions());
+    dispatch(getTransactions());
   }, [dispatch]);
   return (
     <>
