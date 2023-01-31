@@ -1,5 +1,4 @@
-// import { useDispatch } from 'react-redux';
-import { Chart } from 'components/Chart/Chart';
+import { ChartView } from 'components/ChartView/ChartView';
 import { Table } from 'components/Table/Table';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,7 +17,7 @@ export const DiagramTab = () => {
   return (
     <>
       <div>I'm DIAGRAM TAB</div>
-      <Chart />
+      <ChartView />
       <Table />
     </>
   );
