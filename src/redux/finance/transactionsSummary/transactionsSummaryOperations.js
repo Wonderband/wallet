@@ -15,8 +15,7 @@ async function getTransactionsSummary({ month, year }, thunkAPI) {
     const { data } = await auth.get(
       `/api/transactions-summary?month=${month}&year=${year}`
     );
-    console.log(data);
-    return data; // destructured data or no?
+    return data;
   } catch (error) {
     thunkAPI.rejectWithValue(error.message);
   }

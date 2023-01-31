@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   //   totalBalance: "",
+  // data: null,
   categories: [],
   transactions: [],
   isLoading: false,

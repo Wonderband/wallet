@@ -1,13 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { closeModal } from 'redux/global/globalSlice';
-import { auth, setAuthToken } from 'services/authAPI'; 
-
-
+import { auth, setAuthToken } from 'services/authAPI';
 
 async function getAllCategories(_, thunkAPI) {
-   const state = thunkAPI.getState();
+  const state = thunkAPI.getState();
   const persistedToken = state.session.token;
-  try {   
+  try {
     setAuthToken(persistedToken);
     const res = await auth.get('/api/transaction-categories');
     return res.data;
@@ -17,10 +15,10 @@ async function getAllCategories(_, thunkAPI) {
 }
 
 async function createNewTransaction(transData, thunkAPI) {
-  try {      
+  try {
     console.log(transData);
-    const res = await auth.post('/api/transactions', transData);    
-     thunkAPI.dispatch(closeModal());
+    const res = await auth.post('/api/transactions', transData);
+    thunkAPI.dispatch(closeModal());
     return res.data;
   } catch (error) {
     console.log('error!');
@@ -29,11 +27,11 @@ async function createNewTransaction(transData, thunkAPI) {
 }
 
 async function getAllTransactions(_, thunkAPI) {
-   const state = thunkAPI.getState();
+  const state = thunkAPI.getState();
   const persistedToken = state.session.token;
-  try {   
-     setAuthToken(persistedToken);
-    const res = await auth.get('/api/transactions');  
+  try {
+    setAuthToken(persistedToken);
+    const res = await auth.get('/api/transactions');
     // console.log(res.data);
     return res.data;
   } catch (error) {
