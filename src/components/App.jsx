@@ -41,7 +41,7 @@ export const App = () => {
         />
         <Route
           path="/register"
-          element={isAuth ? <Navigate to="/" /> : <RegistrationPage />}
+          element={isAuth ? <Navigate to="/home" /> : <RegistrationPage />}
         />
         <Route path="*" element={<Page404 />} />
       </Routes>

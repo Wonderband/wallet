@@ -9,8 +9,7 @@ import {
 ///////////////// Slice data ///////////////
 
 const initialState = {
-  //   totalBalance: "",
-  // data: null,
+  totalBalance: 0,
   categories: [],
   transactions: [],
   isLoading: false,

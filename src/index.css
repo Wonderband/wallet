@@ -2,12 +2,17 @@
 @import './stylesheet/vars.css';
 @import './stylesheet/fonts.css';
 
+#root {
+  height: 100%;
+}
+
 body {
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
   background-color: var(--primary-background-color);
   margin: 0;
   padding: 0;
+  height: calc(100vh - 80px);
 }
 
 code {
