@@ -3,16 +3,24 @@ import { Currency } from 'components/Currency/Currency';
 import { Navigation } from 'components/Navigation/Navigation';
 import { Header } from '../../components/Header/Header';
 import { Outlet } from 'react-router-dom';
+import css from './DashboardPage.module.scss';
 
-// import css from './DashboardPage.module.css';
 export const DashboardPage = () => {
   return (
     <>
       <Header />
-      <Navigation />
-      <Balance />
-      <Currency />
-      <Outlet />
+      <div className={`${css.container} ${css.mainContainer}`}>
+        <div className={css.left}>
+          <div className={css.navigationBalance}>
+            <Navigation />
+            <Balance />
+          </div>
+          <Currency />
+        </div>
+        <div className={css.right}>
+          <Outlet />
+        </div>
+      </div>
     </>
   );
 };
