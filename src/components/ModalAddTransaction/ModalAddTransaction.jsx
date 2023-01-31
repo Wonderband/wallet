@@ -13,6 +13,7 @@ import css from './ModalAddTransaction.module.css';
 import * as yup from 'yup';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
+import { SelectField } from './SelectField';
 
 export const ModalAddTransaction = () => {
   // const [typeSelector, setTypeSelector] = useState('EXPENSE');
@@ -67,7 +68,23 @@ export const ModalAddTransaction = () => {
   useEffect(() => {
     dispatch(getCategories());
   }, [dispatch]);
+
   const categoriesList = useSelector(selectCategories);
+
+  let newCategoriesList = [];
+  for (let i of categoriesList) {
+    if (i.name === 'Income') continue;
+    newCategoriesList.push({
+      label: i.name,
+      value: i.id,
+    });
+  }
+  console.log(newCategoriesList);
+  // let newCategoriesList = categoriesList.reduce((acc, item) => {
+  //   return acc.push({ label: item.name });
+  //   // value
+  // }, []);
+  // console.log(newCategoriesList);
 
   const showCategoriesList = () => {
     return categoriesList
@@ -155,7 +172,7 @@ export const ModalAddTransaction = () => {
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
                   <label className={css.selector}>
-                    <Field
+                    {/* <Field
                       className={css.selectOption}
                       name="categoryId"
                       as="select"
@@ -163,7 +180,14 @@ export const ModalAddTransaction = () => {
                     >
                       <option value="">Select a category</option>
                       {showCategoriesList()}
-                    </Field>
+                    </Field> */}
+                    {
+                      <Field
+                        name="categoryId"
+                        component={SelectField}
+                        options={newCategoriesList}
+                      />
+                    }
                   </label>
                 )}
                 <label>
