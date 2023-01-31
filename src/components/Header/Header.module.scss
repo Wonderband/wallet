@@ -6,6 +6,10 @@
   justify-content: space-between;
   align-items: center;
   background-color: var(--primary-background-color);
+
+  @media screen and (min-width: 768px) {
+    height: 80px;
+  }
 }
 
 .header__container {
@@ -69,7 +73,7 @@
   }
 }
 
-.header__link {
+.header__logout_btn {
   display: flex;
   align-items: center;
   color: inherit;

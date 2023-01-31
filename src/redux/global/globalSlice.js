@@ -13,8 +13,11 @@ const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
-    logOut: (state) => {
+    openLogOutModal: (state) => {
       state.isModalLogoutOpen = true;
+    },
+    closeLogOutModal: (state) => {
+      state.isModalLogoutOpen = false;
     },
     openModal: {
       reducer(state) {         
@@ -37,5 +40,5 @@ const globalSlice = createSlice({
 });
 
 export const globalSliceReducer = globalSlice.reducer;
-export const { logOut, openModal, closeModal} = globalSlice.actions
+export const { openLogOutModal, closeLogOutModal, openModal, closeModal} = globalSlice.actions
 
