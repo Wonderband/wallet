@@ -36,6 +36,8 @@ const sessionSlice = createSlice({
       .addCase(logIn.rejected, rejected)
       .addCase(refreshUser.pending, pending)
       .addCase(refreshUser.rejected, rejected)
+      .addCase(logOut.pending, pending)
+      .addCase(logOut.rejected, rejected)
       .addCase(register.fulfilled, (state, { payload }) => {
         toastRegisterSuccess(
           `Wellcome to the Wallet, ${payload?.user.username}`
@@ -56,6 +58,12 @@ const sessionSlice = createSlice({
         state.user = payload;
         state.isAuth = true;
         state.isLoading = false;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.user = null;
+        state.isAuth = false;
+        state.isLoading = false;
+        state.token = null;
       });
   },
 });
