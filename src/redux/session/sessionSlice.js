@@ -2,7 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { logIn, logOut, refreshUser, register } from './sessionOperations';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { toast } from 'react-toastify';
+import {
+  toastRegisterSuccess,
+  toastLoginSuccess,
+} from 'components/Toast/Toast';
 
 ///////////////// Slice data ///////////////
 
@@ -33,15 +36,19 @@ const sessionSlice = createSlice({
       .addCase(logIn.rejected, rejected)
       .addCase(refreshUser.pending, pending)
       .addCase(refreshUser.rejected, rejected)
+      .addCase(logOut.pending, pending)
+      .addCase(logOut.rejected, rejected)
       .addCase(register.fulfilled, (state, { payload }) => {
-        toast.success(`Wellcome to the Wallet, ${payload?.user.username}`);
+        toastRegisterSuccess(
+          `Wellcome to the Wallet, ${payload?.user.username}`
+        );
         state.user = payload?.user;
         state.token = payload?.token;
         state.isAuth = true;
         state.isLoading = false;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
-        toast.success(`Wellcome back, ${payload?.user.username}`);
+        toastLoginSuccess(`Wellcome back, ${payload?.user.username}`);
         state.user = payload?.user;
         state.token = payload?.token;
         state.isAuth = true;
@@ -51,6 +58,12 @@ const sessionSlice = createSlice({
         state.user = payload;
         state.isAuth = true;
         state.isLoading = false;
+      })
+      .addCase(logOut.fulfilled, state => {
+        state.user = null;
+        state.isAuth = false;
+        state.isLoading = false;
+        state.token = null;
       });
   },
 });

@@ -2,6 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authAPI } from 'services/authAPI';
 import { setAuthToken } from 'services/authAPI';
 import { toast } from 'react-toastify';
+import {
+  toastInvalidPassword,
+  toastInvalidUser,
+  toastUserAlreadyExist,
+} from 'components/Toast/Toast';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -9,7 +14,7 @@ export const register = createAsyncThunk(
     try {
       return await authAPI.registerUser(formData);
     } catch (error) {
-      toast.error(error.response.data.message);
+      toastUserAlreadyExist(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -21,7 +26,10 @@ export const logIn = createAsyncThunk(
     try {
       return await authAPI.loginUser(formData);
     } catch (error) {
-      toast.error(error.response.data.message);
+      Number(error.response.status) === 404 &&
+        toastInvalidUser(error.response.data.message);
+      Number(error.response.status) === 403 &&
+        toastInvalidPassword(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

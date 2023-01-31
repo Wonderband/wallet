@@ -1,0 +1,16 @@
+.Toastify__toast-container {
+  width: auto;
+}
+
+.Toastify__toast {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.Toastify__toast-body {
+  font-family: var(--main__font-family);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--accent-color);
+  text-align: center;
+}

@@ -1,15 +1,20 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { createTransaction, getCategories, getTransactions } from './financeOperations';
+import { toastAddTransactionError, toastAddTransactionSuccess } from 'components/Toast/Toast';
+import {
+  createTransaction,
+  getCategories,
+  getTransactions,
+} from './financeOperations';
 
 ///////////////// Slice data ///////////////
 
 const initialState = {
   //   totalBalance: "",
+  // data: null,
   categories: [],
   transactions: [],
   isLoading: false,
   isError: false,
-
 };
 
 const options = [getCategories, createTransaction, getTransactions];
@@ -20,37 +25,39 @@ const handlePending = state => {
   state.isError = false;
 };
 
-const handleRejected = (state, { payload}) => {
-  state.isLoading = false; 
+const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
   state.isError = true;
-  console.log(payload);
+  toastAddTransactionError('Error adding transaction!');
 };
 
 const financeSlice = createSlice({
   name: 'finance',
   initialState,
   extraReducers: builder => {
-    builder.addCase(getCategories.fulfilled, (state, { payload }) => {
-      state.categories = payload?.map(item => { return { name: item.name, id: item.id } });     
-          }) 
-      .addCase(createTransaction.fulfilled, (state, { payload }) => {
-        // console.log(payload);
-        state.transactions.push(payload);        
+    builder
+      .addCase(getCategories.fulfilled, (state, { payload }) => {
+        state.categories = payload?.map(item => {
+          return { name: item.name, id: item.id };
+        });
       })
-    .addCase(getTransactions.fulfilled, (state, { payload }) => {        
-      state.transactions = payload;   
-      console.log(payload);
-    })
-    .addMatcher(isAnyOf(...getOption('pending')), handlePending)      
-    .addMatcher(isAnyOf(...getOption('rejected')), handleRejected)   
+      .addCase(createTransaction.fulfilled, (state, { payload }) => {
+        console.log(payload);
+        toastAddTransactionSuccess('Success adding transaction!');
+        // console.log('success!');
+        state.transactions.push(payload);
+      })
+      .addCase(getTransactions.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+        // console.log(payload);
+      })
+      .addCase(createTransaction.rejected, (_, { payload }) => {
+        console.log(payload);
+        console.log('reject!');
+      })
+      .addMatcher(isAnyOf(...getOption('pending')), handlePending)
+      .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
   },
 });
 
 export const financeSliceReducer = financeSlice.reducer;
-
-
-
-
-
-
-
