@@ -12,6 +12,7 @@
       background-image: url(../../assets/images/Background/desktopBg@2x.png);
     }
   }
+  height: calc(100vh - 80px);
   @media screen and (min-width: 1280px) {
     display: flex;
   }
