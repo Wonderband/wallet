@@ -14,9 +14,13 @@ export const Currency = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await getCurrencies();
-      setCurrencies(data);
-      localStorage.setItem(CURRENCIES, JSON.stringify(data));
+      try {
+        const data = await getCurrencies();
+        setCurrencies(data);
+        localStorage.setItem(CURRENCIES, JSON.stringify(data));
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     let shouldFetchData = true;
@@ -31,28 +35,28 @@ export const Currency = () => {
 
   return (
     <div className={s.container}>
-      {!currencies ? (
-        <Loader />
-      ) : (
-        <table className={s.table}>
-          <thead>
-            <tr>
-              <th>Currency</th>
-              <th>Purchase</th>
-              <th>Sale</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currencies.map(obj => (
+      <table className={s.table}>
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Purchase</th>
+            <th>Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          {!currencies ? (
+            <Loader />
+          ) : (
+            currencies.map(obj => (
               <tr key={obj.currency}>
                 <td>{obj.currency}</td>
                 <td>{obj.rateBuy.toFixed(2)}</td>
                 <td>{obj.rateSell.toFixed(2)}</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
