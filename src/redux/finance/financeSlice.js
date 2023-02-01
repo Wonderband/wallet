@@ -64,14 +64,6 @@ const financeSlice = createSlice({
       })
       .addCase(editTransaction.fulfilled, (state, { payload }) => {
         toastAddTransactionSuccess('Success editing transaction!');
-        state.totalBalance = payload.balanceAfter;
-        const elemIndex = state.transactions.indexOf(
-          state.transactions.find(el => el.id === payload.id)
-        );
-        const transactions = [...state.transactions];
-        transactions.splice(elemIndex, 1, payload)
-        console.log(transactions)
-        state.transactions = transactions;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         let {id, sum, type} = payload

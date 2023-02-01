@@ -31,6 +31,7 @@ async function editTransactionById(transData, thunkAPI) {
     const transactionId = transData.id
     delete transData.id
     const res = await auth.patch(`/api/transactions/${transactionId}`, transData);
+    thunkAPI.dispatch(getTransactions())
     return res.data;
   } catch (error) {
     console.log(error);
