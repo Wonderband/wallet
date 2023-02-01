@@ -2,14 +2,12 @@
 @import './stylesheet/vars.css';
 @import './stylesheet/fonts.css';
 
-
 html {
   box-sizing: border-box;
   width: 100vw;
   overflow-x: hidden;
-  background-color: #E7EAF2;
+  background-color: #e7eaf2;
   scroll-behavior: smooth;
-
 }
 
 body {
@@ -23,7 +21,7 @@ body {
 }
 
 #root {
-  height: 100%;
+  min-height: 100%;
 }
 
 *,
