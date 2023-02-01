@@ -23,7 +23,7 @@ export const HomeTab = () => {
   }, [dispatch]);
 
   const [pageNum, setPageNum] = useState(1);
-  const perPage = 10;
+  const perPage = 5;
 
   const tranSactionToRender = () => {
     return transactions.slice(pageNum * perPage - perPage, pageNum * perPage);

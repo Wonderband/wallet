@@ -10,7 +10,6 @@ export const TableStatistics = () => {
     const el = colors.find(item => item.name === type);
     return el.value;
   }
-  console.log(stats.expenseSummary);
   return (
     <table className={s.table}>
       <thead>

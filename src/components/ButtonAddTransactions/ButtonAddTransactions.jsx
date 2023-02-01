@@ -7,5 +7,5 @@ export const ButtonAddTransactions = () => {
   const modalWindowOpener = e => {
     dispatch(openModal());
   };
-  return <button className={css.button} onClick={modalWindowOpener}></button>;
+  return <button className={css.button} onClick={modalWindowOpener}></button>
 };

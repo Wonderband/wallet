@@ -1,15 +1,16 @@
 .button {
-    position: fixed;
-    right: 20px;
+    position: sticky;
+    margin-left: 150%;
     bottom: 20px;
     background-image: url('../../assets/btnAdd.svg');
     width: 44px;
     height: 44px;
     background-position: 50% 28%;
-    /* background-size: contain; */
     border-radius: 100%;
     outline: none;
     @media screen and (min-width: 768px) {
+            position: fixed;
+            margin-left: 0;
             right: 40px;
             bottom: 40px;
         }
