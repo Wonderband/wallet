@@ -58,7 +58,7 @@
 }
 @media (min-width: 1280px) {
   .tableWrapper {
-    margin-top: 45px;
+    /* margin-top: 45px; */
   }
 }
 .tableHeaderWrapper {
