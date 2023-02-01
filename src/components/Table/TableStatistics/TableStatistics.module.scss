@@ -1,6 +1,6 @@
-// .table {
-//   // width: 280px;
-// }
+.table {
+  height: 450px;
+}
 
 .tableHead {
   max-width: 280px;
@@ -80,4 +80,27 @@
 
 .income {
   color: var(--amount-incomes-accent-color);
+}
+
+.hh {
+  position: relative;
+  height: 100%;
+}
+
+.bb {
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.cell {
+  display: table-cell;
+  white-space: nowrap;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }

@@ -60,6 +60,11 @@ const financeSlice = createSlice({
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
   },
+  reducers: {
+    setBalance: (state, { payload }) => {
+      state.totalBalance = payload;
+    },
+  }
 });
 
 export const financeSliceReducer = financeSlice.reducer;
