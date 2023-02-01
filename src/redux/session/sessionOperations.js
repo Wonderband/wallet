@@ -60,7 +60,9 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthToken(persistedToken);
-      return await authAPI.refreshUser();
+      const response = await auth('/api/users/current');
+      thunkAPI.dispatch(setBalance(response.data.balance));
+      return response.data;
     } catch (error) {
       toast.error(error.response.data.message);
       return thunkAPI.rejectWithValue(error.message);

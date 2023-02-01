@@ -10,8 +10,6 @@ import {
   getCategories,
   getTransactions,
 } from './financeOperations';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 ///////////////// Slice data ///////////////
 
@@ -78,18 +76,5 @@ const financeSlice = createSlice({
   },
 });
 
-const financeSliceReducer = financeSlice.reducer;
+export const financeSliceReducer = financeSlice.reducer;
 export const { setBalance } = financeSlice.actions;
-
-///////////////// Persist data ///////////////
-
-const persistConfig = {
-  key: 'totalBalance',
-  version: 1,
-  storage,
-  whitelist: ['totalBalance'],
-};
-export const financeSlicePersistedReducer = persistReducer(
-  persistConfig,
-  financeSliceReducer
-);
