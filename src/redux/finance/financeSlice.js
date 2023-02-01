@@ -12,7 +12,6 @@ const initialState = {
   totalBalance: 0,
   categories: [],
   transactions: [],
-  isLoading: false,
   isError: false,
 };
 
@@ -20,12 +19,10 @@ const options = [getCategories, createTransaction, getTransactions];
 const getOption = status => options.map(option => option[status]);
 
 const handlePending = state => {
-  state.isLoading = true;
   state.isError = false;
 };
 
 const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
   state.isError = true;
   toastAddTransactionError('Error adding transaction!');
 };

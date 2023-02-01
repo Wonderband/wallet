@@ -7,7 +7,6 @@ const transactionsSummarySlice = createSlice({
     summary: [],
     expenseSummary: null,
     incomeSummary: null,
-    isLoading: false,
     error: null,
   },
 
@@ -21,11 +20,9 @@ const transactionsSummarySlice = createSlice({
         state.summary = payload.categoriesSummary;
         state.expenseSummary = payload.expenseSummary;
         state.incomeSummary = payload.incomeSummary;
-        state.isLoading = false;
       })
       .addCase(getSummary.rejected, (state, { payload }) => {
         state.error = payload;
-        state.isLoading = false;
       });
   },
 });
