@@ -12,10 +12,8 @@ import {
 const initialState = {
   user: null,
   token: null,
-  // error: null,
   isAuth: false,
 };
-
 
 const sessionSlice = createSlice({
   name: 'auth',
@@ -56,7 +54,7 @@ const persistConfig = {
   key: 'token',
   version: 1,
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'user'],
 };
 export const sessionSlicePersistedReducer = persistReducer(
   persistConfig,

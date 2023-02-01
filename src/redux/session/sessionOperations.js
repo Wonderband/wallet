@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authAPI } from 'services/authAPI';
+import { authAPI, auth } from 'services/authAPI';
 import { setAuthToken } from 'services/authAPI';
 import { toast } from 'react-toastify';
 import {
@@ -7,6 +7,7 @@ import {
   toastInvalidUser,
   toastUserAlreadyExist,
 } from 'components/Toast/Toast';
+import { setBalance } from 'redux/finance/financeSlice';
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -24,7 +25,10 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (formData, thunkAPI) => {
     try {
-      return await authAPI.loginUser(formData);
+      const response = await auth.post('/api/auth/sign-in', formData);
+      setAuthToken(response.data.token);
+      thunkAPI.dispatch(setBalance(response.data.user.balance));
+      return response.data;
     } catch (error) {
       Number(error.response.status) === 404 &&
         toastInvalidUser(error.response.data.message);
