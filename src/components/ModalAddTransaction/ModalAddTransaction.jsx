@@ -110,16 +110,6 @@ export const ModalAddTransaction = () => {
     return output;
   };
 
-  // const changeFormHandle = e => {
-  //   // console.log(e.target['name']);
-  //   if (e.target['name'] === 'type') setTypeSelector(e.target['value']);
-  //   if (e.target['name'] === 'categories')
-  //     setExpenseCategory(e.target['value']);
-  //   if (e.target['name'] === 'amount') setAmount(e.target['value']);
-  //   if (e.target['name'] === 'date') setDate(e.target['value']);
-  //   if (e.target['name'] === 'comment') setComment(e.target['value']);
-  //   // console.log(e.target['value']);
-  // };
   let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
   const commonStringValidator = yup
     .number()
@@ -134,7 +124,8 @@ export const ModalAddTransaction = () => {
         return true;
       }
     )
-    .required('Is required');
+    .required('Please input the amount');
+
   const validation = yup.object().shape({
     type: yup.string(),
     categoryId: yup.string(), //.required('Please, select the category'),
@@ -229,10 +220,13 @@ export const ModalAddTransaction = () => {
                         name="categoryId"
                         component={SelectField}
                         options={newCategoriesList}
+                        required
                       />
                     }
                   </label>
                 )}
+                <ErrorMessage name="categoryId" />
+
                 <label>
                   <Field
                     type="number"
@@ -244,8 +238,14 @@ export const ModalAddTransaction = () => {
                     // required
                     className={css.selectOption}
                   />
+                  <ErrorMessage
+                    render={msg => (
+                      <div className={css.errorValidation}>{msg}</div>
+                    )}
+                    name="amount"
+                  />
                 </label>
-                <ErrorMessage component="span" name="amount" />
+
                 <label>
                   <Field
                     className={css.selectOption}
@@ -256,11 +256,13 @@ export const ModalAddTransaction = () => {
                     // required
                   />
                 </label>
-                <ErrorMessage component="span" name="transactionDate" />
+                <ErrorMessage
+                  render={msg => (
+                    <div className={css.errorValidation}>{msg}</div>
+                  )}
+                  name="transactionDate"
+                />
 
-                {/* <Datetime value={new Date()} timeFormat={false} /> */}
-
-                {/* <ErrorMessage component="span" name="transactionDate" /> */}
                 <label>
                   <Field
                     as="textarea"

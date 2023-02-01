@@ -12,5 +12,6 @@ export const SelectField = ({ options, field, form }) => (
     value={options ? options.find(option => option.id === field.value) : ''}
     onChange={(option: Option) => form.setFieldValue(field.name, option.value)}
     onBlur={field.onBlur}
+    required
   />
 );
