@@ -14,10 +14,10 @@ export const ChartView = () => {
   const dataFinance = useSelector(selectTransactionsSummary).filter(
     item => item.name !== 'Income'
   );
-  console.log(dataFinance);
-  useEffect(() => {
-    dispatch(getSummary());
-  }, [dispatch]);
+  // console.log(dataFinance);
+  // useEffect(() => {
+  //   dispatch(getSummary());
+  // }, [dispatch]);
 
   function getColor(type) {
     const el = colors.find(item => item.name === type);

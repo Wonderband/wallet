@@ -3,16 +3,16 @@
 @import './stylesheet/fonts.css';
 
 #root {
-  height: 100%;
+  min-height: 100%;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(25px);
 }
 
 body {
-  height: 100vh;
+  min-height: 100%;
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
-  background-color: #E7EAF2;
+  background-color: #e7eaf2;
   margin: 0;
   padding: 0;
 }
@@ -78,7 +78,5 @@ button {
   border: none;
   background: none;
 }
-
-
 
 @import './components//Toast/Toast.module.scss';
