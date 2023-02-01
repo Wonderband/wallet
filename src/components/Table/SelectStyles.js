@@ -61,9 +61,9 @@ export const selectStyles = {
 
   menu: provided => ({
     ...provided,
-    background: 'rgba(255, 255, 255, 0.7)',
+    background: 'rgba(255, 255, 255, 0.3)',
     boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(5px)',
+    backdropFilter: 'blur(25px)',
     borderRadius: 20,
     overflow: 'hidden',
     // maxHeight: '157px',
@@ -75,8 +75,20 @@ export const selectStyles = {
     borderRadius: 20,
     cursor: 'pointer',
     maxHeight: '157px',
-    scrollbarWidth: 'none',
-    // overflowY: 'scroll',
+    // scrollbarWidth: 'none',
+    '::-webkit-scrollbar': {
+      width: '4px',
+      height: '0px',
+    },
+    '::-webkit-scrollbar-track': {
+      background: '#f1f1f1',
+    },
+    '::-webkit-scrollbar-thumb': {
+      background: '#4a56e2;',
+    },
+    '::-webkit-scrollbar-thumb:hover': {
+      background: '#4a56e2',
+    },
   }),
 
   option: (provided, { isFocused, isSelected }) => ({

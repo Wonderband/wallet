@@ -15,6 +15,11 @@
 
   background-color: var(--primary-background-color);
 
+  @media screen and (max-width: 767px) {
+    min-height: 100vh;
+    margin: auto;
+  }
+
   @media screen and (min-width: 768px) {
     max-width: 533px;
     border-radius: 20px;
