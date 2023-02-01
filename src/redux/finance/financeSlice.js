@@ -5,6 +5,8 @@ import {
 } from 'components/Toast/Toast';
 import {
   createTransaction,
+  deleteTransaction,
+  editTransaction,
   getCategories,
   getTransactions,
 } from './financeOperations';
@@ -53,12 +55,28 @@ const financeSlice = createSlice({
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.transactions = payload;
-        
+
         // console.log(payload);
       })
       .addCase(createTransaction.rejected, (_, { payload }) => {
         console.log(payload);
         console.log('reject!');
+      })
+      .addCase(editTransaction.fulfilled, (state, { payload }) => {
+        toastAddTransactionSuccess('Success editing transaction!');
+        state.totalBalance = payload.balanceAfter;
+        const elemIndex = state.transactions.indexOf(
+          state.transactions.find(el => el.id === payload.id)
+        );
+        const transactions = [...state.transactions];
+        transactions.splice(elemIndex, 1, payload)
+        console.log(transactions)
+        state.transactions = transactions;
+      })
+      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        toastAddTransactionSuccess('Success deleting transaction!');
+        state.totalBalance = payload.balanceAfter;
+        state.transactions = state.transactions.filter(el => el.id !== payload.id)
       })
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
