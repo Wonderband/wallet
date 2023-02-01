@@ -1,6 +1,7 @@
 @import '../../stylesheet/vars.css';
 .container {
   padding: 0 20px;
+  background-color: var(--primary-background-color);
   @media screen and (min-width: 768px) {
     padding: 60px 0;
     min-height: 100vh;
@@ -29,6 +30,7 @@
     align-items: center;
     justify-content: center;
     gap: 145px;
+    background-color: white;
 
     background-image: url(../../assets//images/Background/desktopBg.png);
 
