@@ -330,6 +330,6 @@ export const ModalAddTransaction = () => {
       </section>
       ,
     </div>,
-    document.querySelector('#root')
+    document.querySelector('#modal')
   );
 };

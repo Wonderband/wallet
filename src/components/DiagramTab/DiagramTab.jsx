@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCategories } from 'redux/finance/financeOperations';
 import { refreshUser } from 'redux/session/sessionOperations';
-import { colors } from '../../constants/colors';
+import s from './DiagramTab.module.scss';
 
 export const DiagramTab = () => {
   const dispatch = useDispatch();
@@ -15,10 +15,14 @@ export const DiagramTab = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <div>I'm DIAGRAM TAB</div>
-      <ChartView />
+    <section className={s.statisticsWrapper}>
+      <div>
+        <h2 className={s.statisticsHeader}>Statistics</h2>
+        <ChartView />
+      </div>
       <Table />
-    </>
+    </section>
   );
 };
+
+// newuser54678960@gmail.com
