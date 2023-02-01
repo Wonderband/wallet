@@ -1,6 +1,6 @@
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
-import s from './ChartView.module.css';
+import s from './ChartView.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectTransactionsSummary } from 'redux/finance/transactionsSummary/transactionsSummarySelectors';
 import { useEffect } from 'react';
