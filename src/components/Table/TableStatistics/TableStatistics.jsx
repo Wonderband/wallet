@@ -19,30 +19,30 @@ export const TableStatistics = () => {
           <th scope="col">Sum</th>
         </tr>
       </thead>
-      <div className={s.cell}>
-        <div className={s.hh}>
-          <tbody className={s.bb}>
-            {stats?.summary.map((el, index) => {
-              return (
-                el.type !== 'INCOME' && (
-                  <tr key={index}>
-                    <th scope="row">
-                      <span
-                        className={s.colorForCategory}
-                        style={{ backgroundColor: getColor(el?.name) }}
-                      ></span>
-                      {el?.name}
-                    </th>
-                    <th scope="row">
-                      {el.total ? Math.abs(el.total.toFixed(2)) : 0}
-                    </th>
-                  </tr>
-                )
-              );
-            })}
-          </tbody>
-        </div>
-      </div>
+      {/* <div className={s.cell}> */}
+      {/* <div className={s.hh}> */}
+      <tbody className={s.bb}>
+        {stats?.summary.map((el, index) => {
+          return (
+            el.type !== 'INCOME' && (
+              <tr key={index}>
+                <th scope="row">
+                  <span
+                    className={s.colorForCategory}
+                    style={{ backgroundColor: getColor(el?.name) }}
+                  ></span>
+                  {el?.name}
+                </th>
+                <th scope="row">
+                  {el.total ? Math.abs(el.total.toFixed(2)) : 0}
+                </th>
+              </tr>
+            )
+          );
+        })}
+      </tbody>
+      {/* </div> */}
+      {/* </div> */}
       <tfoot>
         <tr>
           <th scope="row">Expenses:</th>
