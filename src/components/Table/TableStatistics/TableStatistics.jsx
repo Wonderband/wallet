@@ -10,7 +10,7 @@ export const TableStatistics = () => {
     const el = colors.find(item => item.name === type);
     return el.value;
   }
-
+  console.log(stats.expenseSummary);
   return (
     <table className={s.table}>
       <thead>
@@ -27,11 +27,13 @@ export const TableStatistics = () => {
                 <th scope="row">
                   <span
                     className={s.colorForCategory}
-                    style={{ backgroundColor: getColor(el.name) }}
+                    style={{ backgroundColor: getColor(el?.name) }}
                   ></span>
-                  {el.name}
+                  {el?.name}
                 </th>
-                <th scope="row">{Math.abs(el.total)}</th>
+                <th scope="row">
+                  {el.total ? Math.abs(el.total.toFixed(2)) : 0}
+                </th>
               </tr>
             )
           );
@@ -41,13 +43,13 @@ export const TableStatistics = () => {
         <tr>
           <th scope="row">Expenses:</th>
           <th className={s.expenses} scope="row">
-            {stats.expenseSummary}
+            {stats.expenseSummary ? stats.expenseSummary.toFixed(2) : 0}
           </th>
         </tr>
         <tr>
           <th scope="row">Income:</th>
           <th className={s.income} scope="row">
-            {stats.incomeSummary}
+            {stats.incomeSummary ? stats.incomeSummary.toFixed(2) : 0}
           </th>
         </tr>
       </tfoot>

@@ -2,31 +2,28 @@
 @import './stylesheet/vars.css';
 @import './stylesheet/fonts.css';
 
-#root {
-  height: 100%;
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(25px);
-}
-
-body {
-  height: 100vh;
-  font-family: 'Poppins', 'Circe', sans-serif;
-  text-decoration: none;
-  background-color: #E7EAF2;
-  margin: 0;
-  padding: 0;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 
 html {
   box-sizing: border-box;
   width: 100vw;
   overflow-x: hidden;
+  background-color: #E7EAF2;
   scroll-behavior: smooth;
+
+}
+
+body {
+  min-height: 100%;
+  font-family: 'Poppins', 'Circe', sans-serif;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(25px);
+}
+
+#root {
+  height: 100%;
 }
 
 *,
@@ -78,7 +75,5 @@ button {
   border: none;
   background: none;
 }
-
-
 
 @import './components//Toast/Toast.module.scss';

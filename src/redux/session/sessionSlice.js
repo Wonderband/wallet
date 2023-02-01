@@ -24,7 +24,7 @@ const sessionSlice = createSlice({
     builder
       .addCase(register.fulfilled, (state, { payload }) => {
         toastRegisterSuccess(
-          `Wellcome to the Wallet, ${payload?.user.username}`
+          `Welcome to the Wallet, ${payload?.user.username}`
         );
         state.user = payload?.user;
         state.token = payload?.token;
