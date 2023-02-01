@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { selectAuthToken } from '../redux/selectors';
 import Toast from './Toast/Toast';
 import { Loader } from './Loader/Loader';
+import { CurrencyMobile } from './Currency/CurrencyMobile';
 
 export const App = () => {
   const isAuth = useSelector(selectAuthToken);
@@ -34,6 +35,7 @@ export const App = () => {
           <Route index element={<Navigate replace to="/home" />} />
           <Route path="home" element={<HomeTab />} />
           <Route path="diagram" element={<DiagramTab />} />
+          <Route path="currency" element={<CurrencyMobile />} />
         </Route>
         <Route
           path="/login"
