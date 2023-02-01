@@ -9,7 +9,7 @@ import { selectTransactions } from 'redux/selectors';
 import Pagination from './Pagination/Pagination';
 
 import MobileHomeTab from './MobileHomeTab';
-import css from './HomeTab.module.css';
+import css from './HomeTab.module.scss';
 import TransactionTableRow from './TransactionTableRow';
 
 export const HomeTab = () => {
@@ -83,11 +83,13 @@ export const HomeTab = () => {
             </>
           )}
         </Media>
-        <Pagination
-          pageQtt={pageQtt}
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-        />
+        {tranSactionToRender().length > 0 && (
+          <Pagination
+            pageQtt={pageQtt}
+            pageNum={pageNum}
+            setPageNum={setPageNum}
+          />
+        )}
       </section>
       {isModalOpen && <ModalAddTransaction />}
       <ButtonAddTransactions />

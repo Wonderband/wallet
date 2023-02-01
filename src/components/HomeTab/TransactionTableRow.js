@@ -1,5 +1,5 @@
 import CategoryName from './CategoryName';
-import css from './HomeTab.module.css';
+import css from './HomeTab.module.scss';
 
 const TransactionTableRow = ({ transaction }) => {
   const { transactionDate, type, categoryId, comment, amount, balanceAfter } =
