@@ -1,4 +1,4 @@
-import css from './HomeTab.module.css';
+import css from './HomeTab.module.scss';
 import CategoryName from './CategoryName';
 
 const MobileHomeTab = ({ transaction }) => {

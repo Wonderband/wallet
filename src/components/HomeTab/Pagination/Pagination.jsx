@@ -17,10 +17,10 @@ const Pagination = ({ setPageNum, pageNum, pageQtt }) => {
     setPageNum(pageNum);
   };
   return (
-    <>
+    <div className={css.DivButtons}>
       <button
         className={css.Button}
-        disabled={pageNum === 1}
+        hidden={pageNum === 1}
         onClick={decreaseNum}
       >
         -
@@ -36,13 +36,13 @@ const Pagination = ({ setPageNum, pageNum, pageQtt }) => {
         </button>
       ))}
       <button
-        disabled={pageNum === pageQtt}
+        hidden={pageNum === pageQtt}
         className={css.Button}
         onClick={increaseNum}
       >
         +
       </button>
-    </>
+    </div>
   );
 };
 
