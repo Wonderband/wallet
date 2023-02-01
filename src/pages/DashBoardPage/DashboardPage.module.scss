@@ -80,7 +80,7 @@
 }
 
 .navigationBalance {
-  @media screen and (min-width: 767px) and (min-width: 1279px) {
+  @media screen and (min-width: 767px) and (max-width: 1279px) {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
