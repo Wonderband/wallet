@@ -62,17 +62,11 @@ const financeSlice = createSlice({
         console.log(payload);
         console.log('reject!');
       })
-      .addCase(editTransaction.fulfilled, (state, { payload }) => {
+      .addCase(editTransaction.fulfilled, () => {
         toastAddTransactionSuccess('Success editing transaction!');
       })
-      .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        let {id, sum, type} = payload
+      .addCase(deleteTransaction.fulfilled, () => {
         toastAddTransactionSuccess('Success deleting transaction!');
-        if (type === 'EXPENSE') {
-          sum *= -1
-        }
-        state.totalBalance = state.totalBalance + sum;
-        state.transactions = state.transactions.filter(el => el.id !== id)
       })
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);

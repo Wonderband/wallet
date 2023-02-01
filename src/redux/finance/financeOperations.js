@@ -42,6 +42,7 @@ async function editTransactionById(transData, thunkAPI) {
 async function deleteTransactionById(data, thunkAPI) {
   try {
     await auth.delete(`/api/transactions/${data.id}`);
+    thunkAPI.dispatch(getTransactions())
     return data;
   } catch (error) {
     console.log(error);
