@@ -1,12 +1,17 @@
 import { Doughnut } from 'react-chartjs-2';
 import { Chart, ArcElement } from 'chart.js';
-import { useSelector } from 'react-redux';
-import { selectTransactionsSummary } from 'redux/finance/transactionsSummary/transactionsSummarySelectors';
 import s from './ChartView.module.scss';
+import { useSelector } from 'react-redux';
+import {
+  selectExpenseSummary,
+  selectTransactionsSummary,
+} from 'redux/finance/transactionsSummary/transactionsSummarySelectors';
 import { colors } from '../../constants/colors';
 
 export const ChartView = () => {
   Chart.register(ArcElement);
+
+  const expense = useSelector(selectExpenseSummary);
 
   const dataFinance = useSelector(selectTransactionsSummary).filter(
     item => item.name !== 'Income'
@@ -36,13 +41,25 @@ export const ChartView = () => {
         backgroundColor: diagramItemColor,
         hoverOffset: 4,
         cutout: '70%',
+        borderWidth: 0,
       },
     ],
   };
 
   return (
     <div className={s.canva}>
-      <Doughnut data={data} />
+      {expense !== 0 ? (
+        <>
+          <Doughnut data={data} />
+          <p className={s.label}>
+            ₴ {(expense * -1).toLocaleString().split(',').join('.')}
+          </p>
+        </>
+      ) : (
+        <p className={s.noDiagram}>
+          You must have at least 1 expense for this period to make a diagram
+        </p>
+      )}
     </div>
   );
 };

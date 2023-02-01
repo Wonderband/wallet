@@ -1,9 +1,20 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteTransaction } from '../../redux/finance/financeOperations';
+import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
 import CategoryName from './CategoryName';
 import css from './HomeTab.module.scss';
 
 const TransactionTableRow = ({ transaction }) => {
   const { transactionDate, type, categoryId, comment, amount, balanceAfter } =
     transaction;
+
+  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
   return (
     <>
       <tr className={css.table__tr}>

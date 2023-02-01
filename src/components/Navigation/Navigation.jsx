@@ -11,9 +11,11 @@ export const Navigation = () => {
             to="/home"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
-            <svg>
-              <use href={`${sprite}#icon-home`}></use>
-            </svg>
+            <div className={s.svgContainer}>
+              <svg>
+                <use href={`${sprite}#icon-home`}></use>
+              </svg>
+            </div>
             <span>Home</span>
           </NavLink>
         </li>

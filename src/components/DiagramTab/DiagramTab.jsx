@@ -24,5 +24,3 @@ export const DiagramTab = () => {
     </section>
   );
 };
-
-// newuser54678960@gmail.com

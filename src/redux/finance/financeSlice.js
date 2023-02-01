@@ -5,11 +5,11 @@ import {
 } from 'components/Toast/Toast';
 import {
   createTransaction,
+  deleteTransaction,
+  editTransaction,
   getCategories,
   getTransactions,
 } from './financeOperations';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
 ///////////////// Slice data ///////////////
 
@@ -60,6 +60,12 @@ const financeSlice = createSlice({
         console.log(payload);
         console.log('reject!');
       })
+      .addCase(editTransaction.fulfilled, () => {
+        toastAddTransactionSuccess('Success editing transaction!');
+      })
+      .addCase(deleteTransaction.fulfilled, () => {
+        toastAddTransactionSuccess('Success deleting transaction!');
+      })
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
   },
@@ -70,18 +76,5 @@ const financeSlice = createSlice({
   },
 });
 
-const financeSliceReducer = financeSlice.reducer;
+export const financeSliceReducer = financeSlice.reducer;
 export const { setBalance } = financeSlice.actions;
-
-///////////////// Persist data ///////////////
-
-const persistConfig = {
-  key: 'totalBalance',
-  version: 1,
-  storage,
-  whitelist: ['totalBalance'],
-};
-export const financeSlicePersistedReducer = persistReducer(
-  persistConfig,
-  financeSliceReducer
-);
