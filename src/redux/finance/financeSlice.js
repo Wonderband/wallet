@@ -17,7 +17,6 @@ const initialState = {
   totalBalance: 0,
   categories: [],
   transactions: [],
-  isLoading: false,
   isError: false,
 };
 
@@ -25,12 +24,10 @@ const options = [getCategories, createTransaction, getTransactions];
 const getOption = status => options.map(option => option[status]);
 
 const handlePending = state => {
-  state.isLoading = true;
   state.isError = false;
 };
 
 const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
   state.isError = true;
   toastAddTransactionError('Error adding transaction!');
 };
@@ -71,6 +68,11 @@ const financeSlice = createSlice({
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
   },
+  reducers: {
+    setBalance: (state, { payload }) => {
+      state.totalBalance = payload;
+    },
+  }
 });
 
 export const financeSliceReducer = financeSlice.reducer;

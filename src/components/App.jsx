@@ -9,12 +9,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import { refreshUser } from 'redux/session/sessionOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { selectAuthToken } from '../redux/selectors';
+import { selectAuthToken, selectIsLoading } from '../redux/selectors';
 import Toast from './Toast/Toast';
 import { Loader } from './Loader/Loader';
 import { CurrencyMobile } from './Currency/CurrencyMobile';
 
 export const App = () => {
+  const isLoading = useSelector(selectIsLoading)
   const isAuth = useSelector(selectAuthToken);
   const dispatch = useDispatch();
 
@@ -24,7 +25,7 @@ export const App = () => {
 
   return (
     <>
-      {/* <Loader /> */}
+      {isLoading && <Loader />}
       <Routes>
         <Route
           path="/"
