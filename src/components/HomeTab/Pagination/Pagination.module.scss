@@ -1,0 +1,39 @@
+@import '../../../stylesheet/vars.css';
+
+.Button {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  left: 16%;
+  transform: translate(-50%, 0);
+  font-family: var(--main__font-family);
+  text-align: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  @media screen and (min-width: 768px) {
+    margin-left: 10px;
+    position: relative;
+    left: 40%;
+    transform: translate(-50%, 0);
+  }
+
+  background-color: var(--accent-btn-color);
+  border: 1px solid var(--accent-btn-color);
+  color: (white);
+  transition: all var(--cubic) var(--animation-time);
+  outline: transparent;
+}
+
+.Button:hover,
+.Button:focus {
+  color: var(--btn-color);
+  background-color: var(--accent-btn-color);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}

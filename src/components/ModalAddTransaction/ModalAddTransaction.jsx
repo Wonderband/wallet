@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.css';
 import * as yup from 'yup';
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { SelectField } from './SelectField';
 
@@ -100,12 +100,13 @@ export const ModalAddTransaction = () => {
 
   const getParseNewDate = () => {
     const today = new Date();
-    let output = `${today.getDate()}.${
+    let output = `${today.getFullYear()}-${
       today.getMonth() + 1 > 9
         ? today.getMonth() + 1
         : '0' + (today.getMonth() + 1).toString()
-    }.${today.getFullYear()}`;
-    console.log(output);
+    }-${
+      today.getDate() > 9 ? today.getDate() : '0' + today.getDate().toString()
+    }`;
     return output;
   };
 
@@ -119,10 +120,25 @@ export const ModalAddTransaction = () => {
   //   if (e.target['name'] === 'comment') setComment(e.target['value']);
   //   // console.log(e.target['value']);
   // };
+  let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
+  const commonStringValidator = yup
+    .number()
+    .positive()
+    .test(
+      'is-decimal',
+      'The amount should be a decimal with maximum two digits after comma',
+      val => {
+        if (val != undefined) {
+          return patternTwoDigisAfterComma.test(val);
+        }
+        return true;
+      }
+    )
+    .required('Is required');
   const validation = yup.object().shape({
     type: yup.string(),
     categoryId: yup.string(), //.required('Please, select the category'),
-    amount: yup.number().positive().required('Please input the amount'),
+    amount: commonStringValidator, //yup.number().positive().required('Please input the amount'),
     transactionDate: yup.string().required('Please, enter the date'),
   });
 
@@ -136,8 +152,6 @@ export const ModalAddTransaction = () => {
     dispatch(
       createTransaction({ type, categoryId, amount, transactionDate, comment })
     );
-    console.log(actions);
-    actions.resetForm();
   };
 
   return createPortal(
@@ -150,7 +164,7 @@ export const ModalAddTransaction = () => {
             type: 'EXPENSE',
             categoryId: '',
             amount: '',
-            transactionDate: '',
+            transactionDate: getParseNewDate(),
             comment: '',
           }}
           onSubmit={handleSubmit}
@@ -159,15 +173,44 @@ export const ModalAddTransaction = () => {
           {({ values }) => (
             <Form className={css.modalForm}>
               <div className={css.radioDiv}>
-                <label className={css.radioLabel}>
-                  <Field type="radio" name="type" value="INCOME" />
+                <span
+                  className={css.spanLabel}
+                  style={values.type === 'INCOME' ? { color: '#24CCA7' } : {}}
+                >
                   Income
-                </label>
-                <div className={css.toggler}></div>
-                <label className={css.radioLabel}>
-                  <Field type="radio" name="type" value="EXPENSE" />
+                </span>
+                <div className={css.toggler}>
+                  <label
+                    className={`${css.radioLabel1} ${
+                      values.type === 'EXPENSE' && css.transparent
+                    }`}
+                  >
+                    <Field
+                      type="radio"
+                      name="type"
+                      value="INCOME"
+                      className={css.hidden}
+                    />
+                  </label>
+                  <label
+                    className={`${css.radioLabel2} ${
+                      values.type === 'INCOME' && css.transparent
+                    }`}
+                  >
+                    <Field
+                      type="radio"
+                      name="type"
+                      value="EXPENSE"
+                      className={css.hidden}
+                    />
+                  </label>
+                </div>
+                <span
+                  className={css.spanLabel}
+                  style={values.type === 'EXPENSE' ? { color: '#FF6596' } : {}}
+                >
                   Expense
-                </label>
+                </span>
               </div>
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
@@ -208,7 +251,7 @@ export const ModalAddTransaction = () => {
                     className={css.selectOption}
                     type="date"
                     name="transactionDate"
-                    placeholder={getParseNewDate()}
+                    value={values.transactionDate}
 
                     // required
                   />
@@ -219,7 +262,12 @@ export const ModalAddTransaction = () => {
 
                 {/* <ErrorMessage component="span" name="transactionDate" /> */}
                 <label>
-                  <Field as="textarea" name="comment" placeholder="Comment" />
+                  <Field
+                    as="textarea"
+                    name="comment"
+                    placeholder="Comment"
+                    className={css.commentArea}
+                  />
                 </label>
               </div>
               <button className={css.addButton} type="submit">
