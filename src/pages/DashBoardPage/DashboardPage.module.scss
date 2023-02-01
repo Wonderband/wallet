@@ -12,7 +12,9 @@
       background-image: url(../../assets/images/Background/desktopBg@2x.png);
     }
   }
-  height: calc(100vh - 80px);
+  @media screen and (min-width: 768px) {
+    height: calc(100vh - 80px);
+  }
   @media screen and (min-width: 1280px) {
     display: flex;
   }
@@ -72,6 +74,11 @@
 }
 
 .navigationBalance {
+  @media screen and (min-width: 767px) and (min-width: 1279px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .right {
