@@ -16,8 +16,21 @@ body {
   text-decoration: none;
   margin: 0;
   padding: 0;
-  background: rgba(255, 255, 255, 0.4);
+  background: white;
   backdrop-filter: blur(25px);
+}
+
+/* @media screen and (min-width: 768px) {
+  body {
+    background: rgba(255, 255, 255, 0.4);
+  }
+} */
+
+@media screen and (max-width: 767px) {
+  body {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(25px);
+  }
 }
 
 #root {

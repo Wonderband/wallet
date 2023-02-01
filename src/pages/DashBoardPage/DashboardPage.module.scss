@@ -12,6 +12,9 @@
       background-image: url(../../assets/images/Background/desktopBg@2x.png);
     }
   }
+  @media screen and (min-width: 768px) {
+    height: calc(100vh - 80px);
+  }
   @media screen and (min-width: 1280px) {
     display: flex;
   }
@@ -23,7 +26,8 @@
     position: absolute;
     right: 0;
     width: 100vw;
-    height: 100%;
+    // height: 100%;
+    height: calc(100% - 80px);
     background: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(25px);
   }
@@ -70,6 +74,11 @@
 }
 
 .navigationBalance {
+  @media screen and (min-width: 767px) and (min-width: 1279px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 }
 
 .right {

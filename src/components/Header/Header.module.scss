@@ -65,6 +65,11 @@
 
 .header__username {
   margin-right: 8px;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(27 / 18);
 
   @media screen and (min-width: 768px) {
     margin-right: 12px;
@@ -83,6 +88,11 @@
 .header__logout_text {
   padding-left: 8px;
   display: none;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: calc(27 / 18);
 
   @media screen and (min-width: 768px) {
     display: block;
