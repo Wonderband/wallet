@@ -36,7 +36,7 @@ const TransactionTableRow = ({ transaction }) => {
           {amount < 0 ? amount * -1 : amount}
         </td>
         <td className={css.tdBalance}>
-          {balanceAfter}{' '}
+          {balanceAfter ? Math.abs(balanceAfter.toFixed(2)) : 0}
           <button onClick={() => setShowModal(true)}>edit</button>{' '}
           <button onClick={() => dispatch(deleteTransaction(transaction.id))}>
             delete

@@ -23,7 +23,7 @@ export const HomeTab = () => {
   }, [dispatch]);
 
   const [pageNum, setPageNum] = useState(1);
-  const perPage = 10;
+  const perPage = 5;
 
   const tranSactionToRender = () => {
     return transactions.slice(pageNum * perPage - perPage, pageNum * perPage);
@@ -43,12 +43,16 @@ export const HomeTab = () => {
             <>
               {matches.small ? (
                 <ul className={css.mobileHomeTab}>
-                  {tranSactionToRender().map(transaction => (
-                    <MobileHomeTab
-                      key={transaction.id}
-                      transaction={transaction}
-                    />
-                  ))}
+                  {tranSactionToRender()
+                    .sort((a, b) =>
+                      a.transactionDate.localeCompare(b.transactionDate)
+                    )
+                    .map(transaction => (
+                      <MobileHomeTab
+                        key={transaction.id}
+                        transaction={transaction}
+                      />
+                    ))}
                 </ul>
               ) : (
                 <div className={css.tableWrapper}>
