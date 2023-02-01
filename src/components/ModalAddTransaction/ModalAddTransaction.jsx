@@ -9,7 +9,7 @@ import {
 } from 'redux/finance/financeOperations';
 import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
-import css from './ModalAddTransaction.module.css';
+import css from './ModalAddTransaction.module.scss';
 import * as yup from 'yup';
 // import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -226,42 +226,43 @@ export const ModalAddTransaction = () => {
                   </label>
                 )}
                 <ErrorMessage name="categoryId" />
+                <div className={css.amountDate}>
+                  <label>
+                    <Field
+                      type="number"
+                      name="amount"
+                      // min="0.01"
+                      step="0.01"
+                      placeholder="0.00"
+                      // value="0"
+                      // required
+                      className={css.selectOption}
+                    />
+                    <ErrorMessage
+                      render={msg => (
+                        <div className={css.errorValidation}>{msg}</div>
+                      )}
+                      name="amount"
+                    />
+                  </label>
 
-                <label>
-                  <Field
-                    type="number"
-                    name="amount"
-                    // min="0.01"
-                    step="0.01"
-                    placeholder="0.00"
-                    // value="0"
-                    // required
-                    className={css.selectOption}
-                  />
+                  <label>
+                    <Field
+                      className={css.selectOption}
+                      type="date"
+                      name="transactionDate"
+                      value={values.transactionDate}
+
+                      // required
+                    />
+                  </label>
                   <ErrorMessage
                     render={msg => (
                       <div className={css.errorValidation}>{msg}</div>
                     )}
-                    name="amount"
-                  />
-                </label>
-
-                <label>
-                  <Field
-                    className={css.selectOption}
-                    type="date"
                     name="transactionDate"
-                    value={values.transactionDate}
-
-                    // required
                   />
-                </label>
-                <ErrorMessage
-                  render={msg => (
-                    <div className={css.errorValidation}>{msg}</div>
-                  )}
-                  name="transactionDate"
-                />
+                </div>
 
                 <label>
                   <Field
