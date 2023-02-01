@@ -2,7 +2,18 @@
   width: 288px;
   height: 288px;
   margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   @media screen and (min-width: 1280px) {
     margin-bottom: 0;
   }
+}
+
+.label {
+  position: absolute;
+  font-family: 'Circe';
+  font-weight: 700;
+  font-size: 18px;
 }
