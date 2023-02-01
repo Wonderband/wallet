@@ -46,15 +46,13 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
 
   const clickOnBackdropHandler = e => {
     if (e.target === e.currentTarget) {
-      dispatch(closeModal());
-      closeModal && closeModal();
+      closeModal ? closeModal() : dispatch(closeModal());
     }
   };
 
   const onEscapeHandler = e => {
     if (e.code === 'Escape') {
-      dispatch(closeModal());
-      closeModal && closeModal();
+      closeModal ? closeModal() : dispatch(closeModal());
     }
   };
 
@@ -163,6 +161,10 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
       ? transaction?.amount * -1
       : transaction?.amount;
 
+  const defaultCategory = categoriesList.find(
+    el => el.id === transaction?.categoryId
+  )?.name;
+
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
       <section className={css.modalSection} id="myModal">
@@ -170,14 +172,13 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
         <span
           className={css.close}
           onClick={() => {
-            dispatch(closeModal());
-            closeModal && closeModal();
+            closeModal ? closeModal() : dispatch(closeModal());
           }}
         ></span>
         <Formik
           initialValues={{
             type: transaction?.type || 'EXPENSE',
-            categoryId: transaction?.categoryId || '',
+            categoryId: defaultCategory || '',
             amount: defaultAmount || '',
             transactionDate: transaction?.transactionDate || getParseNewDate(),
             comment: transaction?.comment || '',
@@ -304,8 +305,7 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
                 className={css.cancelButton}
                 type="button"
                 onClick={() => {
-                  dispatch(closeModal());
-                  closeModal && closeModal();
+                  closeModal ? closeModal() : dispatch(closeModal());
                 }}
               >
                 Cancel
