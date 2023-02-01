@@ -148,8 +148,13 @@ export const ModalAddTransaction = () => {
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
       <section className={css.modalSection} id="myModal">
-        {/* <span className={css.close}>&times;</span> */}
         <h2 className={css.title}>Add transaction</h2>
+        <span
+          className={css.close}
+          onClick={() => {
+            dispatch(closeModal());
+          }}
+        ></span>
         <Formik
           initialValues={{
             type: 'EXPENSE',

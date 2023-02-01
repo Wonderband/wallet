@@ -212,3 +212,18 @@ textarea {
   color: red;
   font-weight: 400;
 }
+
+.close {
+  display: none;
+  position: fixed;
+  top:20px;
+  right:20px;
+  width: 19px;
+  height: 19px;  
+  background-image: url('../../assets/close.svg');
+  background-repeat: no-repeat;
+
+  @media screen and (min-width: 768px) {
+      display: block;
+    }
+}
