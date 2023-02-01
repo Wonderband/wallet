@@ -29,7 +29,7 @@ const sessionSlice = createSlice({
         state.isAuth = true;
       })
       .addCase(logIn.fulfilled, (state, { payload }) => {
-        toastLoginSuccess(`Wellcome back, ${payload?.user.username}`);
+        toastLoginSuccess(`Welcome back, ${payload?.user.username}`);
         state.user = payload?.user;
         state.token = payload?.token;
         state.isAuth = true;
