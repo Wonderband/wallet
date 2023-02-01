@@ -22,15 +22,10 @@ export const HomeTab = () => {
   }, [dispatch]);
 
   const [pageNum, setPageNum] = useState(1);
-  const [perPage, setPerPage] = useState(10);
+  const perPage = 10;
 
   const tranSactionToRender = () => {
     return transactions.slice(pageNum * perPage - perPage, pageNum * perPage);
-  };
-
-  const newPageNum = pageNum => {
-    setPageNum(pageNum);
-    console.log(pageNum);
   };
 
   const pageQtt = Math.ceil(transactions.length / Number(perPage));

@@ -15,7 +15,9 @@ export const DashboardPage = () => {
             <Navigation />
             <Balance />
           </div>
-          <Currency />
+          <div className={css.currencyContainer}>
+            <Currency />
+          </div>
         </div>
         <div className={css.right}>
           <Outlet />
