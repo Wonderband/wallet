@@ -38,7 +38,7 @@ const TransactionTableRow = ({ transaction }) => {
         <td className={css.tdBalance}>
           {balanceAfter}{' '}
           <button onClick={() => setShowModal(true)}>edit</button>{' '}
-          <button onClick={() => dispatch(deleteTransaction({id: transaction.id, sum: transaction.amount, type: transaction.type}))}>
+          <button onClick={() => dispatch(deleteTransaction(transaction.id))}>
             delete
           </button>
         </td>

@@ -39,11 +39,11 @@ async function editTransactionById(transData, thunkAPI) {
   }
 }
 
-async function deleteTransactionById(data, thunkAPI) {
+async function deleteTransactionById(id, thunkAPI) {
   try {
-    await auth.delete(`/api/transactions/${data.id}`);
+    const res = await auth.delete(`/api/transactions/${id}`);
     thunkAPI.dispatch(getTransactions())
-    return data;
+    return res.data;
   } catch (error) {
     console.log(error);
     return thunkAPI.rejectWithValue(error.message);
