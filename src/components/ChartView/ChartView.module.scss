@@ -1,0 +1,8 @@
+.canva {
+  width: 288px;
+  height: 288px;
+  margin-bottom: 32px;
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 0;
+  }
+}

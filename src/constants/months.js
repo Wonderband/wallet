@@ -13,21 +13,9 @@ const monthsArray = [
   'December',
 ];
 
-let date = new Date();
-let currentMonth = date.getMonth();
-const MONTHS = [];
-
-for (let i = 0; i < monthsArray.length; i++) {
-  if (currentMonth === 12) {
-    currentMonth = 0;
-  }
-  MONTHS.push(monthsArray[currentMonth]);
-  currentMonth++;
-}
-
-const monthOptions = MONTHS.map((item, index) => ({
+const monthOptions = monthsArray.map((item, index) => ({
   value: index + 1,
-  label: MONTHS[index],
+  label: monthsArray[index],
 }));
 
 export default monthOptions;

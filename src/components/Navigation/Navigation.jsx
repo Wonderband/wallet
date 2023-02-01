@@ -22,9 +22,11 @@ export const Navigation = () => {
             to="/diagram"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
-            <svg>
-              <use href={`${sprite}#icon-statistics`}></use>
-            </svg>
+            <div className={s.svgContainer}>
+              <svg>
+                <use href={`${sprite}#icon-statistics`}></use>
+              </svg>
+            </div>
             <span>Statistics</span>
           </NavLink>
         </li>
@@ -33,9 +35,11 @@ export const Navigation = () => {
             to="/currency"
             className={({ isActive }) => (isActive ? s.activeLink : s.link)}
           >
-            <svg>
-              <use href={`${sprite}#icon-currency`}></use>
-            </svg>
+            <div className={s.svgContainer}>
+              <svg>
+                <use href={`${sprite}#icon-currency`}></use>
+              </svg>
+            </div>
           </NavLink>
         </li>
       </ul>

@@ -3,10 +3,13 @@
   flex-direction: column;
   gap: 20px;
   max-width: 280px;
-  background-color: var(--secondary-background-color);
-  backdrop-filter: blur(25px);
+  // backdrop-filter: blur(25px);
   @media screen and (min-width: 768px) {
     max-width: 336px;
+    padding-top: 10px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding-top: 0;
   }
 }
 

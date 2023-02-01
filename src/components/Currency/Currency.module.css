@@ -1,5 +1,8 @@
+.mobileContainer {
+
+}
+
 .container {
-  display: none;
   position: relative;
   width: 280px;
   min-height: 174px;
@@ -13,7 +16,6 @@
 
 @media screen and (min-width: 768px) {
   .container {
-    display: block;
     width: 336px;
     min-height: 182px;
   }

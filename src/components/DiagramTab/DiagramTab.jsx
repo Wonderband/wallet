@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { getCategories } from 'redux/finance/financeOperations';
 import { refreshUser } from 'redux/session/sessionOperations';
-import s from './DiagramTab.module.css';
+import s from './DiagramTab.module.scss';
 import rs from '../ModalAddTransaction/ModalAddTransaction.module.css';
 
 export const DiagramTab = () => {
@@ -30,3 +30,5 @@ export const DiagramTab = () => {
     </div>
   );
 };
+
+// newuser54678960@gmail.com
