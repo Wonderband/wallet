@@ -74,9 +74,13 @@ const financeSlice = createSlice({
         state.transactions = transactions;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
+        let {id, sum, type} = payload
         toastAddTransactionSuccess('Success deleting transaction!');
-        state.totalBalance = payload.balanceAfter;
-        state.transactions = state.transactions.filter(el => el.id !== payload.id)
+        if (type === 'EXPENSE') {
+          sum *= -1
+        }
+        state.totalBalance = state.totalBalance + sum;
+        state.transactions = state.transactions.filter(el => el.id !== id)
       })
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);
