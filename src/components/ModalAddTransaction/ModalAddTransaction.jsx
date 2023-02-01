@@ -1,27 +1,59 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+// import { useState } from 'react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   createTransaction,
+  editTransaction,
   getCategories,
 } from 'redux/finance/financeOperations';
 import { closeModal } from 'redux/global/globalSlice';
 import { selectCategories } from 'redux/selectors';
 import css from './ModalAddTransaction.module.scss';
 import * as yup from 'yup';
+// import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 import { SelectField } from './SelectField';
 
-export const ModalAddTransaction = () => {
+export const ModalAddTransaction = ({ transaction, closeModal }) => {
+  // const [typeSelector, setTypeSelector] = useState('EXPENSE');
+  // const [expenseCategory, setExpenseCategory] = useState('');
+  // const [amount, setAmount] = useState(null);
+  // const [date, setDate] = useState(null);
+  // const [comment, setComment] = useState('');
+
   const dispatch = useDispatch();
 
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   const transactionData = {
+  //     transactionDate: date,
+  //     type: typeSelector,
+  //     categoryId:
+  //       typeSelector === 'EXPENSE'
+  //         ? expenseCategory
+  //         : '063f1132-ba5d-42b4-951d-44011ca46262',
+  //     comment: comment,
+  //     amount:
+  //       typeSelector === 'EXPENSE'
+  //         ? parseFloat(amount) * -1
+  //         : parseFloat(amount),
+  //   };
+  // console.log(transactionData);
+  //   dispatch(createTransaction(transactionData));
+  // };
+
   const clickOnBackdropHandler = e => {
-    if (e.target === e.currentTarget) dispatch(closeModal());
+    if (e.target === e.currentTarget) {
+      closeModal ? closeModal() : dispatch(closeModal());
+    }
   };
 
   const onEscapeHandler = e => {
-    if (e.code === 'Escape') dispatch(closeModal());
+    if (e.code === 'Escape') {
+      closeModal ? closeModal() : dispatch(closeModal());
+    }
   };
 
   useEffect(() => {
@@ -52,6 +84,24 @@ export const ModalAddTransaction = () => {
       value: i.id,
     });
   }
+  console.log(newCategoriesList);
+  // let newCategoriesList = categoriesList.reduce((acc, item) => {
+  //   return acc.push({ label: item.name });
+  //   // value
+  // }, []);
+  // console.log(newCategoriesList);
+
+  const showCategoriesList = () => {
+    return categoriesList
+      .filter(item => item.name !== 'Income')
+      .map(item => {
+        return (
+          <option key={item.id} value={item.id}>
+            {item.name}
+          </option>
+        );
+      });
+  };
 
   const getParseNewDate = () => {
     const today = new Date();
@@ -83,19 +133,37 @@ export const ModalAddTransaction = () => {
 
   const validation = yup.object().shape({
     type: yup.string(),
-    categoryId: yup.string(),
-    amount: commonStringValidator,
+    categoryId: yup.string(), //.required('Please, select the category'),
+    amount: commonStringValidator, //yup.number().positive().required('Please input the amount'),
     transactionDate: yup.string().required('Please, enter the date'),
   });
 
-  const handleSubmit = (values, actions) => {
-    let { type, categoryId, amount, transactionDate, comment } = values;
-    if (type === 'EXPENSE') amount *= -1;
-    else categoryId = '063f1132-ba5d-42b4-951d-44011ca46262';
+  const handleSubmit = values => {
+    closeModal && closeModal();
+
+    const id = transaction?.id;
+
+    if (values.type === 'EXPENSE') {
+      values.amount *= -1;
+    } else {
+      values.categoryId = '063f1132-ba5d-42b4-951d-44011ca46262';
+    }
+
     dispatch(
-      createTransaction({ type, categoryId, amount, transactionDate, comment })
+      transaction
+        ? editTransaction({ id, ...values })
+        : createTransaction(values)
     );
   };
+
+  const defaultAmount =
+    transaction?.type === 'EXPENSE'
+      ? transaction?.amount * -1
+      : transaction?.amount;
+
+  const defaultCategory = categoriesList.find(
+    el => el.id === transaction?.categoryId
+  )?.name;
 
   return createPortal(
     <div className={css.modalBackdrop} id="modalBackdrop">
@@ -104,16 +172,16 @@ export const ModalAddTransaction = () => {
         <span
           className={css.close}
           onClick={() => {
-            dispatch(closeModal());
+            closeModal ? closeModal() : dispatch(closeModal());
           }}
         ></span>
         <Formik
           initialValues={{
-            type: 'EXPENSE',
-            categoryId: '',
-            amount: '',
-            transactionDate: getParseNewDate(),
-            comment: '',
+            type: transaction?.type || 'EXPENSE',
+            categoryId: defaultCategory || '',
+            amount: defaultAmount || '',
+            transactionDate: transaction?.transactionDate || getParseNewDate(),
+            comment: transaction?.comment || '',
           }}
           onSubmit={handleSubmit}
           validationSchema={validation}
@@ -163,6 +231,15 @@ export const ModalAddTransaction = () => {
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
                   <label className={css.selector}>
+                    {/* <Field
+                      className={css.selectOption}
+                      name="categoryId"
+                      as="select"
+                      required
+                    >
+                      <option value="">Select a category</option>
+                      {showCategoriesList()}
+                    </Field> */}
                     {
                       <Field
                         name="categoryId"
@@ -179,8 +256,11 @@ export const ModalAddTransaction = () => {
                     <Field
                       type="number"
                       name="amount"
+                      // min="0.01"
                       step="0.01"
                       placeholder="0.00"
+                      // value="0"
+                      // required
                       className={css.selectOption}
                     />
                     <ErrorMessage
@@ -190,12 +270,15 @@ export const ModalAddTransaction = () => {
                       name="amount"
                     />
                   </label>
+
                   <label>
                     <Field
                       className={css.selectOption}
                       type="date"
                       name="transactionDate"
                       value={values.transactionDate}
+
+                      // required
                     />
                   </label>
                   <ErrorMessage
@@ -216,13 +299,13 @@ export const ModalAddTransaction = () => {
                 </label>
               </div>
               <button className={css.addButton} type="submit">
-                ADD
+                {transaction ? 'EDIT' : 'ADD'}
               </button>
               <button
                 className={css.cancelButton}
                 type="button"
                 onClick={() => {
-                  dispatch(closeModal());
+                  closeModal ? closeModal() : dispatch(closeModal());
                 }}
               >
                 Cancel
@@ -230,6 +313,45 @@ export const ModalAddTransaction = () => {
             </Form>
           )}
         </Formik>
+        {/* <form className={css.modalForm} onChange={changeFormHandle}> */}
+        {/* <label>
+            <input type="radio" name="type" value="INCOME" />
+            Income
+          </label>
+          <label>
+            <input type="radio" name="type" value="EXPENSE" defaultChecked />
+            Expense
+          </label> */}
+
+        {/* {typeSelector === 'EXPENSE' && (
+            <label>
+              <select name="categories" required>
+                <option checked>Select a category</option>
+                {showCategoriesList()}
+              </select>
+            </label>
+          )} */}
+
+        {/* <label>
+            <input
+              type="number"
+              name="amount"
+              min="0.01"
+              step="0.01"
+              // value="0"
+              required
+            />
+          </label> */}
+        {/* <label>
+            <input type="date" name="date" max="2023-01-31" required />
+          </label> */}
+        {/* <label>
+            <textarea name="comment" placeholder="Comment"></textarea>
+          </label> */}
+        {/* <button type="submit" onClick={handleSubmit}>
+            Add
+          </button> */}
+        {/* </form> */}
       </section>
       ,
     </div>,

@@ -1,5 +1,12 @@
 @import '../../stylesheet/base.scss';
 
+.currencyContainer {
+  display: none;
+  @media screen and (min-width: 768px) {
+    display: block;
+  }
+}
+
 .mainContainer {
   @media screen and (min-width: 768px) {
     background-image: url(../../assets//images/Background/desktopBg.png);

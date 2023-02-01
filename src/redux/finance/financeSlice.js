@@ -5,6 +5,8 @@ import {
 } from 'components/Toast/Toast';
 import {
   createTransaction,
+  deleteTransaction,
+  editTransaction,
   getCategories,
   getTransactions,
 } from './financeOperations';
@@ -59,6 +61,12 @@ const financeSlice = createSlice({
       .addCase(createTransaction.rejected, (_, { payload }) => {
         console.log(payload);
         console.log('reject!');
+      })
+      .addCase(editTransaction.fulfilled, () => {
+        toastAddTransactionSuccess('Success editing transaction!');
+      })
+      .addCase(deleteTransaction.fulfilled, () => {
+        toastAddTransactionSuccess('Success deleting transaction!');
       })
       .addMatcher(isAnyOf(...getOption('pending')), handlePending)
       .addMatcher(isAnyOf(...getOption('rejected')), handleRejected);

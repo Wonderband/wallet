@@ -3,7 +3,7 @@ import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAd
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions } from 'redux/finance/financeOperations';
+import { getCategories, getTransactions } from 'redux/finance/financeOperations';
 import { selectIsModalOpen } from 'redux/selectors';
 import { selectTransactions } from 'redux/selectors';
 import Pagination from './Pagination/Pagination';
@@ -19,6 +19,7 @@ export const HomeTab = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTransactions());
+    dispatch(getCategories());
   }, [dispatch]);
 
   const [pageNum, setPageNum] = useState(1);
