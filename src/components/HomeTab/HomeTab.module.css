@@ -1,3 +1,5 @@
+@import '../../stylesheet/vars.css';
+
 .section {
   display: flex;
   position: relative;
@@ -14,7 +16,7 @@
 }
 
 .title {
-  font-family: 'circeBold';
+  font-family: var(--main__font-family);
   font-weight: 700;
 }
 
@@ -28,7 +30,7 @@
   position: fixed;
   bottom: 0;
   right: 10px;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: var(--primary-text-color);
   padding: 0;
   border-radius: 50%;
   border: none;
@@ -62,7 +64,7 @@
 .tableHeaderWrapper {
   border-radius: 30px;
 
-  background-color: #fff;
+  background-color: var(--secondary-text-color);
   justify-content: center;
   align-items: center;
 }
@@ -95,7 +97,7 @@
 
 .table {
   width: 710px;
-  font-family: 'circeRegular';
+  font-family: var(--main__font-family);
   font-weight: 400;
   border-collapse: collapse;
 }
@@ -166,18 +168,18 @@
   width: 140px;
 }
 .income {
-  color: rgba(36, 204, 167, 1);
+  color: var(--amount-incomes-accent-color);
   width: 140px;
 }
 .expense {
-  color: rgba(255, 101, 150, 1);
+  color: var(--amount-expenses-accent-color);
   width: 140px;
 }
 
 .mobileHomeTab {
   list-style-type: none;
   padding: 0;
-  font-family: 'circeRegular';
+  font-family: var(--main__font-family);
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
@@ -188,26 +190,26 @@
 .mobileTabTransactionEXPENSE,
 .mobileTabTransactionINCOME {
   padding: 0;
-  background-color: #fff;
+  background-color: var(--primary-background-color);
   list-style-type: none;
   border-radius: 5px;
   margin-bottom: 10px;
 }
 
 .mobileTabTransactionEXPENSE {
-  border-left: 5px solid rgba(255, 101, 150, 1);
+  border-left: 5px solid var(--amount-expenses-accent-color);
 }
 
 .mobileTabTransactionINCOME {
-  border-left: 5px solid rgba(36, 204, 167, 1);
+  border-left: 5px solid var(--amount-incomes-accent-color);
 }
 
 .mobileIncome {
-  color: rgba(36, 204, 167, 1);
+  color: var(--amount-incomes-accent-color);
 }
 
 .mobiles {
-  color: rgba(255, 101, 150, 1);
+  color: var(--amount-expenses-accent-color);
 }
 
 .mobileTabRow {

@@ -1,10 +1,10 @@
 @import '../../../stylesheet/vars.css';
 
 .Button {
-  margin-left: 10px;
+  margin-left: 5px;
   margin-bottom: 10px;
   position: relative;
-  left: 16%;
+  left: 14%;
   transform: translate(-50%, 0);
   font-family: var(--main__font-family);
   text-align: center;
@@ -18,8 +18,7 @@
   text-transform: uppercase;
   @media screen and (min-width: 768px) {
     margin-left: 10px;
-    position: relative;
-    left: 40%;
+    left: 33%;
     transform: translate(-50%, 0);
   }
 
