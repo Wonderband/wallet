@@ -50,12 +50,15 @@
 /* Desktop and tablet table styles */
 
 .tableWrapper {
-  margin-top: 45px;
   margin-bottom: 20px;
   margin-right: auto;
   margin-left: auto;
 }
-
+@media (min-width: 1280px) {
+  .tableWrapper {
+    margin-top: 45px;
+  }
+}
 .tableHeaderWrapper {
   border-radius: 30px;
 
@@ -66,7 +69,7 @@
 
 .tableRawsWrapper {
   max-height: 60vh;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
 }
 
 @media ((max-width: 1279px) and (min-width: 768px)) {
@@ -126,7 +129,7 @@
   width: 130px;
 }
 .thBalance {
-  width: 150px;
+  width: 115px;
 }
 
 .tdDate,
@@ -134,9 +137,9 @@
 .tdCategory,
 .tdComment,
 .tdSum,
-.tdBalalnce,
+.tdBalance,
 .income,
-.s {
+.expense {
   padding: 5px;
   font-weight: 400;
   font-size: 16px;
