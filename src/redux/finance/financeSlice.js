@@ -8,6 +8,8 @@ import {
   getCategories,
   getTransactions,
 } from './financeOperations';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 ///////////////// Slice data ///////////////
 
@@ -45,12 +47,13 @@ const financeSlice = createSlice({
         toastAddTransactionSuccess('Success adding transaction!');
         // console.log('success!');
         state.totalBalance = payload.balanceAfter;
+        // localStorage.setItem('balance', payload.balanceAfter);
         console.log(payload.balanceAfter);
         state.transactions = [payload, ...state.transactions];
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.transactions = payload;
-        
+
         // console.log(payload);
       })
       .addCase(createTransaction.rejected, (_, { payload }) => {
@@ -64,7 +67,21 @@ const financeSlice = createSlice({
     setBalance: (state, { payload }) => {
       state.totalBalance = payload;
     },
-  }
+  },
 });
 
-export const financeSliceReducer = financeSlice.reducer;
+const financeSliceReducer = financeSlice.reducer;
+export const { setBalance } = financeSlice.actions;
+
+///////////////// Persist data ///////////////
+
+const persistConfig = {
+  key: 'totalBalance',
+  version: 1,
+  storage,
+  whitelist: ['totalBalance'],
+};
+export const financeSlicePersistedReducer = persistReducer(
+  persistConfig,
+  financeSliceReducer
+);
