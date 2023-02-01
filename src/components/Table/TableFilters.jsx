@@ -1,6 +1,5 @@
 import monthOptions from '../../constants/months';
 import yearsOptions from '../../constants/lastFiveYears';
-// import { useEffect } from 'react';
 
 import css from './Table.module.scss';
 import { useDispatch } from 'react-redux';
@@ -12,10 +11,23 @@ import { getSummary } from 'redux/finance/transactionsSummary/transactionsSummar
 export const TableFilters = () => {
   const dispatch = useDispatch();
 
+  let currentMonth = new Date().getMonth();
+  const MONTHS = [];
+
+  for (let i = 0; i < monthOptions.length; i++) {
+    if (currentMonth === 12) {
+      currentMonth = 0;
+    }
+    MONTHS.push(monthOptions[currentMonth]);
+    currentMonth++;
+  }
+
   const [date, setDate] = useState({
-    month: monthOptions[0].value,
+    month: MONTHS[0].value,
     year: yearsOptions[0].value,
   });
+
+  console.log(date.month);
 
   const updateDate = (name, value) => {
     setDate(prev => ({ ...prev, [name]: value }));
@@ -46,7 +58,7 @@ export const TableFilters = () => {
           updateDate('month', option.value);
         }}
         isSearchable={false}
-        defaultValue={monthOptions[0]}
+        defaultValue={MONTHS[0]}
       />
       <Select
         className={css.select}

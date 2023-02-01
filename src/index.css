@@ -2,16 +2,18 @@
 @import './stylesheet/vars.css';
 @import './stylesheet/fonts.css';
 
+
 html {
   box-sizing: border-box;
   width: 100vw;
   overflow-x: hidden;
   background-color: #E7EAF2;
   scroll-behavior: smooth;
+
 }
 
 body {
-  height: 100vh;
+  min-height: 100%;
   font-family: 'Poppins', 'Circe', sans-serif;
   text-decoration: none;
   margin: 0;
@@ -73,7 +75,5 @@ button {
   border: none;
   background: none;
 }
-
-
 
 @import './components//Toast/Toast.module.scss';

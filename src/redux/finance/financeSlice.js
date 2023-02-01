@@ -1,5 +1,8 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { toastAddTransactionError, toastAddTransactionSuccess } from 'components/Toast/Toast';
+import {
+  toastAddTransactionError,
+  toastAddTransactionSuccess,
+} from 'components/Toast/Toast';
 import {
   createTransaction,
   getCategories,
@@ -44,10 +47,13 @@ const financeSlice = createSlice({
         console.log(payload);
         toastAddTransactionSuccess('Success adding transaction!');
         // console.log('success!');
-        state.transactions.push(payload);
+        state.totalBalance = payload.balanceAfter;
+        console.log(payload.balanceAfter);
+        state.transactions = [payload, ...state.transactions];
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.transactions = payload;
+        
         // console.log(payload);
       })
       .addCase(createTransaction.rejected, (_, { payload }) => {

@@ -40,7 +40,7 @@ const sessionSlice = createSlice({
       .addCase(logOut.rejected, rejected)
       .addCase(register.fulfilled, (state, { payload }) => {
         toastRegisterSuccess(
-          `Wellcome to the Wallet, ${payload?.user.username}`
+          `Welcome to the Wallet, ${payload?.user.username}`
         );
         state.user = payload?.user;
         state.token = payload?.token;
