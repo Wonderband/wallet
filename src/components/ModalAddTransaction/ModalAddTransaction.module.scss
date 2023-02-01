@@ -9,16 +9,14 @@
 
 .modalSection {
   position: absolute;
-   top: 60px;
-  width: 320px; 
-  height: 100%;
-  background: #ffffff;
-  @media screen and (min-width: 768px) {
-    top: 50%;
+  top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 540px;
-    height: 508px;
+  width: 320px;   
+  background: #ffffff;
+  @media screen and (min-width: 768px) {
+   
+    width: 540px;   
     border-radius: 30px;
   }
 }
@@ -106,15 +104,19 @@
 
 
 .inputs {
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* gap: 40px; */
-  padding: 0 20px;
+ width: 280px;
+  // padding: 0 20px;
   font-size: 18px;
   font-weight: 700;
   line-height: 26.53px;
   margin-bottom: 40px;
+@media screen and (min-width: 768px) {
+     width: 334px;
+  }
 }
 
 .amountDate {
@@ -122,13 +124,15 @@
   flex-direction: column;
   @media screen and  (min-width: 768px){
     flex-direction: row;
+    gap: 30px;
+    width: 394px;
   }
 }
 
 .selector {
   display: flex;
   justify-content: center;
-  /* margin: 0 20px; */
+ margin-bottom: 40px;
   border: 0;
   @media screen and (min-width: 768px) {
       width:394px;
@@ -147,7 +151,7 @@
   line-height: 27px;
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
-      width: 190px;
+      width: 182px;
     }
 }
 
