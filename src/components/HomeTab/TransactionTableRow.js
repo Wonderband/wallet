@@ -38,7 +38,7 @@ const TransactionTableRow = ({ transaction }) => {
           {amount < 0 ? amount * -1 : amount}
         </td>
         <td className={css.tdBalance}>
-          {balanceAfter}{' '}
+          {balanceAfter ? Math.abs(balanceAfter.toFixed(2)) : 0}
           <button onClick={() => setShowModal(true)} style={{marginLeft: '10px'}}>
             <MdEdit color='#4a56e2' size='18' />
           </button>{' '}
