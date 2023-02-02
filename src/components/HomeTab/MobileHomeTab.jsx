@@ -45,7 +45,7 @@ const MobileHomeTab = ({ transaction }) => {
         </li>
         <li className={css.mobileTabRow}>
           <span className={css.mobileTabName}>Balance</span>{' '}
-          <span>{balanceAfter}</span>
+          <span>{balanceAfter ? Math.abs(balanceAfter.toFixed(2)) : 0}</span>
         </li>
       </ul>
     </li>
