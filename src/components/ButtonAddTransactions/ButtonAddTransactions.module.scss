@@ -1,16 +1,16 @@
 .button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    background-image: url('../../assets/btnAdd.svg');
-    width: 44px;
-    height: 44px;
-    background-position: 50% 28%;
-    /* background-size: contain; */
-    border-radius: 100%;
-    outline: none;
-    @media screen and (min-width: 768px) {
-            right: 40px;
-            bottom: 40px;
-        }
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-image: url('../../assets/btnAdd.svg');
+  width: 44px;
+  height: 44px;
+  background-position: 50% 28%;
+  /* background-size: contain; */
+  border-radius: 100%;
+  outline: none;
+  @media screen and (min-width: 768px) {
+    right: 40px;
+    bottom: 40px;
+  }
 }
