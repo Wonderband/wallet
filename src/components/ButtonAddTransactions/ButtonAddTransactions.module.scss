@@ -1,6 +1,6 @@
 .button {
     position: sticky;
-    margin-left: 150%;
+    left: calc(100% - 64px);
     bottom: 20px;
     background-image: url('../../assets/btnAdd.svg');
     width: 44px;
@@ -10,7 +10,7 @@
     outline: none;
     @media screen and (min-width: 768px) {
             position: fixed;
-            margin-left: 0;
+            left: unset;
             right: 40px;
             bottom: 40px;
         }

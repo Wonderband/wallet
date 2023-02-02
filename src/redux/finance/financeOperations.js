@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { closeModal } from 'redux/global/globalSlice';
+import { refreshUser } from 'redux/session/sessionOperations';
 import { auth, setAuthToken } from 'services/authAPI';
 
 async function getAllCategories(_, thunkAPI) {
@@ -56,7 +57,7 @@ async function getAllTransactions(_, thunkAPI) {
   try {
     setAuthToken(persistedToken);
     const res = await auth.get('/api/transactions');
-    // console.log(res.data);
+    thunkAPI.dispatch(refreshUser());
     return res.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);

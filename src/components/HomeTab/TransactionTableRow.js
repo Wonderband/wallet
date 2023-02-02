@@ -17,6 +17,12 @@ const TransactionTableRow = ({ transaction }) => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const handleDelete = () => {
+    dispatch(deleteTransaction(transaction.id))
+    
+  }
+
   return (
     <>
       <tr className={css.table__tr}>
@@ -42,7 +48,7 @@ const TransactionTableRow = ({ transaction }) => {
           <button onClick={() => setShowModal(true)} style={{marginLeft: '10px'}}>
             <MdEdit color='#4a56e2' size='18' />
           </button>{' '}
-          <button onClick={() => dispatch(deleteTransaction(transaction.id))}>
+          <button onClick={handleDelete}>
             <AiFillDelete color='#ff6596' size='18' />
           </button>
         </td>

@@ -44,15 +44,11 @@ const financeSlice = createSlice({
       })
       .addCase(createTransaction.fulfilled, (state, { payload }) => {
         toastAddTransactionSuccess('Success adding transaction!');
-        // console.log('success!');
         state.totalBalance = payload.balanceAfter;
-        // localStorage.setItem('balance', payload.balanceAfter);
         state.transactions = [payload, ...state.transactions];
       })
       .addCase(getTransactions.fulfilled, (state, { payload }) => {
         state.transactions = payload;
-
-        // console.log(payload);
       })
       .addCase(createTransaction.rejected, (_, { payload }) => {
         console.log('reject!');

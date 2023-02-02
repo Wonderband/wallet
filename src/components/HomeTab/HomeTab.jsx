@@ -15,7 +15,7 @@ import TransactionTableRow from './TransactionTableRow';
 export const HomeTab = () => {
   const transactions = useSelector(selectTransactions);
   const isModalOpen = useSelector(selectIsModalOpen);
-  // const isAuth = useSelector(selectAuthToken);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTransactions());
@@ -88,7 +88,7 @@ export const HomeTab = () => {
             </>
           )}
         </Media>
-        {tranSactionToRender().length > 0 && (
+        {transactions.length > 5 && (
           <Pagination
             pageQtt={pageQtt}
             pageNum={pageNum}
