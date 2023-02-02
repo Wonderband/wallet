@@ -27,8 +27,6 @@ export const TableFilters = () => {
     year: yearsOptions[0].value,
   });
 
-  console.log(date.month);
-
   const updateDate = (name, value) => {
     setDate(prev => ({ ...prev, [name]: value }));
   };

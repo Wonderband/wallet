@@ -48,6 +48,7 @@
 }
 
 .radioLabel1 {
+  cursor: pointer;
   display: block;
   background-image: url('../../assets/btnAdd.svg');
   width: 60px;
@@ -57,6 +58,7 @@
   border-radius: 100%;
 }
 .radioLabel2 {
+  cursor: pointer;
   display: block;
   background-image: url('../../assets/btnSubs.svg');
   width: 60px;
@@ -69,7 +71,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* margin: 0 auto; */
   width: 80px;
   height: 40px;
   border-radius: 30px;
@@ -139,6 +140,7 @@
 
 .selectOption {
   width: 280px;
+  outline: none;
   height: 32px;
   border: none;
   border-bottom: 1px solid #e0e0e0;
@@ -211,6 +213,7 @@ textarea {
 }
 
 .close {
+  cursor: pointer;
   display: none;
   position: fixed;
   top: 20px;

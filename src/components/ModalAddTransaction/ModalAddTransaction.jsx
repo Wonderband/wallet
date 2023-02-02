@@ -1,74 +1,42 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik';
-// import { useState } from 'react';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { closeModal } from 'redux/global/globalSlice';
+import { selectCategories } from 'redux/selectors';
+import css from './ModalAddTransaction.module.scss';
+import * as yup from 'yup';
+import 'react-datetime/css/react-datetime.css';
+import { SelectField } from './SelectField';
 import {
   createTransaction,
   editTransaction,
   getCategories,
 } from 'redux/finance/financeOperations';
-import { closeModal } from 'redux/global/globalSlice';
-import { selectCategories } from 'redux/selectors';
-import css from './ModalAddTransaction.module.scss';
-import * as yup from 'yup';
-// import Datetime from 'react-datetime';
-import 'react-datetime/css/react-datetime.css';
-import { SelectField } from './SelectField';
 
-export const ModalAddTransaction = ({ transaction, closeModal }) => {
-  // const [typeSelector, setTypeSelector] = useState('EXPENSE');
-  // const [expenseCategory, setExpenseCategory] = useState('');
-  // const [amount, setAmount] = useState(null);
-  // const [date, setDate] = useState(null);
-  // const [comment, setComment] = useState('');
-
+export const ModalAddTransaction = ({ transaction, closeEditModal }) => {
   const dispatch = useDispatch();
-
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   const transactionData = {
-  //     transactionDate: date,
-  //     type: typeSelector,
-  //     categoryId:
-  //       typeSelector === 'EXPENSE'
-  //         ? expenseCategory
-  //         : '063f1132-ba5d-42b4-951d-44011ca46262',
-  //     comment: comment,
-  //     amount:
-  //       typeSelector === 'EXPENSE'
-  //         ? parseFloat(amount) * -1
-  //         : parseFloat(amount),
-  //   };
-  // console.log(transactionData);
-  //   dispatch(createTransaction(transactionData));
-  // };
 
   const clickOnBackdropHandler = e => {
     if (e.target === e.currentTarget) {
-      closeModal ? closeModal() : dispatch(closeModal());
+      closeEditModal ? closeEditModal() : dispatch(closeModal());
     }
   };
 
   const onEscapeHandler = e => {
     if (e.code === 'Escape') {
-      closeModal ? closeModal() : dispatch(closeModal());
+      closeEditModal ? closeEditModal() : dispatch(closeModal());
     }
   };
 
+
   useEffect(() => {
-    const backdrop = document.querySelector('#modalBackdrop');
-    backdrop.addEventListener('click', clickOnBackdropHandler);
     document.addEventListener('keydown', onEscapeHandler);
-  }, [
-    () => {
-      const backdrop = document.querySelector('#modalBackdrop');
-      backdrop.removeEventListener('click', clickOnBackdropHandler);
+
+    return () => {
       document.removeEventListener('keydown', onEscapeHandler);
-    },
-    // clickOnBackdropHandler,
-    // onEscapeHandler,
-  ]);
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(getCategories());
@@ -83,13 +51,7 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
       label: i.name,
       value: i.id,
     });
-  }
-  console.log(newCategoriesList);
-  // let newCategoriesList = categoriesList.reduce((acc, item) => {
-  //   return acc.push({ label: item.name });
-  //   // value
-  // }, []);
-  // console.log(newCategoriesList);
+  };
 
   const showCategoriesList = () => {
     return categoriesList
@@ -123,7 +85,7 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
       'is-decimal',
       'The amount should be a decimal with maximum two digits after comma',
       val => {
-        if (val != undefined) {
+        if (val !== undefined) {
           return patternTwoDigisAfterComma.test(val);
         }
         return true;
@@ -139,7 +101,7 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
   });
 
   const handleSubmit = values => {
-    closeModal && closeModal();
+    closeEditModal && closeEditModal();
 
     const id = transaction?.id;
 
@@ -166,13 +128,13 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
   )?.name;
 
   return createPortal(
-    <div className={css.modalBackdrop} id="modalBackdrop">
+    <div className={css.modalBackdrop} id="modalBackdrop" onClick={clickOnBackdropHandler}>
       <section className={css.modalSection} id="myModal">
         <h2 className={css.title}>Add transaction</h2>
         <span
           className={css.close}
           onClick={() => {
-            closeModal ? closeModal() : dispatch(closeModal());
+            closeEditModal ? closeEditModal() : dispatch(closeModal());
           }}
         ></span>
         <Formik
@@ -231,15 +193,6 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
               <div className={css.inputs}>
                 {values.type === 'EXPENSE' && (
                   <label className={css.selector}>
-                    {/* <Field
-                      className={css.selectOption}
-                      name="categoryId"
-                      as="select"
-                      required
-                    >
-                      <option value="">Select a category</option>
-                      {showCategoriesList()}
-                    </Field> */}
                     {
                       <Field
                         name="categoryId"
@@ -256,11 +209,8 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
                     <Field
                       type="number"
                       name="amount"
-                      // min="0.01"
                       step="0.01"
                       placeholder="0.00"
-                      // value="0"
-                      // required
                       className={css.selectOption}
                     />
                     <ErrorMessage
@@ -277,8 +227,6 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
                       type="date"
                       name="transactionDate"
                       value={values.transactionDate}
-
-                      // required
                     />
                   </label>
                   <ErrorMessage
@@ -305,7 +253,7 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
                 className={css.cancelButton}
                 type="button"
                 onClick={() => {
-                  closeModal ? closeModal() : dispatch(closeModal());
+                  closeEditModal ? closeEditModal() : dispatch(closeModal());
                 }}
               >
                 Cancel
@@ -313,45 +261,6 @@ export const ModalAddTransaction = ({ transaction, closeModal }) => {
             </Form>
           )}
         </Formik>
-        {/* <form className={css.modalForm} onChange={changeFormHandle}> */}
-        {/* <label>
-            <input type="radio" name="type" value="INCOME" />
-            Income
-          </label>
-          <label>
-            <input type="radio" name="type" value="EXPENSE" defaultChecked />
-            Expense
-          </label> */}
-
-        {/* {typeSelector === 'EXPENSE' && (
-            <label>
-              <select name="categories" required>
-                <option checked>Select a category</option>
-                {showCategoriesList()}
-              </select>
-            </label>
-          )} */}
-
-        {/* <label>
-            <input
-              type="number"
-              name="amount"
-              min="0.01"
-              step="0.01"
-              // value="0"
-              required
-            />
-          </label> */}
-        {/* <label>
-            <input type="date" name="date" max="2023-01-31" required />
-          </label> */}
-        {/* <label>
-            <textarea name="comment" placeholder="Comment"></textarea>
-          </label> */}
-        {/* <button type="submit" onClick={handleSubmit}>
-            Add
-          </button> */}
-        {/* </form> */}
       </section>
       ,
     </div>,

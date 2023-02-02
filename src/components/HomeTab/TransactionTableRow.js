@@ -4,6 +4,8 @@ import { deleteTransaction } from '../../redux/finance/financeOperations';
 import { ModalAddTransaction } from '../ModalAddTransaction/ModalAddTransaction';
 import CategoryName from './CategoryName';
 import css from './HomeTab.module.scss';
+import { AiFillDelete } from 'react-icons/ai';
+import { MdEdit } from 'react-icons/md';
 
 const TransactionTableRow = ({ transaction }) => {
   const { transactionDate, type, categoryId, comment, amount, balanceAfter } =
@@ -15,6 +17,12 @@ const TransactionTableRow = ({ transaction }) => {
   const closeModal = () => {
     setShowModal(false);
   };
+
+  const handleDelete = () => {
+    dispatch(deleteTransaction(transaction.id))
+    
+  }
+
   return (
     <>
       <tr className={css.table__tr}>
@@ -36,17 +44,19 @@ const TransactionTableRow = ({ transaction }) => {
           {amount < 0 ? amount * -1 : amount}
         </td>
         <td className={css.tdBalance}>
-          {balanceAfter}{' '}
-          <button onClick={() => setShowModal(true)}>edit</button>{' '}
-          <button onClick={() => dispatch(deleteTransaction(transaction.id))}>
-            delete
+          {balanceAfter ? Math.abs(balanceAfter.toFixed(2)) : 0}
+          <button onClick={() => setShowModal(true)} style={{marginLeft: '10px'}}>
+            <MdEdit color='#4a56e2' size='18' />
+          </button>{' '}
+          <button onClick={handleDelete}>
+            <AiFillDelete color='#ff6596' size='18' />
           </button>
         </td>
       </tr>
       {showModal && (
         <ModalAddTransaction
           transaction={transaction}
-          closeModal={closeModal}
+          closeEditModal={closeModal}
         />
       )}
     </>
