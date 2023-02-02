@@ -1,6 +1,6 @@
 .canva {
-  width: 288px;
-  height: 288px;
+  width: 280px;
+  height: 280px;
   margin-bottom: 32px;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,12 @@
   align-items: center;
   @media screen and (min-width: 1280px) {
     margin-bottom: 0;
+    width: 288px;
+    height: 288px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 336px;
   }
 }
 
