@@ -11,16 +11,13 @@
   @media screen and (min-width: 768px) {
     background-image: url(../../assets//images/Background/desktopBg.png);
     background-repeat: no-repeat;
-    // background-size: cover;
+    background-size: 100% 100%;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       background-image: url(../../assets/images/Background/desktopBg@2x.png);
     }
-  }
-  @media screen and (min-width: 768px) {
-    height: calc(100vh - 80px);
   }
   @media screen and (min-width: 1280px) {
     display: flex;
