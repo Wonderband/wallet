@@ -7,9 +7,7 @@ export const selectStyles = {
     ...provided,
     border: '1px solid #000000',
     borderRadius: 30,
-    // height: 50,
     width: '100%',
-    // minHeight: 50,
     backgroundColor: 'transparent',
     boxShadow: 'none',
     cursor: 'pointer',
@@ -47,26 +45,18 @@ export const selectStyles = {
   dropdownIndicator: provided => ({
     ...provided,
     color: '#000000',
-    // width: 18,
-    // height: 9,
     '&:hover': {
-      // transform: 'rotate(0.5turn)',
       color: '#000000',
     },
-    // '&:blur': {
-    //   // transform: 'rotate(0.5turn)',
-    //   color: 'orange',
-    // },
   }),
 
   menu: provided => ({
     ...provided,
     background: 'rgba(255, 255, 255, 0.3)',
     boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
-    backdropFilter: 'blur(25px)',
+    backdropFilter: 'blur(10px)',
     borderRadius: 20,
     overflow: 'hidden',
-    // maxHeight: '157px',
   }),
 
   menuList: provided => ({
@@ -75,7 +65,6 @@ export const selectStyles = {
     borderRadius: 20,
     cursor: 'pointer',
     maxHeight: '157px',
-    // scrollbarWidth: 'none',
     '::-webkit-scrollbar': {
       width: '4px',
       height: '0px',
@@ -93,7 +82,7 @@ export const selectStyles = {
 
   option: (provided, { isFocused, isSelected }) => ({
     ...provided,
-    background: isFocused || isSelected ? '#ffffff' : 'transparent',
+    background: isFocused || isSelected ? '#ffffff' : '#fff',
     color: isFocused || isSelected ? '#4A56E2' : '#000000',
     cursor: 'pointer',
     padding: '14px 20px',
