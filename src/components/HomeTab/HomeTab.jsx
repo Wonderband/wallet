@@ -3,7 +3,10 @@ import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAd
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getTransactions } from 'redux/finance/financeOperations';
+import {
+  getCategories,
+  getTransactions,
+} from 'redux/finance/financeOperations';
 import { selectIsModalOpen } from 'redux/selectors';
 import { selectTransactions } from 'redux/selectors';
 import Pagination from './Pagination/Pagination';
@@ -45,7 +48,7 @@ export const HomeTab = () => {
                 <ul className={css.mobileHomeTab}>
                   {tranSactionToRender()
                     .sort((a, b) =>
-                      a.transactionDate.localeCompare(b.transactionDate)
+                      b.transactionDate.localeCompare(a.transactionDate)
                     )
                     .map(transaction => (
                       <MobileHomeTab
@@ -74,12 +77,16 @@ export const HomeTab = () => {
                     <table className={css.table}>
                       <tbody>
                         {Array.isArray(tranSactionToRender()) &&
-                          tranSactionToRender().map(transaction => (
-                            <TransactionTableRow
-                              key={transaction?.id}
-                              transaction={transaction}
-                            />
-                          ))}
+                          tranSactionToRender()
+                            .sort((a, b) =>
+                              b.transactionDate.localeCompare(a.transactionDate)
+                            )
+                            .map(transaction => (
+                              <TransactionTableRow
+                                key={transaction?.id}
+                                transaction={transaction}
+                              />
+                            ))}
                       </tbody>
                     </table>
                   </div>
