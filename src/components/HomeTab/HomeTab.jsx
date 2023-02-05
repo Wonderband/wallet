@@ -1,4 +1,6 @@
 import Media from 'react-media';
+import dayjs from 'dayjs';
+
 import { ButtonAddTransactions } from 'components/ButtonAddTransactions/ButtonAddTransactions';
 import { ModalAddTransaction } from 'components/ModalAddTransaction/ModalAddTransaction';
 import { useEffect, useState } from 'react';
@@ -15,24 +17,42 @@ import MobileHomeTab from './MobileHomeTab';
 import css from './HomeTab.module.scss';
 import TransactionTableRow from './TransactionTableRow';
 
+var advancedFormat = require('dayjs/plugin/advancedFormat');
+dayjs.extend(advancedFormat);
+
+const sortTransactionsByDate = state => {
+  const transactions = state?.finance?.transactions;
+  if (transactions?.length > 0) {
+    return transactions
+      .slice()
+      .sort(
+        (a, b) =>
+          dayjs(b.transactionDate).format('x') -
+          dayjs(a.transactionDate).format('x')
+      );
+  } else return [];
+};
+
 export const HomeTab = () => {
-  const transactions = useSelector(selectTransactions);
+  const transactions = useSelector(sortTransactionsByDate);
   const isModalOpen = useSelector(selectIsModalOpen);
 
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getTransactions());
-    dispatch(getCategories());
-  }, [dispatch]);
-
   const [pageNum, setPageNum] = useState(1);
   const perPage = 5;
+  const pageQtt = Math.ceil(transactions.length / Number(perPage));
+
+  useEffect(() => {
+    if (pageNum > pageQtt && pageNum > 1) {
+      setPageNum(pageQtt);
+    }
+    dispatch(getTransactions());
+    dispatch(getCategories());
+  }, [dispatch, pageQtt, pageNum]);
 
   const tranSactionToRender = () => {
     return transactions.slice(pageNum * perPage - perPage, pageNum * perPage);
   };
-
-  const pageQtt = Math.ceil(transactions.length / Number(perPage));
 
   return (
     <>
